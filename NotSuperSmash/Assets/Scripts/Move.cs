@@ -60,9 +60,8 @@ public class Move : MonoBehaviour {
 			moveVector = new Vector3 (moveVector.x, moveVector.y, moveVector.z * friction);
 		}
 		
-		print (moveVector);
-
-		
+		//print (moveVector);
+		//print (InputManager.GetButtonInput (this.tag, "AButton"));
 		transform.Translate (moveVector * speed * Time.deltaTime, Space.World);
 	}
 }
