@@ -10,6 +10,10 @@ public static class Physics {
 	}
 	
 	public static void ApplyFriction(PlayerMovement obj) {
-		obj.moveVector *= friction;
+		obj.SetMoveVector(obj.GetMoveVector() * friction);
+	}
+
+	public static void ApplyKnockback(Vector3 fromPos, Vector3 toPos, float force) {
+		Vector3 direction = toPos - fromPos;
 	}
 }
