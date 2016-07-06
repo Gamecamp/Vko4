@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class Physics {
+public static class MyPhysics {
 	private static float gravity = 9.81f;
 	private static float friction = 0.90f;
 

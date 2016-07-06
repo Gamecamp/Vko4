@@ -2,10 +2,6 @@
 using System.Collections;
 
 public class PlayerMovement : PlayerBase {
-	public float jumpPower;
-	private Vector3 moveVector;
-	private bool isJump;
-
 
 	// Use this for initialization
 	void Start () {
@@ -14,18 +10,20 @@ public class PlayerMovement : PlayerBase {
 	
 	// Update is called once per frame
 	void Update () {
+		IsPlayerGrounded ();
 		GetPlayerInput ();
 		ApplyMovement ();
 		ApplyPhysics ();
 	}
 
 	void GetPlayerInput () {
-		isJump = InputManager.GetButtonInput (this.tag, "AButton");
 		moveVector += new Vector3(InputManager.GetXInput (this.tag), 0, InputManager.GetYInput (this.tag));
+		isJumpInput = InputManager.GetButtonInput (this.tag, "AButton");
 	}
 
 	void ApplyMovement() {
-		if (isJump) {
+		
+		if (isJumpInput && isGrounded) {
 			moveVector = new Vector3(moveVector.x, moveVector.y + jumpPower, moveVector.z);
 		}
 		
@@ -33,8 +31,7 @@ public class PlayerMovement : PlayerBase {
 	}
 
 	void ApplyPhysics() {
-		//Physics.ApplyGravity(gameObject);
-		Physics.ApplyFriction(this);
+		MyPhysics.ApplyFriction (this);
 	}
 
 	public Vector3 GetMoveVector() {
