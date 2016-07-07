@@ -11,18 +11,13 @@ public class PlayerMovement : PlayerBase {
 	// Update is called once per frame
 	void Update () {
 		IsPlayerGrounded ();
-		GetPlayerInput ();
 		ApplyMovement ();
 		ApplyPhysics ();
 	}
-
-	void GetPlayerInput () {
-		moveVector += new Vector3(InputManager.GetXInput (this.tag), 0, InputManager.GetYInput (this.tag));
-		isJumpInput = InputManager.GetButtonInput (this.tag, "AButton");
-	}
-
 	void ApplyMovement() {
 		
+		moveVector += new Vector3(InputManager.GetXInput (this.tag), 0, InputManager.GetYInput (this.tag));
+
 		if (isJumpInput && isGrounded) {
 			moveVector = new Vector3(moveVector.x, moveVector.y + jumpPower, moveVector.z);
 		}
