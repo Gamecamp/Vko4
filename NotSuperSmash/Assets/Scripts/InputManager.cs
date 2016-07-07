@@ -22,7 +22,7 @@ public static class InputManager {
 		buttonName = ("P" + playerTag.Substring (6) + buttonName);
 
 		bool isButtonPressed = false;
-		isButtonPressed = Input.GetButtonDown (buttonName);
+		isButtonPressed = Input.GetButton (buttonName);
 
 		return isButtonPressed;
 	}

@@ -22,12 +22,24 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isGuarding;
 	protected bool isGuardInput;
 
+	protected bool isActionInput;
+
+	protected bool isUsingSpecial1;
+
+	protected bool canMove;
+
+	protected bool canInputActions;
+
 	public float jumpPower;
 	public float runSpeed;
+
+	protected float holdInputTime = 0.2f;
 
 	// Use this for initialization
 	void Start () {
 		isGrounded = false;
+
+
 	}
 	
 	// Update is called once per frame
@@ -141,5 +153,41 @@ public class PlayerBase : MonoBehaviour {
 
 	public void SetIsGuardInput(bool isGuardInput) {
 		this.isGuardInput = isGuardInput;
+	}
+
+	public bool GetCanMove() {
+		return canMove;
+	}
+
+	public void SetCanMove(bool canMove) {
+		this.canMove = canMove;
+	}
+
+	public bool GetCanInputActions() {
+		return canInputActions;
+	}
+
+	public void SetCanInputActions(bool canInputActions) {
+		this.canInputActions = canInputActions;
+	}
+
+	public bool GetIsActionInput() {
+		return isActionInput;
+	}
+
+	public void SetIsActionInput(bool isActionInput) {
+		this.isActionInput = isActionInput;
+	}
+
+	public bool GetIsUsingSpecial1() {
+		return isUsingSpecial1;
+	}
+
+	public void SetIsUsingSpecial1(bool isUsingSpecial1) {
+		this.isUsingSpecial1 = isUsingSpecial1;
+	}
+
+	public float GetHoldInputTime() {
+		return holdInputTime;
 	}
 }
