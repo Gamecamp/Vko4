@@ -4,22 +4,24 @@ using System.Collections;
 public static class InputManager {
 	private static float deadZoneAmount = 0.15f;
 
-	public static float GetXInput(string playerTag) {
-		string axisName = CheckPlayerNumber (playerTag, "Horizontal");
+	public static float GetXInput(string playerName) {
+		string axisName = CheckPlayerNumber (playerName, "Horizontal");
 		float playerXInput = ApplyDeadZone(Input.GetAxis (axisName));
+
+		Debug.Log(axisName);
 
 		return playerXInput;
 	}
 
-	public static float GetYInput(string playerTag) {
-		string axisName = CheckPlayerNumber (playerTag, "Vertical");
+	public static float GetYInput(string playerName) {
+		string axisName = CheckPlayerNumber (playerName, "Vertical");
 		float playerYInput = ApplyDeadZone(Input.GetAxis (axisName));
 
 		return playerYInput;
 	}
 
-	public static bool GetButtonInput (string playerTag, string buttonName) {
-		buttonName = ("P" + playerTag.Substring (6) + buttonName);
+	public static bool GetButtonInput (string playerName, string buttonName) {
+		buttonName = ("P" + playerName.Substring (6) + buttonName);
 
 		bool isButtonPressed = false;
 		isButtonPressed = Input.GetButton (buttonName);

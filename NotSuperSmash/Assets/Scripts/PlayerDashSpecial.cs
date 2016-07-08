@@ -61,6 +61,7 @@ public class PlayerDashSpecial : MonoBehaviour {
 					dashStarted = true;
 					player.SetCanMove (false);
 					dashReady = false;
+					dashCooldownPassed = 0;
 				}
 			} else {
 				buttonHeldTime = 0;
@@ -72,7 +73,6 @@ public class PlayerDashSpecial : MonoBehaviour {
 			if (dashPassedDuration >= dashMaxDuration) {
 				player.SetCanMove (true);
 				dashStarted = false;
-				dashCooldownPassed = 0;
 				dashPassedDuration = 0;
 			}
 		}

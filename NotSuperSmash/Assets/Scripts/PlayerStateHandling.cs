@@ -19,9 +19,10 @@ public class PlayerStateHandling : MonoBehaviour {
 	}
 
 	void GetPlayerInput() {
-		player.SetIsJumpInput(InputManager.GetButtonInput (this.tag, "AButton"));
-		player.SetIsGuardInput (InputManager.GetButtonInput (this.tag, "LBButton"));
-		player.SetIsActionInput (InputManager.GetButtonInput (this.tag, "XButton"));
+		player.SetIsJumpInput(InputManager.GetButtonInput (gameObject.name, "AButton"));
+		player.SetIsGuardInput (InputManager.GetButtonInput (gameObject.name, "LBButton"));
+		player.SetIsActionInput (InputManager.GetButtonInput (gameObject.name, "XButton"));
+		player.SetIsThrowingInput (InputManager.GetButtonInput (gameObject.name, "RBButton"));
 		//Check button names below!
 		//player.SetIsEquipInput(InputManager.GetButtonInput (this.tag, ""));
 		//player.SetIsThrowingInput(InputManager.GetButtonInput (this.tag, ""));

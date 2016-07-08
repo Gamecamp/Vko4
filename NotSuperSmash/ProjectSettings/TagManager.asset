@@ -4,9 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player1
+  - Player
   - Item
-  - Player2
+  - GrapplingHitbox
+  - LightAttackHitbox
+  - HeavyAttackHitbox
+  - New Tag
+  - New Tag
   layers:
   - Default
   - TransparentFX

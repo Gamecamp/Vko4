@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerGuarding : MonoBehaviour {
+public class PlayerGrapple : MonoBehaviour {
 
 	PlayerMovement player;
 
@@ -9,14 +9,14 @@ public class PlayerGuarding : MonoBehaviour {
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		UpdateGuarding ();
+		UpdateGrappling ();
 	}
 
-	void UpdateGuarding () {
-		if (player.GetIsGuardInput() && player.GetCanInputActions()) {
+	void UpdateGrappling () {
+		if (player.GetIsGrappling && player.GetCanInputActions()) {
 			player.SetIsGuarding (true);
 			print ("guarding");
 		} else {
