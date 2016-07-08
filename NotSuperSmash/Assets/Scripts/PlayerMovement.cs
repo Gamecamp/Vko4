@@ -18,13 +18,17 @@ public class PlayerMovement : PlayerBase {
 		if (GetCanMove() && GetCanInputActions()) {
 			moveVector += new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetYInput (gameObject.name));
 
-			transform.forward = moveVector;
+
 
 			if (isJumpInput && isGrounded) {
 				moveVector = new Vector3(moveVector.x, moveVector.y + jumpPower, moveVector.z);
 			}
 
 			transform.Translate (moveVector * runSpeed * Time.deltaTime, Space.World);
+
+			facingVector = new Vector3 (moveVector.x, 0, moveVector.z);
+
+			transform.forward = facingVector;
 
 		}
 	}

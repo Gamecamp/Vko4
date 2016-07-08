@@ -8,6 +8,7 @@ public class PlayerBase : MonoBehaviour {
 
 	protected bool isJumpInput;
 	protected Vector3 moveVector;
+	protected Vector3 facingVector;
 	protected bool isGrounded;
 
 	protected bool isAbleToEquip;
@@ -33,7 +34,7 @@ public class PlayerBase : MonoBehaviour {
 	public float jumpPower;
 	public float runSpeed;
 
-	protected float holdInputTime = 0.2f;
+	protected float holdInputTime = 0.15f;
 
 	// Use this for initialization
 	void Start () {
