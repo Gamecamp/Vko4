@@ -18,10 +18,8 @@ public class PlayerGrapple : MonoBehaviour {
 	void UpdateGrappling () {
 		if (player.GetIsGrappling() && player.GetCanInputActions()) {
 			player.SetIsGuarding (true);
-			print ("guarding");
 		} else {
 			player.SetIsGuarding (false);
-			print ("not guarding");
 		}
 	}
 }

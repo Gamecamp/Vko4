@@ -28,7 +28,9 @@ public class PlayerMovement : PlayerBase {
 
 			facingVector = new Vector3 (moveVector.x, 0, moveVector.z);
 
-			transform.forward = facingVector;
+			if (facingVector != Vector3.zero) {
+				transform.forward = facingVector;
+			}
 
 		}
 	}

@@ -53,10 +53,7 @@ public class PlayerDashSpecial : MonoBehaviour {
 			if (player.GetIsActionInput () && player.GetCanInputActions () && dashReady) {
 				buttonHeldTime = buttonHeldTime + Time.deltaTime;
 
-				print (buttonHeldTime + ", max time: " + holdInputTime);
-
 				if (buttonHeldTime >= holdInputTime) {
-					print ("in here");
 					dashDirection = new Vector3 (InputManager.GetXInput (gameObject.name), 0, InputManager.GetYInput (gameObject.name));
 					dashStarted = true;
 					player.SetCanMove (false);

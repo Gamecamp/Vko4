@@ -15,7 +15,6 @@ public class PlayerStateHandling : MonoBehaviour {
 	void Update () {
 		GetPlayerInput ();
 		AlterStates ();
-		//print (player.GetIsGuardInput ());
 	}
 
 	void GetPlayerInput() {
@@ -23,9 +22,7 @@ public class PlayerStateHandling : MonoBehaviour {
 		player.SetIsGuardInput (InputManager.GetButtonInput (gameObject.name, "LBButton"));
 		player.SetIsActionInput (InputManager.GetButtonInput (gameObject.name, "XButton"));
 		player.SetIsThrowingInput (InputManager.GetButtonInput (gameObject.name, "RBButton"));
-		//Check button names below!
-		//player.SetIsEquipInput(InputManager.GetButtonInput (this.tag, ""));
-		//player.SetIsThrowingInput(InputManager.GetButtonInput (this.tag, ""));
+		player.SetIsEquipInput (InputManager.GetButtonInput(gameObject.name, "BButton"));
 	}
 
 	void AlterStates() {
