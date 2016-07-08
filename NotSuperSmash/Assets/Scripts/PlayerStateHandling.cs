@@ -8,7 +8,7 @@ public class PlayerStateHandling : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
-	
+		player.SetCanMove (true);
 	}
 	
 	// Update is called once per frame
@@ -39,7 +39,7 @@ public class PlayerStateHandling : MonoBehaviour {
 
 
 		if (!player.GetIsGuarding() && player.GetCanInputActions()) {
-			player.SetCanMove(true);
+			//player.SetCanMove(true);
 		}
 	}
 }

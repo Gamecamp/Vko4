@@ -14,6 +14,7 @@ public class PlayerMovement : PlayerBase {
 		ApplyMovement ();
 		ApplyPhysics ();
 	}
+
 	void ApplyMovement() {
 		if (GetCanMove() && GetCanInputActions()) {
 			moveVector += new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetYInput (gameObject.name));
@@ -28,7 +29,9 @@ public class PlayerMovement : PlayerBase {
 
 			facingVector = new Vector3 (moveVector.x, 0, moveVector.z);
 
-			transform.forward = facingVector;
+			if (facingVector != Vector3.zero) {
+				transform.forward = facingVector;
+			}
 
 		}
 	}
@@ -45,5 +48,9 @@ public class PlayerMovement : PlayerBase {
 
 	public void SetMoveVector(Vector3 v) {
 		moveVector = v;
+	}
+
+	public void LookTowards(Vector3 v) {
+		transform.forward = v;
 	}
 }
