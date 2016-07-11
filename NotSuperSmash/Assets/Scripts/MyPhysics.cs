@@ -13,7 +13,7 @@ public static class MyPhysics {
 		obj.SetMoveVector(obj.GetMoveVector() * friction);
 	}
 
-	public static void ApplyKnockback(PlayerMovement obj, Vector3 fromPos, Vector3 toPos, float force) {
-		Vector3 direction = toPos - fromPos;
+	public static void ApplyKnockback(PlayerMovement obj, Vector3 direction, float force) {
+		obj.StartKnockback (direction, force);
 	}
 }

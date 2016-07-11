@@ -54,7 +54,7 @@ public class PlayerDashSpecial : MonoBehaviour {
 				buttonHeldTime = buttonHeldTime + Time.deltaTime;
 
 				if (buttonHeldTime >= holdInputTime) {
-					dashDirection = new Vector3 (InputManager.GetXInput (gameObject.name), 0, InputManager.GetYInput (gameObject.name));
+					dashDirection = new Vector3 (InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
 					dashStarted = true;
 					player.SetCanMove (false);
 					dashReady = false;

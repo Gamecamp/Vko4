@@ -5,14 +5,14 @@ public class GrappleMechanics : MonoBehaviour {
 
 	GameObject parent;
 
-	PlayerGrapple grappleBox;
+	PlayerGrapple playerGrappling;
 
 	PlayerMovement targetPlayer;
 
 	// Use this for initialization
 	void Start () {
 		parent = transform.parent.gameObject;
-		grappleBox = parent.GetComponent<PlayerGrapple> ();
+		playerGrappling = parent.GetComponent<PlayerGrapple> ();
 	}
 	
 	// Update is called once per frame
@@ -21,9 +21,10 @@ public class GrappleMechanics : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (col.gameObject.tag == "Player" && !grappleBox.GetGrappleIsHappening()) {
-			//targetPlayer = col.gameObject.GetComponent<PlayerMovement> ();
-			//grappleBox.BeginGrappling (targetPlayer);
+		if (col.gameObject.tag == "Player" && !playerGrappling.GetGrappleIsHappening()) {
+			targetPlayer = col.gameObject.GetComponent<PlayerMovement> ();
+			playerGrappling.BeginGrappling (targetPlayer);
+			gameObject.SetActive (false);
 
 		}
 	}

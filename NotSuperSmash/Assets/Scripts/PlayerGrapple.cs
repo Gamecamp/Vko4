@@ -10,11 +10,13 @@ public class PlayerGrapple : MonoBehaviour {
 	GameObject grappleBox;
 
 	private float grappleAttemptDuration = 0;
+	private float grappleAttemptWindupDuration = 0.15f;
 	private float grappleAttemptMaxDuration = 0.3f;
 
 	private float grappleDuration = 0;
-	private float grappleMaxDuration = 0.5f;
+	private float grappleMaxDuration = 1f;
 
+	private bool grappleWindupGoing;
 	private bool grappleBoxActive;
 
 	private bool grappleIsFinished;
@@ -29,6 +31,7 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleBox.SetActive(false);
 		grappleBoxActive = false;
 		grappleIsHappening = false;
+		grappleAttemptDuration = 0;
 	}
 
 	// Update is called once per frame
@@ -38,13 +41,21 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 	
 	void UpdateGrapplingAttempt () {
+		
 		if (player.GetIsThrowingInput() && player.GetCanInputActions()) {
+			grappleWindupGoing = true;
+		}
+
+		if (grappleWindupGoing && !grappleBoxActive) {
+			player.SetCanMove(false);
+			grappleAttemptDuration = grappleAttemptDuration + Time.deltaTime;
+		}
+
+		if (grappleAttemptDuration >= grappleAttemptWindupDuration) {
+
+			grappleWindupGoing = false;
 			grappleBox.SetActive (true);
 			grappleBoxActive = true;
-		} 
-
-		if (grappleBoxActive) {
-
 			player.SetCanMove (false);
 
 			grappleAttemptDuration = grappleAttemptDuration + Time.deltaTime;
@@ -53,10 +64,12 @@ public class PlayerGrapple : MonoBehaviour {
 				grappleBox.SetActive (false);
 				grappleBoxActive = false;
 				grappleAttemptDuration = 0;
+
+				if (!grappleIsHappening) {
+					player.SetCanMove (true);
+				}
 			}
-		} else {
-			player.SetCanMove (true);
-		}
+		} 
 
 	}
 
@@ -65,14 +78,14 @@ public class PlayerGrapple : MonoBehaviour {
 
 			print ("grappel");
 
-			throwingVector = new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetYInput (gameObject.name));
+			throwingVector = new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
 
 			print (Mathf.Abs(throwingVector.x + throwingVector.z));
 
-			if (Mathf.Abs (throwingVector.x + throwingVector.z) > 1) {
+			if (Mathf.Abs(throwingVector.x) > 0.5f || Mathf.Abs(throwingVector.z) > 0.5f) {
 				print ("thrower");
 
-				MyPhysics.ApplyKnockback(targetPlayer, player.transform.position, throwingVector, 200);
+				MyPhysics.ApplyKnockback(targetPlayer, throwingVector, 50);
 				ResetGrapple ();
 			}
 
@@ -94,8 +107,6 @@ public class PlayerGrapple : MonoBehaviour {
 
 		SetGrapplers ();
 		TurnGrapplers ();
-
-
 	}
 
 	void SetGrapplers() {

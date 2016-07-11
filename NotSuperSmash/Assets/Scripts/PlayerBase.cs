@@ -2,13 +2,15 @@
 using System.Collections;
 
 public class PlayerBase : MonoBehaviour {
-	private float maxHealth;
-	private float knockbackForce;
-	private float attackDamage;
+	protected float maxHealth;
+	protected float knockbackForce;
+	protected float attackDamage;
 
 	protected bool isJumpInput;
 	protected Vector3 moveVector;
 	protected Vector3 facingVector;
+	protected Vector3 knockbackDirection;
+	protected float knockbackThreshold = 10;
 	protected bool isGrounded;
 
 	protected bool isAbleToEquip;
@@ -39,8 +41,6 @@ public class PlayerBase : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isGrounded = false;
-
-
 	}
 	
 	// Update is called once per frame
