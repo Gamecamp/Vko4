@@ -22,8 +22,8 @@ public class GrappleMechanics : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Player" && !grappleBox.GetGrappleIsHappening()) {
-			targetPlayer = col.gameObject.GetComponent<PlayerMovement> ();
-			grappleBox.BeginGrappling (targetPlayer);
+			//targetPlayer = col.gameObject.GetComponent<PlayerMovement> ();
+			//grappleBox.BeginGrappling (targetPlayer);
 
 		}
 	}

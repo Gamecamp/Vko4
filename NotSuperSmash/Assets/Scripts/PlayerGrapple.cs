@@ -36,14 +36,6 @@ public class PlayerGrapple : MonoBehaviour {
 		UpdateGrapplingAttempt ();
 		UpdateGrappling ();
 	}
-
-	void UpdateGrappling () {
-		if (player.GetIsGrappling() && player.GetCanInputActions()) {
-			player.SetIsGuarding (true);
-		} else {
-			player.SetIsGuarding (false);
-		}
-	}
 	
 	void UpdateGrapplingAttempt () {
 		if (player.GetIsThrowingInput() && player.GetCanInputActions()) {
