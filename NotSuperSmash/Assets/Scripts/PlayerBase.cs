@@ -96,7 +96,7 @@ public class PlayerBase : MonoBehaviour {
 		return isGrappling;
 	}
 
-	public void SetIsGrabbling(bool isGrappling) {
+	public void SetIsGrappling(bool isGrappling) {
 		this.isGrappling = isGrappling;
 	}
 
