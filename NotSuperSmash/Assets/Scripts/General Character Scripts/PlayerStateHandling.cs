@@ -14,7 +14,7 @@ public class PlayerStateHandling : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		GetPlayerInput ();
-		AlterStates ();
+		//AlterStates ();
 	}
 
 	void GetPlayerInput() {
@@ -36,7 +36,7 @@ public class PlayerStateHandling : MonoBehaviour {
 
 
 		if (!player.GetIsGuarding() && player.GetCanInputActions()) {
-			//player.SetCanMove(true);
+			player.SetCanMove(true);
 		}
 	}
 }

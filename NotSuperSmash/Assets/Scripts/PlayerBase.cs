@@ -5,6 +5,8 @@ public class PlayerBase : MonoBehaviour {
 	protected float maxHealth;
 	protected float knockbackForce;
 	protected float attackDamage;
+	protected float staggerDuration;
+	protected float staggerDurationPassed;
 
 	protected bool isJumpInput;
 	protected Vector3 moveVector;
@@ -190,5 +192,21 @@ public class PlayerBase : MonoBehaviour {
 
 	public float GetHoldInputTime() {
 		return holdInputTime;
+	}
+
+	public void SetStaggerDuration(float staggerDuration) {
+		this.staggerDuration = staggerDuration;
+	}
+
+	public float GetStaggerDuration() {
+		return staggerDuration;
+	}
+
+	public void SetStaggerDurationPassed(float staggerDurationPassed) {
+		this.staggerDurationPassed = staggerDurationPassed;
+	}
+
+	public float GetStaggerDurationPassed() {
+		return staggerDurationPassed;
 	}
 }

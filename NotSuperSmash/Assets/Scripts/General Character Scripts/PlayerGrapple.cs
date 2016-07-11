@@ -4,8 +4,11 @@ using System.Collections;
 public class PlayerGrapple : MonoBehaviour {
 
 	PlayerMovement player;
-
 	PlayerMovement targetPlayer;
+	GameObject targetPlayerObject;
+
+	GameObject playerLocation;
+	GameObject targetPlayerLocation;
 
 	GameObject grappleBox;
 
@@ -27,7 +30,8 @@ public class PlayerGrapple : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
-		grappleBox = GameObject.Find ("GrapplingHitboxP1");
+		grappleBox = GameObject.Find ("GrapplingHitbox" + gameObject.name);
+		playerLocation = GameObject.Find ("PlayerPosition" + gameObject.name);
 		grappleBox.SetActive(false);
 		grappleBoxActive = false;
 		grappleIsHappening = false;
@@ -46,7 +50,7 @@ public class PlayerGrapple : MonoBehaviour {
 			grappleWindupGoing = true;
 		}
 
-		if (grappleWindupGoing && !grappleBoxActive) {
+		if (grappleWindupGoing && !grappleBoxActive && player.GetCanInputActions()) {
 			player.SetCanMove(false);
 			grappleAttemptDuration = grappleAttemptDuration + Time.deltaTime;
 		}
@@ -76,20 +80,15 @@ public class PlayerGrapple : MonoBehaviour {
 	void UpdateGrappling() {
 		if (grappleIsHappening) {
 
-			print ("grappel");
-
 			throwingVector = new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
 
 			print (Mathf.Abs(throwingVector.x + throwingVector.z));
 
 			if (Mathf.Abs(throwingVector.x) > 0.5f || Mathf.Abs(throwingVector.z) > 0.5f) {
-				print ("thrower");
 
 				MyPhysics.ApplyKnockback(targetPlayer, throwingVector, 50);
 				ResetGrapple ();
 			}
-
-			print (throwingVector);
 
 			PassGrapplingTime ();
 			if (grappleIsFinished) {
@@ -104,6 +103,7 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleIsFinished = false;
 
 		this.targetPlayer = targetPlayer;
+		targetPlayerLocation = GameObject.Find ("PlayerPosition" + targetPlayer.name);
 
 		SetGrapplers ();
 		TurnGrapplers ();
@@ -121,9 +121,9 @@ public class PlayerGrapple : MonoBehaviour {
 
 	void TurnGrapplers() {
 
-		player.LookTowards (targetPlayer.transform.position);
+		player.LookTowards (targetPlayerLocation.transform.position);
 
-		targetPlayer.LookTowards(player.transform.position);
+		targetPlayer.LookTowards(playerLocation.transform.position);
 	}
 
 	void PassGrapplingTime() {

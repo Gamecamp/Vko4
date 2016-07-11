@@ -16,4 +16,9 @@ public static class MyPhysics {
 	public static void ApplyKnockback(PlayerMovement obj, Vector3 direction, float force) {
 		obj.StartKnockback (direction, force);
 	}
+
+	public static void ApplyStagger(PlayerMovement obj, float staggerDuration) {
+		obj.StartStagger (staggerDuration);
+	}
+
 }

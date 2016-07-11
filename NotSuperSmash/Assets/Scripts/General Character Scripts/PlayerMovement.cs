@@ -5,6 +5,8 @@ public class PlayerMovement : PlayerBase {
 
 	Rigidbody rb;
 
+	private bool knockbackType;
+
 	// Use this for initialization
 	void Start () {
 		SetCanInputActions (true);
@@ -17,6 +19,7 @@ public class PlayerMovement : PlayerBase {
 		ApplyMovement ();
 		ApplyPhysics ();
 		ApplyKnockbacks ();
+		ApplyStagger ();
 	}
 
 	void ApplyKnockbacks() {
@@ -47,14 +50,32 @@ public class PlayerMovement : PlayerBase {
 	}
 
 	public void StartKnockback(Vector3 direction, float force) {
-		isKnockedBack = true;
+		SetIsKnockedBack(true);
 		knockbackForce = force;
 		knockbackDirection = direction;
+	}
+		
+
+	public void StartStagger(float staggerDuration) {
+		SetIsStaggered (true);
+		SetStaggerDuration (staggerDuration);
 	}
 
 
 	void ApplyPhysics() {
 		MyPhysics.ApplyFriction (this);
+	}
+
+	void ApplyStagger() {
+		if (GetIsStaggered ()) {
+			SetStaggerDurationPassed (GetStaggerDurationPassed () + Time.deltaTime);
+
+			if (GetStaggerDurationPassed() >= GetStaggerDuration()) {
+				SetIsStaggered(false);
+				SetStaggerDurationPassed(0);
+				SetStaggerDuration(0);
+			}
+		}
 	}
 
 	public Vector3 GetMoveVector() {
@@ -66,6 +87,6 @@ public class PlayerMovement : PlayerBase {
 	}
 
 	public void LookTowards(Vector3 v) {
-		transform.forward = v;
+		transform.LookAt (v);
 	}
 }
