@@ -7,6 +7,7 @@ public static class InputManager {
 	public static float GetXInput(string playerName) {
 		string axisName = CheckPlayerNumber (playerName, "Horizontal");
 		float playerXInput = ApplyDeadZone(Input.GetAxis (axisName));
+
 		return playerXInput;
 	}
 

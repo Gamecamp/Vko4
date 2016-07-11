@@ -37,6 +37,14 @@ public class PlayerGrapple : MonoBehaviour {
 		UpdateGrappling ();
 	}
 
+	void UpdateGrappling () {
+		if (player.GetIsGrappling() && player.GetCanInputActions()) {
+			player.SetIsGuarding (true);
+		} else {
+			player.SetIsGuarding (false);
+		}
+	}
+	
 	void UpdateGrapplingAttempt () {
 		if (player.GetIsThrowingInput() && player.GetCanInputActions()) {
 			grappleBox.SetActive (true);
@@ -120,6 +128,7 @@ public class PlayerGrapple : MonoBehaviour {
 
 		if (grappleDuration >= grappleMaxDuration) {
 			grappleIsFinished = true;
+
 		}
 	}
 
