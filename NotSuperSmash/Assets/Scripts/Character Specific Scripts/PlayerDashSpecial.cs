@@ -4,7 +4,6 @@ using System.Collections;
 public class PlayerDashSpecial : MonoBehaviour {
 
 	public float dashCooldown;
-
 	private float dashCooldownPassed;
 	private float holdInputTime;
 
@@ -21,8 +20,8 @@ public class PlayerDashSpecial : MonoBehaviour {
 	public float dashMaxDuration;
 	private float dashPassedDuration;
 
-
 	Vector3 dashDirection;
+	Vector3 facingDirection;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +29,6 @@ public class PlayerDashSpecial : MonoBehaviour {
 		player = GetComponent<PlayerMovement> ();
 		holdInputTime = player.GetHoldInputTime ();
 		dashStarted = false;
-
 		dashCooldownPassed = dashCooldown;
 	}
 	
@@ -40,15 +38,12 @@ public class PlayerDashSpecial : MonoBehaviour {
 	}
 
 	void UpdateDashing () {
-
 		if (!dashReady) {
 			dashCooldownPassed = dashCooldownPassed + Time.deltaTime;
-
 			if (dashCooldownPassed >= dashCooldown) {
 				dashReady = true;
 			}
 		} 
-
 		if (!dashStarted) {
 			if (player.GetIsActionInput () && player.GetCanInputActions () && dashReady) {
 				buttonHeldTime = buttonHeldTime + Time.deltaTime;
@@ -56,7 +51,7 @@ public class PlayerDashSpecial : MonoBehaviour {
 				if (buttonHeldTime >= holdInputTime) {
 					dashDirection = new Vector3 (InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
 					dashStarted = true;
-					player.SetCanMove (false);
+					player.SetIsUsingSpecial1 (true);
 					dashReady = false;
 					dashCooldownPassed = 0;
 				}
@@ -66,12 +61,19 @@ public class PlayerDashSpecial : MonoBehaviour {
 		} else {
 			transform.Translate (dashDirection * dashSpeed * Time.deltaTime, Space.World);
 			dashPassedDuration = dashPassedDuration + Time.deltaTime;
-
+			facingDirection = new Vector3 (dashDirection.x, 0, dashDirection.z);
+			if (facingDirection != Vector3.zero) {
+				transform.forward = facingDirection;
+			}
 			if (dashPassedDuration >= dashMaxDuration) {
-				player.SetCanMove (true);
-				dashStarted = false;
-				dashPassedDuration = 0;
+				ResetDash ();
 			}
 		}
+	}
+
+	void ResetDash() {
+		dashStarted = false;
+		dashPassedDuration = 0;
+		player.SetIsUsingSpecial1 (false);
 	}
 }

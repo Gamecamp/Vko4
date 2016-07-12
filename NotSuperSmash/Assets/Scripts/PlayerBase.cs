@@ -1,48 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class PlayerBase : MonoBehaviour {
+	
 	protected float maxHealth;
 	protected float knockbackForce;
 	protected float attackDamage;
-	protected float staggerDuration;
-	protected float staggerDurationPassed;
 
-	protected bool isJumpInput;
 	protected Vector3 moveVector;
 	protected Vector3 facingVector;
 	protected Vector3 knockbackDirection;
-	protected float knockbackThreshold = 10;
+
 	protected bool isGrounded;
 
+	protected bool isAttacking;
 	protected bool isAbleToEquip;
 	protected bool isGrappling;
-	protected bool isEquipInput;
-	protected bool isThrowingInput;
+	protected bool isGuarding;
+
+	protected bool isUsingSpecial1;
 
 	protected bool isStaggered;
 	protected bool isKnockedBack;
 	protected bool isGrappled;
 
-	protected bool isGuarding;
-	protected bool isGuardInput;
+	protected float staggerDuration;
+	protected float staggerDurationPassed;
 
 	protected bool isActionInput;
-
-	protected bool isUsingSpecial1;
+	protected bool isEquipInput;
+	protected bool isThrowingInput;
+	protected bool isGuardInput;
+	protected bool isJumpInput;
 
 	protected bool canMove;
-
 	protected bool canInputActions;
 
 	public float jumpPower;
 	public float runSpeed;
 
 	protected float holdInputTime = 0.15f;
+	protected float knockbackThreshold = 10;
+
+	List<bool> restrictions;
 
 	// Use this for initialization
 	void Start () {
 		isGrounded = false;
+		restrictions = new List<bool> ();
 	}
 	
 	// Update is called once per frame
@@ -208,5 +215,33 @@ public class PlayerBase : MonoBehaviour {
 
 	public float GetStaggerDurationPassed() {
 		return staggerDurationPassed;
+	}
+
+	public void SetIsAttacking(bool isAttacking) {
+		this.isAttacking = isAttacking;
+	}
+
+	public bool GetIsAttacking() {
+		return isAttacking;
+	}
+
+	public List<bool> GetRestrictions() {
+		restrictions = new List<bool> ();
+		restrictions.Add(GetIsAttacking ());
+		restrictions.Add(GetIsGrappling());
+		restrictions.Add(GetIsGuarding());
+		restrictions.Add(GetIsUsingSpecial1());
+		restrictions.Add(GetIsStaggered());
+		restrictions.Add(GetIsKnockedBack());
+		restrictions.Add(GetIsGrappled());
+
+		return restrictions;
+	}
+
+	public void InterruptActions() {
+		SetIsAttacking (false);
+		SetIsGrappling(false);
+		SetIsUsingSpecial1 (false);
+		SetIsGuarding (false);
 	}
 }

@@ -9,7 +9,6 @@ public class PlayerAttackReceived : MonoBehaviour {
 
 	Vector3 knockbackVector;
 
-	bool attackReceived;
 	bool previousAttackDone;
 
 	string attackType;
@@ -28,23 +27,23 @@ public class PlayerAttackReceived : MonoBehaviour {
 
 	public void ReceiveAttack (PlayerMovement targetPlayer, GameObject attackingPlayer, GameObject attackerLocation, string attackType) {
 
-		attackReceived = true;
-
+		if (!previousAttackDone) {
+			print ("DON'T DELETE if you see me in console. Previous attack wasn't finished, probably problems.");
+		} else {
+			previousAttackDone = false;
+		}
+			
 		this.attackType = attackType;
 	
 		this.targetPlayer = targetPlayer;
 		this.attackingPlayer = attackingPlayer;
 		this.attackerLocation = attackerLocation;
 
-		if (!previousAttackDone) {
-			print ("DON'T DELETE if you see me in console. Previous attack wasn't finished, probably problems.");
-		} else {
-			previousAttackDone = false;
-		}
 
 		print (attackerLocation);
 		print (targetPlayer);
 
+		InterruptActions ();
 		ReceiveDamage ();
 		TurnPlayer ();
 		ReceiveKnockback ();
@@ -54,6 +53,9 @@ public class PlayerAttackReceived : MonoBehaviour {
 		previousAttackDone = true;
 	}
 
+	void InterruptActions() {
+		targetPlayer.InterruptActions ();
+	}
 
 	void ReceiveDamage() {
 		
@@ -65,8 +67,6 @@ public class PlayerAttackReceived : MonoBehaviour {
 
 	void ReceiveKnockback() {
 		targetPlayer.StartKnockback(gameObject.transform.forward, 20);
-
-
 	}
 
 	void ReceiveStagger() {

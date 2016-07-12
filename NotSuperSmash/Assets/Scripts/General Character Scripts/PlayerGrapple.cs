@@ -19,11 +19,11 @@ public class PlayerGrapple : MonoBehaviour {
 	private float grappleDuration = 0;
 	private float grappleMaxDuration = 1f;
 
-	private bool grappleWindupGoing;
-	private bool grappleBoxActive;
-
 	private bool grappleIsFinished;
-	private bool grappleIsHappening; 
+	private bool grappleIsHappening;
+	private bool grappleAttemptInProgress;
+
+	private bool grappleWindupGoing;
 
 	Vector3 throwingVector;
 
@@ -33,8 +33,10 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleBox = GameObject.Find ("GrapplingHitbox" + gameObject.name);
 		playerLocation = GameObject.Find ("PlayerPosition" + gameObject.name);
 		grappleBox.SetActive(false);
-		grappleBoxActive = false;
 		grappleIsHappening = false;
+		grappleIsFinished = false;
+		grappleAttemptInProgress = false;
+		grappleWindupGoing = false;
 		grappleAttemptDuration = 0;
 	}
 
@@ -47,50 +49,55 @@ public class PlayerGrapple : MonoBehaviour {
 	void UpdateGrapplingAttempt () {
 		
 		if (player.GetIsThrowingInput() && player.GetCanInputActions()) {
+			player.SetIsGrappling (true);
 			grappleWindupGoing = true;
+			grappleAttemptInProgress = true;
 		}
 
-		if (grappleWindupGoing && !grappleBoxActive && player.GetCanInputActions()) {
-			player.SetCanMove(false);
-			grappleAttemptDuration = grappleAttemptDuration + Time.deltaTime;
-		}
+		if (player.GetIsGrappling ()) {
 
-		if (grappleAttemptDuration >= grappleAttemptWindupDuration) {
-
-			grappleWindupGoing = false;
-			grappleBox.SetActive (true);
-			grappleBoxActive = true;
-			player.SetCanMove (false);
 
 			grappleAttemptDuration = grappleAttemptDuration + Time.deltaTime;
+
+			if (grappleWindupGoing && grappleAttemptDuration >= grappleAttemptWindupDuration) {
+				grappleBox.SetActive (true);
+				grappleWindupGoing = false;
+			}
 
 			if (grappleAttemptDuration >= grappleAttemptMaxDuration) {
 				grappleBox.SetActive (false);
-				grappleBoxActive = false;
 				grappleAttemptDuration = 0;
-
-				if (!grappleIsHappening) {
-					player.SetCanMove (true);
-				}
+				ResetGrappleAttempt ();
 			}
-		} 
+		} else if (grappleAttemptInProgress) {
+			ResetGrappleAttempt ();
+		}
 
+	}
+
+	void ResetGrappleAttempt() {
+		grappleIsFinished = false;
+		grappleIsHappening = false;
+		grappleAttemptInProgress = false;
+
+		grappleWindupGoing = false;
+		grappleDuration = 0;
+		grappleAttemptDuration = 0;
+
+		player.SetIsGrappling (false);
 	}
 
 	void UpdateGrappling() {
 		if (grappleIsHappening) {
-
 			throwingVector = new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
 
-			print (Mathf.Abs(throwingVector.x + throwingVector.z));
-
 			if (Mathf.Abs(throwingVector.x) > 0.5f || Mathf.Abs(throwingVector.z) > 0.5f) {
-
 				MyPhysics.ApplyKnockback(targetPlayer, throwingVector, 50);
 				ResetGrapple ();
 			}
 
 			PassGrapplingTime ();
+
 			if (grappleIsFinished) {
 				ResetGrapple ();
 			}
@@ -110,13 +117,8 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void SetGrapplers() {
-
 		targetPlayer.SetIsGrappled (true);
-		targetPlayer.SetCanInputActions (false);
-
 		player.SetIsGrappling (true);
-		player.SetCanMove (false);
-
 	}
 
 	void TurnGrapplers() {
@@ -136,14 +138,15 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void ResetGrapple() {
+		
 		targetPlayer.SetIsGrappled (false);
-		targetPlayer.SetCanInputActions (true);
-
 		player.SetIsGrappling (false);
-		player.SetCanMove (true);
 
 		grappleIsFinished = false;
 		grappleIsHappening = false;
+		grappleAttemptInProgress = false;
+
+		grappleWindupGoing = false;
 
 		grappleDuration = 0;
 	}

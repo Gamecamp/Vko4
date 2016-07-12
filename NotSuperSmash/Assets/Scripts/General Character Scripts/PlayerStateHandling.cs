@@ -1,20 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerStateHandling : MonoBehaviour {
 
 	private PlayerMovement player;
 
+	private List<bool> restrictions;
+
+	private bool foundRestriction;
+
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
 		player.SetCanMove (true);
+		player.SetCanInputActions (true);
+
+		restrictions = new List<bool> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		GetPlayerInput ();
-		//AlterStates ();
+		AlterStates ();
 	}
 
 	void GetPlayerInput() {
@@ -26,17 +34,37 @@ public class PlayerStateHandling : MonoBehaviour {
 	}
 
 	void AlterStates() {
-		if (player.GetIsGuarding ()) {
+
+		if (player.GetIsStaggered() || player.GetIsKnockedBack() || player.GetIsGrappled()) {
+			player.InterruptActions ();
+		}
+
+		if (player.GetIsAttacking () || player.GetIsGrappling () || player.GetIsGuarding()) {
 			player.SetCanMove (false);
-		} 
-
-		if (player.GetIsStaggered() || player.GetIsKnockedBack()) {
-
+			player.SetCanInputActions (false);
 		}
 
 
-		if (!player.GetIsGuarding() && player.GetCanInputActions()) {
-			player.SetCanMove(true);
+		restrictions = player.GetRestrictions ();
+
+		foundRestriction = false;
+
+		for (int i = 0; i < restrictions.Count; i++) {
+			if (restrictions [i]) {
+				foundRestriction = true;
+				break;
+			}
+		}
+
+//		print (player.GetIsAttacking ());
+//		print (player.GetCanMove ());
+
+		if (foundRestriction) {
+			player.SetCanMove (false);
+			player.SetCanInputActions (false);
+		} else {
+			player.SetCanMove (true);
+			player.SetCanInputActions (true);
 		}
 	}
 }

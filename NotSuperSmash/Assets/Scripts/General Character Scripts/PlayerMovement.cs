@@ -9,7 +9,6 @@ public class PlayerMovement : PlayerBase {
 
 	// Use this for initialization
 	void Start () {
-		SetCanInputActions (true);
 		rb = GetComponent<Rigidbody> ();
 	}
 	
@@ -29,8 +28,6 @@ public class PlayerMovement : PlayerBase {
 
 			if (knockbackForce < knockbackThreshold) {
 				SetIsKnockedBack (false);
-				SetCanMove (true);
-				SetCanInputActions (true);
 			}
 		}
 	}
@@ -77,14 +74,7 @@ public class PlayerMovement : PlayerBase {
 			}
 		}
 	}
-
-	public Vector3 GetMoveVector() {
-		return moveVector;
-	}
-
-	public void SetMoveVector(Vector3 v) {
-		moveVector = v;
-	}
+		
 
 	public void LookTowards(Vector3 v) {
 		transform.LookAt (v);

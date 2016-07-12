@@ -14,18 +14,18 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 
 	float attackDuration;
 
-	bool attackStarted;
-
-
 	private int numberInAttackChain;
 	private int maxChain;
 	private int attackPhaseHelper;
+
+	private bool attackInProgress;
 
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
 		unarmedHitbox = GameObject.Find ("UnarmedHitbox" + gameObject.name);
 		unarmedHitbox.SetActive (false);
+		attackInProgress = false;
 
 		numberInAttackChain = 1;
 		attackPhaseHelper = 0;
@@ -45,15 +45,16 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 	}
 
 	void UpdateAttacking () {
+
 		if (player.GetIsActionInput() && player.GetCanInputActions()) {
-			attackStarted = true;
-
+			player.SetIsAttacking (true);
+			attackInProgress = true;
 		}
+			
 
-		if (attackStarted && player.GetCanInputActions()) {
+		if (player.GetIsAttacking ()) {
 
 			//  Attack doesn't hurt yet, swing windup time
-			player.SetCanMove (false);
 			attackDuration = attackDuration + Time.deltaTime;
 
 			// Attack hurtbox goes on
@@ -65,7 +66,6 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 			// Attack has been delivered, still can't move, recovery starts
 			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
 				unarmedHitbox.SetActive (false);
-				print ("Attack number: " + numberInAttackChain);
 				if (numberInAttackChain < maxChain) {
 					
 					numberInAttackChain++;
@@ -79,15 +79,17 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength + recoveryTime && attackPhaseHelper == 2) {
 				ResetAttack ();
 			}
+		} else if (attackInProgress) {
+			ResetAttack ();
 		}
 	}
 
 	void ResetAttack() {
-		attackStarted = false;
+		player.SetIsAttacking (false);
+		unarmedHitbox.SetActive (false);
 		attackDuration = 0;
 		attackPhaseHelper = 0;
-
-		player.SetCanMove (true);
+		attackInProgress = false;
 	}
 
 	void ResetAttackChain() {
