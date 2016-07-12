@@ -11,11 +11,11 @@ public static class InputManager {
 		return playerXInput;
 	}
 
-	public static float GetYInput(string playerName) {
+	public static float GetZInput(string playerName) {
 		string axisName = CheckPlayerNumber (playerName, "Vertical");
-		float playerYInput = ApplyDeadZone(Input.GetAxis (axisName));
+		float playerZInput = ApplyDeadZone(Input.GetAxis (axisName));
 
-		return playerYInput;
+		return playerZInput;
 	}
 
 	public static bool GetButtonInput (string playerName, string buttonName) {

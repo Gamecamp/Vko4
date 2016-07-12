@@ -2,13 +2,17 @@
 using System.Collections;
 
 public class PlayerBase : MonoBehaviour {
-	private float maxHealth;
-	private float knockbackForce;
-	private float attackDamage;
+	protected float maxHealth;
+	protected float knockbackForce;
+	protected float attackDamage;
+	protected float staggerDuration;
+	protected float staggerDurationPassed;
 
 	protected bool isJumpInput;
 	protected Vector3 moveVector;
 	protected Vector3 facingVector;
+	protected Vector3 knockbackDirection;
+	protected float knockbackThreshold = 10;
 	protected bool isGrounded;
 
 	protected bool isAbleToEquip;
@@ -39,8 +43,6 @@ public class PlayerBase : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		isGrounded = false;
-
-
 	}
 	
 	// Update is called once per frame
@@ -190,5 +192,21 @@ public class PlayerBase : MonoBehaviour {
 
 	public float GetHoldInputTime() {
 		return holdInputTime;
+	}
+
+	public void SetStaggerDuration(float staggerDuration) {
+		this.staggerDuration = staggerDuration;
+	}
+
+	public float GetStaggerDuration() {
+		return staggerDuration;
+	}
+
+	public void SetStaggerDurationPassed(float staggerDurationPassed) {
+		this.staggerDurationPassed = staggerDurationPassed;
+	}
+
+	public float GetStaggerDurationPassed() {
+		return staggerDurationPassed;
 	}
 }
