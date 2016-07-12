@@ -39,11 +39,8 @@ public class PlayerAttackReceived : MonoBehaviour {
 		this.attackingPlayer = attackingPlayer;
 		this.attackerLocation = attackerLocation;
 
-
-		print (attackerLocation);
-		print (targetPlayer);
-
 		InterruptActions ();
+
 		ReceiveDamage ();
 		TurnPlayer ();
 		ReceiveKnockback ();
@@ -66,7 +63,7 @@ public class PlayerAttackReceived : MonoBehaviour {
 	}
 
 	void ReceiveKnockback() {
-		targetPlayer.StartKnockback(gameObject.transform.forward, 20);
+		targetPlayer.StartKnockback(-gameObject.transform.forward, 20);
 	}
 
 	void ReceiveStagger() {
