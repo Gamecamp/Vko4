@@ -20,7 +20,7 @@ public class ItemSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		items = GameObject.Find ("Items");
+		items = GameObject.Find ("ItemIcons");
 		itemsWeight = 0;
 
 		foreach (Transform spawner in transform) {

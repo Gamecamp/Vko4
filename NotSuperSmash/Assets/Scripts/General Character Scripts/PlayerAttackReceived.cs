@@ -42,9 +42,6 @@ public class PlayerAttackReceived : MonoBehaviour {
 			previousAttackDone = false;
 		}
 
-		print (attackerLocation);
-		print (targetPlayer);
-
 		ReceiveDamage ();
 		TurnPlayer ();
 		ReceiveKnockback ();
