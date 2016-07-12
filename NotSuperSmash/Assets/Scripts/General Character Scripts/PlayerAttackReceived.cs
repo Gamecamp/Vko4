@@ -17,7 +17,7 @@ public class PlayerAttackReceived : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		previousAttackDone = true;
 	}
 	
 	// Update is called once per frame
