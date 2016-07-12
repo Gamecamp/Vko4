@@ -44,12 +44,10 @@ public class ItemSpawner : MonoBehaviour {
 					spawnIndex--;
 				}
 
-				int weaponIndex = itemList.Count - 1;	
+				int weaponIndex = itemList.Count;	
 
-				for (float rnd = Random.Range (0, itemsWeight); rnd > 0; rnd -= itemList[weaponIndex].GetComponent<Item>().frequency) {
-					if (weaponIndex > 0) {
-						weaponIndex--;
-					}
+				for (float rnd = Random.Range (0f, (float) itemsWeight); rnd > 0; rnd -= itemList[weaponIndex].GetComponent<Item>().frequency) {
+					weaponIndex--;
 				}
 
 				itemList [weaponIndex].transform.position = spawnPoints [spawnIndex].transform.position;
