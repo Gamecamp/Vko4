@@ -11,8 +11,12 @@ public class ItemSpawner : MonoBehaviour {
 	private int itemsWeight;
 
 	public float itemSpawnProbability;
+	public float doubleItemSpawnProbability;
 	public int maxItemsOnSpawnPoints;
 	private int itemsOnSpawnPoints;
+
+	public int spawnCooldown;
+	private float cooldownTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +33,7 @@ public class ItemSpawner : MonoBehaviour {
 		}
 
 		itemsOnSpawnPoints = 0;
+		cooldownTimer = 0;
 	}
 
 	// Update is called once per frame
@@ -38,28 +43,40 @@ public class ItemSpawner : MonoBehaviour {
 
 	void RandomizeItemSpawn() {
 		if (itemsOnSpawnPoints < maxItemsOnSpawnPoints) {
-			if (Random.value < itemSpawnProbability) {
-				int spawnIndex = (int) Random.Range (0, spawnPoints.Count);
-				if (spawnIndex == spawnPoints.Count) {
-					spawnIndex--;
+			cooldownTimer += Time.deltaTime;
+
+			if (cooldownTimer >= spawnCooldown) {
+				if (Random.value < itemSpawnProbability) {
+					if (Random.value < doubleItemSpawnProbability && maxItemsOnSpawnPoints - itemsOnSpawnPoints >= 2) {
+						RandomizingCalculations ();
+					}
+					RandomizingCalculations ();
 				}
-
-				int weaponIndex = itemList.Count;	
-
-				for (float rnd = Random.Range (0f, (float) itemsWeight); rnd > 0; rnd -= itemList[weaponIndex].GetComponent<Item>().frequency) {
-					weaponIndex--;
-				}
-
-				itemList [weaponIndex].transform.position = spawnPoints [spawnIndex].transform.position;
-				itemList [weaponIndex].GetComponent<Item> ().SetIsOnSpawnPoint (true);
-				itemList [weaponIndex].GetComponent<Item> ().SetCurrentSpawnPoint (spawnPoints[spawnIndex]);
-
-				itemsWeight -= itemList[weaponIndex].GetComponent<Item> ().frequency;
-				itemsOnSpawnPoints++;
-				spawnPoints.RemoveAt (spawnIndex);
-				itemList.RemoveAt (weaponIndex);
+				cooldownTimer = 0;
 			}
 		}
+	}
+
+	void RandomizingCalculations() {
+		int spawnIndex = (int) Random.Range (0, spawnPoints.Count);
+		if (spawnIndex == spawnPoints.Count) {
+			spawnIndex--;
+		}
+
+		int weaponIndex = itemList.Count;	
+
+		for (float rnd = Random.Range (0f, (float) itemsWeight); rnd > 0; rnd -= itemList[weaponIndex].GetComponent<Item>().frequency) {
+			weaponIndex--;
+		}
+
+		itemList [weaponIndex].transform.position = spawnPoints [spawnIndex].transform.position;
+		itemList [weaponIndex].GetComponent<Item> ().SetIsOnSpawnPoint (true);
+		itemList [weaponIndex].GetComponent<Item> ().SetCurrentSpawnPoint (spawnPoints[spawnIndex]);
+
+		itemsWeight -= itemList[weaponIndex].GetComponent<Item> ().frequency;
+		itemsOnSpawnPoints++;
+		spawnPoints.RemoveAt (spawnIndex);
+		itemList.RemoveAt (weaponIndex);
 	}
 
 	public void AddSpawnToRandomPool(GameObject spawn) {

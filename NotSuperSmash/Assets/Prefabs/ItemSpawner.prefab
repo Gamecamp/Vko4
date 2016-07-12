@@ -216,8 +216,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints: []
   itemList: []
-  itemSpawnProbability: 0.01
+  itemSpawnProbability: 0.6
+  doubleItemSpawnProbability: 0.35
   maxItemsOnSpawnPoints: 2
+  spawnCooldown: 3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
