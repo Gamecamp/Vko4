@@ -65,7 +65,6 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 			// Attack has been delivered, still can't move, recovery starts
 			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
 				unarmedHitbox.SetActive (false);
-				print ("Attack number: " + numberInAttackChain);
 				if (numberInAttackChain < maxChain) {
 					
 					numberInAttackChain++;

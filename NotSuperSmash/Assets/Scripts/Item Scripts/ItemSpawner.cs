@@ -45,17 +45,19 @@ public class ItemSpawner : MonoBehaviour {
 				}
 
 				int weaponIndex = itemList.Count - 1;	
+
 				for (float rnd = Random.Range (0, itemsWeight); rnd > 0; rnd -= itemList[weaponIndex].GetComponent<Item>().frequency) {
-					weaponIndex--;
+					if (weaponIndex > 0) {
+						weaponIndex--;
+					}
 				}
-				print ("weaponIndex: " + weaponIndex);
-				print ("spawnIndex: " + spawnIndex + " spawnPoints.Count: " + spawnPoints.Count);
 
 				itemList [weaponIndex].transform.position = spawnPoints [spawnIndex].transform.position;
+				itemList [weaponIndex].GetComponent<Item> ().SetIsOnSpawnPoint (true);
+				itemList [weaponIndex].GetComponent<Item> ().SetCurrentSpawnPoint (spawnPoints[spawnIndex]);
 
 				itemsWeight -= itemList[weaponIndex].GetComponent<Item> ().frequency;
 				itemsOnSpawnPoints++;
-				print ("spawnIndex: " + spawnIndex + " spawnPoints.Count: " + spawnPoints.Count);
 				spawnPoints.RemoveAt (spawnIndex);
 				itemList.RemoveAt (weaponIndex);
 			}
@@ -64,5 +66,11 @@ public class ItemSpawner : MonoBehaviour {
 
 	public void AddSpawnToRandomPool(GameObject spawn) {
 		spawnPoints.Add (spawn);
+	}
+
+	public void AddItemToRandomPool(GameObject item) {
+		itemList.Add (item);
+		itemsWeight += item.GetComponent<Item> ().frequency;
+		itemsOnSpawnPoints--;
 	}
 }

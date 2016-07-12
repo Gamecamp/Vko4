@@ -9,8 +9,7 @@ TagManager:
   - GrapplingHitbox
   - LightAttackHitbox
   - HeavyAttackHitbox
-  - New Tag
-  - New Tag
+  - ItemSpawn
   layers:
   - Default
   - TransparentFX
