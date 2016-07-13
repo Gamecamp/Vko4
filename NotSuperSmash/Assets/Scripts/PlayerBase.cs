@@ -260,6 +260,7 @@ public class PlayerBase : MonoBehaviour {
 
 	public void InterruptActions() {
 		SetIsLightAttacking (false);
+		SetIsHeavyAttacking (false);
 		SetIsGrappling(false);
 		SetIsUsingSpecial1 (false);
 		SetIsGuarding (false);
