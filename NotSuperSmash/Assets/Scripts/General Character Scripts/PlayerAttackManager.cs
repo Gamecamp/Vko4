@@ -4,10 +4,10 @@ using System.Collections;
 public class PlayerAttackManager : MonoBehaviour {
 
 	PlayerMovement player;
-	GameObject unarmedHitbox;
-	GameObject unarmedHeavyHitbox;
-	GameObject baseballBatLightHitbox;
-	GameObject baseballBatHeavyHitbox;
+	public GameObject unarmedLightHitbox;
+	public GameObject unarmedHeavyHitbox;
+	public GameObject baseballBatLightHitbox;
+	public GameObject baseballBatHeavyHitbox;
 
 	GameObject hitboxUsedInAttack;
 
@@ -33,13 +33,13 @@ public class PlayerAttackManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
-		unarmedHitbox = GameObject.Find ("UnarmedHitbox" + gameObject.name);
-		unarmedHitbox.SetActive (false);
-		unarmedHeavyHitbox = GameObject.Find ("UnarmedHeavyHitbox" + gameObject.name);
+		//unarmedLightHitbox = GameObject.Find ("UnarmedHitbox" + gameObject.name);
+		unarmedLightHitbox.SetActive (false);
+		//unarmedHeavyHitbox = GameObject.Find ("UnarmedHeavyHitbox" + gameObject.name);
 		unarmedHeavyHitbox.SetActive (false);
-		baseballBatLightHitbox = GameObject.Find ("BaseballBatLightHitbox" + gameObject.name);
+		//baseballBatLightHitbox = GameObject.Find ("BaseballBatLightHitbox" + gameObject.name);
 		baseballBatLightHitbox.SetActive (false);
-		baseballBatHeavyHitbox = GameObject.Find ("BaseballBatHeavyHitbox" + gameObject.name);
+		//baseballBatHeavyHitbox = GameObject.Find ("BaseballBatHeavyHitbox" + gameObject.name);
 		baseballBatHeavyHitbox.SetActive (false);
 		attackInProgress = false;
 
@@ -105,12 +105,16 @@ public class PlayerAttackManager : MonoBehaviour {
 		switch (activeWeapon) {
 		case unarmed:
 			if (player.GetIsLightAttacking()) {
+				hitboxUsedInAttack = unarmedLightHitbox;
+
 				beforeHurtAnimationLength = 0.1f;
 				hurtfulAnimationLength = 0.1f;
 				recoveryTime = 0.05f;
 
 				maxChain = 3;
 			} else {
+				hitboxUsedInAttack = unarmedHeavyHitbox;
+
 				beforeHurtAnimationLength = 0.2f;
 				hurtfulAnimationLength = 0.2f;
 				recoveryTime = 0.1f;
@@ -120,12 +124,16 @@ public class PlayerAttackManager : MonoBehaviour {
 			break;
 		case baseballBat:
 			if (player.GetIsLightAttacking()) {
+				hitboxUsedInAttack = baseballBatLightHitbox;
+
 				beforeHurtAnimationLength = 0.3f;
 				hurtfulAnimationLength = 0.4f;
 				recoveryTime = 0.5f;
 
 				maxChain = 3;
 			} else {
+				hitboxUsedInAttack = baseballBatHeavyHitbox;
+
 				beforeHurtAnimationLength = 0.7f;
 				hurtfulAnimationLength = 0.8f;
 				recoveryTime = 0.9f;
