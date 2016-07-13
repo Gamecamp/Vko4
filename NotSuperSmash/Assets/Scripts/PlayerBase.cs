@@ -7,6 +7,10 @@ public class PlayerBase : MonoBehaviour {
 	
 	protected float maxHealth;
 	protected float currentHealth;
+
+	protected int maxLives;
+	protected int currentLives;
+
 	protected float knockbackForce;
 	protected float attackDamage;
 
@@ -252,6 +256,26 @@ public class PlayerBase : MonoBehaviour {
 		return currentHealth;
 	}
 
+	public void SetCurrentHealth(float currentHealth) {
+		this.currentHealth = currentHealth;
+	}
+
+	public int GetMaxLives() {
+		return maxLives;
+	}
+
+	public void SetMaxLives(int maxLives) {
+		this.maxLives = maxLives;
+	}
+
+	public int GetCurrentLives() {
+		return currentLives;
+	}
+
+	public void SetCurrentLives(int currentLives) {
+		this.currentLives = currentLives;
+	}
+
 	public void decreaseHealth(float damage) {
 		if (currentHealth - damage <= 0) {
 			currentHealth = 0;
@@ -266,6 +290,18 @@ public class PlayerBase : MonoBehaviour {
 
 	public void SetAttackDamage(float attackDamage) {
 		this.attackDamage = attackDamage;
+	}
+
+	public void Respawn() {
+		currentHealth = maxHealth;
+		transform.position = new Vector3(0, 0, 0);
+	}
+
+	public void Kill() {
+		transform.position = new Vector3 (transform.position.x, 10, transform.position.z);
+		transform.rotation = Quaternion.LookRotation (Vector3.down);
+		SetIsStaggered (true);
+		SetStaggerDuration (1000f);
 
 	}
 
