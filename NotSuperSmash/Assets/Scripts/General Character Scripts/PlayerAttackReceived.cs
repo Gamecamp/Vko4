@@ -11,9 +11,15 @@ public class PlayerAttackReceived : MonoBehaviour {
 
 	bool previousAttackDone;
 
+	private float damageAmount;
+	private float knockbackAmount;
+	private float staggerDuration;
+
 	string attackType;
-	string unarmedAttack = "unarmed";
+	string unarmedAttack = "unarmedLight";
 	string unarmedHeavyAttack = "unarmedHeavy";
+	string baseballBatLight = "baseballBatLight";
+	string baseballBatHeavy = "baseballBatHeavy";
 
 
 	// Use this for initialization
@@ -40,10 +46,11 @@ public class PlayerAttackReceived : MonoBehaviour {
 		this.attackingPlayer = attackingPlayer;
 		this.attackerLocation = attackerLocation;
 
+		DetermineAttackProperties ();
 		InterruptActions ();
+		TurnPlayer ();
 
 		ReceiveDamage ();
-		TurnPlayer ();
 		ReceiveKnockback ();
 		ReceiveStagger ();
 
@@ -59,20 +66,31 @@ public class PlayerAttackReceived : MonoBehaviour {
 		targetPlayer.decreaseHealth (attackingPlayer.GetComponent<PlayerMovement> ().GetAttackDamage ());
 	}
 
+	void DetermineAttackProperties() {
+		if (attackType == unarmedAttack) {
+			knockbackAmount = 20;
+			staggerDuration = 1;
+		} else if (attackType == unarmedHeavyAttack) {
+			knockbackAmount = 30;
+			staggerDuration = 1;
+		} else if (attackType == baseballBatLight) {
+			knockbackAmount = 40;
+			staggerDuration = 1;
+		} else if (attackType == baseballBatHeavy) {
+			knockbackAmount = 50;
+			staggerDuration = 1;
+		}
+	}
+
 	void TurnPlayer() {
 		targetPlayer.LookTowards(attackerLocation.transform.position);
 	}
 
 	void ReceiveKnockback() {
-		if (attackType == unarmedAttack) {
-			targetPlayer.StartKnockback (-gameObject.transform.forward, 20);
-		} else if (attackType == unarmedHeavyAttack) {
-			targetPlayer.StartKnockback (-gameObject.transform.forward, 30);
-
-		}
+		targetPlayer.StartKnockback (-gameObject.transform.forward, knockbackAmount);
 	}
 
 	void ReceiveStagger() {
-		targetPlayer.StartStagger (1f);
+		targetPlayer.StartStagger (staggerDuration);
 	}
  }

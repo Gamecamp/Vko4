@@ -12,8 +12,10 @@ public class UnarmedMechanics : MonoBehaviour {
 
 	PlayerMovement targetPlayer;
 
-	string unarmed = "unarmed";
+	string unarmedLight = "unarmedLight";
 	string unarmedHeavy = "unarmedHeavy";
+	string baseballBatLight = "baseballBatLight";
+	string baseballBatHeavy = "baseballBatHeavy";
 
 	string attackType;
 
@@ -64,9 +66,13 @@ public class UnarmedMechanics : MonoBehaviour {
 
 	void DetermineAttackType() {
 		if (gameObject.name == "UnarmedHitbox" + parent.name) {
-			attackType = unarmed;
+			attackType = unarmedLight;
 		} else if (gameObject.name == "UnarmedHeavyHitbox" + parent.name) {
 			attackType = unarmedHeavy;
-		} 
+		} else if (gameObject.name == "BaseballBatLightHitbox" + parent.name) {
+			attackType = baseballBatLight;
+		} else if (gameObject.name == "BaseballBatHeavyHitbox" + parent.name) {
+			attackType = baseballBatHeavy;
+		}
 	}
 }
