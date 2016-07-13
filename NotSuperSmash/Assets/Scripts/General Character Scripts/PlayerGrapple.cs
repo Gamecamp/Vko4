@@ -7,10 +7,10 @@ public class PlayerGrapple : MonoBehaviour {
 	PlayerMovement targetPlayer;
 	GameObject targetPlayerObject;
 
-	GameObject playerLocation;
+	public GameObject playerLocation;
 	GameObject targetPlayerLocation;
 
-	GameObject grappleBox;
+	public GameObject grappleBox;
 
 	private float grappleAttemptDuration = 0;
 	private float grappleAttemptWindupDuration = 0.2f;
@@ -18,6 +18,9 @@ public class PlayerGrapple : MonoBehaviour {
 
 	private float grappleDuration = 0;
 	private float grappleMaxDuration = 5;
+
+	private float grappleAttemptCooldown = 1;
+	private float cooldownTimer = 0;
 
 	private bool grappleIsFinished;
 	private bool grappleIsHappening;
@@ -30,8 +33,6 @@ public class PlayerGrapple : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
-		grappleBox = GameObject.Find ("GrapplingHitbox" + gameObject.name);
-		playerLocation = GameObject.Find ("PlayerPosition" + gameObject.name);
 		grappleBox.SetActive(false);
 		grappleIsHappening = false;
 		grappleIsFinished = false;
@@ -48,7 +49,7 @@ public class PlayerGrapple : MonoBehaviour {
 	
 	void UpdateGrapplingAttempt () {
 		
-		if (player.GetIsThrowingInput() && player.GetCanInputActions()) {
+		if (player.GetIsThrowingInput() && player.GetCanInputActions() && player.GetIsAbleToEquip()) {
 			player.SetIsGrappling (true);
 			grappleWindupGoing = true;
 			grappleAttemptInProgress = true;
@@ -85,6 +86,8 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleAttemptDuration = 0;
 
 		player.SetIsGrappling (false);
+
+		StartGrappleAttemptCooldownTimer ();
 	}
 
 	void UpdateGrappling() {
@@ -149,6 +152,10 @@ public class PlayerGrapple : MonoBehaviour {
 
 	public bool GetGrappleIsHappening() {
 		return grappleIsHappening;
+	}
+
+	public void StartGrappleAttemptCooldownTimer() {
+		cooldownTimer = Time.deltaTime;
 	}
 		
 }
