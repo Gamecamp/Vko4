@@ -27,7 +27,17 @@ public class PlayerStateHandling : MonoBehaviour {
 
 	void GetPlayerInput() {
 		player.SetIsJumpInput(InputManager.GetButtonInput (gameObject.name, "AButton"));
+		/*
+		if (gameObject.name == "Player1") {
+			print("Before :" + GameObject.Find ("Player1").GetComponent<PlayerMovement> ().GetIsGuarding ());
+		}
+		*/
 		player.SetIsGuardInput (InputManager.GetButtonInput (gameObject.name, "LBButton"));
+		/*
+		if (gameObject.name == "Player1") {
+			print("After :" + GameObject.Find ("Player1").GetComponent<PlayerMovement> ().GetIsGuarding ());
+		}
+		*/
 		player.SetIsAction1Input (InputManager.GetButtonInput (gameObject.name, "XButton"));
 		player.SetIsAction2Input (InputManager.GetButtonInput (gameObject.name, "YButton"));
 		player.SetIsThrowingInput (InputManager.GetButtonInput (gameObject.name, "RBButton"));
@@ -50,16 +60,20 @@ public class PlayerStateHandling : MonoBehaviour {
 				break;
 			}
 		}
+			
 
-//		print (player.GetIsAttacking ());
-//		print (player.GetCanMove ());
 
 		if (foundRestriction) {
 			player.SetCanMove (false);
 			player.SetCanInputActions (false);
+		} else if (player.GetIsGuarding ()) {
+			player.SetCanMove (false);
+			player.SetCanInputActions (true);
 		} else {
 			player.SetCanMove (true);
 			player.SetCanInputActions (true);
 		}
+
+
 	}
 }

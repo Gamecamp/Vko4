@@ -39,6 +39,9 @@ public class ItemSpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		RandomizeItemSpawn ();
+		//print(GameObject.Find ("Player1").GetComponent<PlayerMovement> ().GetIsGuarding ());
+		//print ("Input = " + GameObject.Find ("Player1").GetComponent<PlayerMovement> ().GetIsGuardInput ());
+		//print ("InputManager = " + InputManager.GetButtonInput ("Player1", "LBButton"));
 	}
 
 	void RandomizeItemSpawn() {
