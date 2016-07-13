@@ -4,24 +4,33 @@ using System.Collections;
 public class PlayerItemHandling : MonoBehaviour {
 
 	private PlayerMovement player;
+	private PlayerAttackManager attackManager;
 	private Vector3 hiddenItem;
 
 	private GameObject baseballBatObj;
 
-	const string baseballBat = "BaseballBat";
+	const string unarmed = "unarmed";
+	const string baseballBat = "baseballBat";
 
 	// Use this for initialization
 	void Start () {
+
+		baseballBatObj = GameObject.Find ("BaseballBat" + gameObject.name);
+
+
 		player = GetComponent<PlayerMovement> ();
+		attackManager = GetComponent<PlayerAttackManager> ();
 		hiddenItem = new Vector3 (0, -10, 0);
 		player.SetIsAbleToEquip (true);
 
-		baseballBatObj = GameObject.Find ("BaseballBat" + gameObject.name);
 		baseballBatObj.SetActive (false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (!player.GetIsAbleToEquip () && player.GetIsThrowingInput ()) {
+			EquipWeapon (unarmed);
+		}
 		
 	}
 
@@ -35,9 +44,18 @@ public class PlayerItemHandling : MonoBehaviour {
 	}
 
 	void EquipWeapon(string weapon) {
+		SetWeaponStatesToFalse ();
+
 		switch (weapon) {
+		case unarmed:
+			baseballBatObj.SetActive (false);
+			attackManager.SetActiveWeapon (unarmed);
+			player.SetIsAbleToEquip (true);
+			break;
 		case baseballBat:
 			baseballBatObj.SetActive (true);
+			attackManager.SetActiveWeapon (baseballBat);
+			player.SetIsBaseballBatEquipped (true);
 			break;
 		}
 	}
@@ -48,5 +66,10 @@ public class PlayerItemHandling : MonoBehaviour {
 		icon.GetComponent<Item> ().SetIsOnSpawnPoint (false);
 		GameObject.Find ("ItemSpawner").GetComponent<ItemSpawner> ().AddSpawnToRandomPool (
 			icon.GetComponent<Item> ().GetCurrentSpawnPoint ());
+	}
+
+	void SetWeaponStatesToFalse() {
+		player.SetIsAbleToEquip (false);
+		player.SetIsBaseballBatEquipped (false);
 	}
 }

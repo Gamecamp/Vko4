@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class UnarmedMechanics : MonoBehaviour {
 
-	GameObject parent;
-	GameObject attackerLocation;
+	public GameObject parent;
+	public GameObject attackerLocation;
 
 	PlayerAttackReceived playerAttackReceived;
 
@@ -25,9 +25,7 @@ public class UnarmedMechanics : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		parent = transform.parent.gameObject;
-		attackerLocation = GameObject.Find ("PlayerPosition" + parent.name);
-
+		
 		DetermineAttackType ();
 
 		playerWasHit = false;
