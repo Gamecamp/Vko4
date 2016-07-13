@@ -33,13 +33,9 @@ public class PlayerAttackManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
-		//unarmedLightHitbox = GameObject.Find ("UnarmedHitbox" + gameObject.name);
 		unarmedLightHitbox.SetActive (false);
-		//unarmedHeavyHitbox = GameObject.Find ("UnarmedHeavyHitbox" + gameObject.name);
 		unarmedHeavyHitbox.SetActive (false);
-		//baseballBatLightHitbox = GameObject.Find ("BaseballBatLightHitbox" + gameObject.name);
 		baseballBatLightHitbox.SetActive (false);
-		//baseballBatHeavyHitbox = GameObject.Find ("BaseballBatHeavyHitbox" + gameObject.name);
 		baseballBatHeavyHitbox.SetActive (false);
 		attackInProgress = false;
 

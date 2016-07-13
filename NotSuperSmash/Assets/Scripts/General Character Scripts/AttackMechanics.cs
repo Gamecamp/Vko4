@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class UnarmedMechanics : MonoBehaviour {
+public class AttackMechanics : MonoBehaviour {
 
 	public GameObject parent;
 	public GameObject attackerLocation;
 
 	PlayerAttackReceived playerAttackReceived;
 
+	PlayerMovement attackingPlayer;
 	PlayerMovement targetPlayer;
 
 	string unarmedLight = "unarmedLight";
@@ -27,6 +28,7 @@ public class UnarmedMechanics : MonoBehaviour {
 	void Start () {
 		
 		DetermineAttackType ();
+		attackingPlayer = parent.GetComponent<PlayerMovement> ();
 
 		playerWasHit = false;
 	}
@@ -56,7 +58,7 @@ public class UnarmedMechanics : MonoBehaviour {
 
 			if (!playerWasHit) {
 				playerAttackReceived = col.gameObject.GetComponent<PlayerAttackReceived> ();
-				playerAttackReceived.ReceiveAttack (targetPlayer, parent, attackerLocation, attackType);
+				playerAttackReceived.ReceiveAttack (targetPlayer, attackingPlayer, attackerLocation, attackType);
 				playersHit.Add (targetPlayer);
 			}
 		}

@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerAttackReceived : MonoBehaviour {
 
 	PlayerMovement targetPlayer;
-	GameObject attackingPlayer;
+	PlayerMovement attackingPlayer;
 	GameObject attackerLocation;
 
 	Vector3 knockbackVector;
@@ -32,7 +32,7 @@ public class PlayerAttackReceived : MonoBehaviour {
 		
 	}
 
-	public void ReceiveAttack (PlayerMovement targetPlayer, GameObject attackingPlayer, GameObject attackerLocation, string attackType) {
+	public void ReceiveAttack (PlayerMovement targetPlayer, PlayerMovement attackingPlayer, GameObject attackerLocation, string attackType) {
 
 		if (!previousAttackDone) {
 			print ("DON'T DELETE if you see me in console. Previous attack wasn't finished, probably problems.");

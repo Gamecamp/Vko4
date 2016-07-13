@@ -27,6 +27,15 @@ public static class InputManager {
 		return isButtonPressed;
 	}
 
+	public static bool GetButtonDownInput (string playerName, string buttonName) {
+		buttonName = ("P" + playerName.Substring (6) + buttonName);
+
+		bool isButtonPressed = false;
+		isButtonPressed = Input.GetButtonDown (buttonName);
+
+		return isButtonPressed;
+	}
+
 	private static string CheckPlayerNumber(string p, string axis) {
 		string axisName = "";
 

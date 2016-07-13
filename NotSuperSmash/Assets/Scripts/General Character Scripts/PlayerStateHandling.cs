@@ -26,22 +26,12 @@ public class PlayerStateHandling : MonoBehaviour {
 	}
 
 	void GetPlayerInput() {
-		player.SetIsJumpInput(InputManager.GetButtonInput (gameObject.name, "AButton"));
-		/*
-		if (gameObject.name == "Player1") {
-			print("Before :" + GameObject.Find ("Player1").GetComponent<PlayerMovement> ().GetIsGuarding ());
-		}
-		*/
-		player.SetIsGuardInput (InputManager.GetButtonInput (gameObject.name, "LBButton"));
-		/*
-		if (gameObject.name == "Player1") {
-			print("After :" + GameObject.Find ("Player1").GetComponent<PlayerMovement> ().GetIsGuarding ());
-		}
-		*/
+		player.SetIsJumpInput(InputManager.GetButtonDownInput (gameObject.name, "AButton"));
+		player.SetIsGuardInput (InputManager.GetButtonDownInput (gameObject.name, "LBButton"));
 		player.SetIsAction1Input (InputManager.GetButtonInput (gameObject.name, "XButton"));
-		player.SetIsAction2Input (InputManager.GetButtonInput (gameObject.name, "YButton"));
-		player.SetIsThrowingInput (InputManager.GetButtonInput (gameObject.name, "RBButton"));
-		player.SetIsEquipInput (InputManager.GetButtonInput(gameObject.name, "BButton"));
+		player.SetIsAction2Input (InputManager.GetButtonDownInput (gameObject.name, "YButton"));
+		player.SetIsThrowingInput (InputManager.GetButtonDownInput (gameObject.name, "RBButton"));
+		player.SetIsEquipInput (InputManager.GetButtonDownInput(gameObject.name, "BButton"));
 	}
 
 	void AlterStates() {
