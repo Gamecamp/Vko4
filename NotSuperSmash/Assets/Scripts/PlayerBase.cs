@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class PlayerBase : MonoBehaviour {
 	
 	protected float maxHealth;
+	protected float currentHealth;
 	protected float knockbackForce;
 	protected float attackDamage;
 
@@ -47,17 +48,6 @@ public class PlayerBase : MonoBehaviour {
 	protected float knockbackThreshold = 10;
 
 	List<bool> restrictions = new List<bool> ();
-
-	// Use this for initialization
-	void Start () {
-		isGrounded = false;
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public void IsPlayerGrounded() {
 		RaycastHit hit;
@@ -244,12 +234,35 @@ public class PlayerBase : MonoBehaviour {
 		return isHeavyAttacking;
 	}
 
+	public float GetMaxHealth() {
+		return maxHealth;
+	}
+
+	public float GetCurrentHealth () {
+		return currentHealth;
+	}
+
+	public void decreaseHealth(float damage) {
+		if (currentHealth - damage <= 0) {
+			currentHealth = 0;
+		} else {
+			currentHealth -= damage;
+		}
+	}
+
+	public float GetAttackDamage() {
+		return attackDamage;
+	}
+
+	public void SetAttackDamage(float attackDamage) {
+		this.attackDamage = attackDamage;
+	}
+
 	public List<bool> GetRestrictions() {
 		restrictions.Clear ();
 		restrictions.Add(GetIsLightAttacking ());
 		restrictions.Add(GetIsHeavyAttacking());
 		restrictions.Add(GetIsGrappling());
-		restrictions.Add(GetIsGuarding());
 		restrictions.Add(GetIsUsingSpecial1());
 		restrictions.Add(GetIsStaggered());
 		restrictions.Add(GetIsKnockedBack());

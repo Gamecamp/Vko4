@@ -10,6 +10,9 @@ public class PlayerMovement : PlayerBase {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
+		maxHealth = 100;
+		currentHealth = 100;
+		attackDamage = 10;
 	}
 	
 	// Update is called once per frame
