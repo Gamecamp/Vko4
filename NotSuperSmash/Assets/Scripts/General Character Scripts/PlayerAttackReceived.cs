@@ -13,6 +13,7 @@ public class PlayerAttackReceived : MonoBehaviour {
 
 	string attackType;
 	string unarmedAttack = "unarmed";
+	string unarmedHeavyAttack = "unarmedHeavy";
 
 
 	// Use this for initialization
@@ -63,7 +64,12 @@ public class PlayerAttackReceived : MonoBehaviour {
 	}
 
 	void ReceiveKnockback() {
-		targetPlayer.StartKnockback(-gameObject.transform.forward, 20);
+		if (attackType == unarmedAttack) {
+			targetPlayer.StartKnockback (-gameObject.transform.forward, 20);
+		} else if (attackType == unarmedHeavyAttack) {
+			targetPlayer.StartKnockback (-gameObject.transform.forward, 30);
+
+		}
 	}
 
 	void ReceiveStagger() {

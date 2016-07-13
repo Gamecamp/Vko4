@@ -45,7 +45,7 @@ public class PlayerDashSpecial : MonoBehaviour {
 			}
 		} 
 		if (!dashStarted) {
-			if (player.GetIsActionInput () && player.GetCanInputActions () && dashReady) {
+			if (player.GetIsAction1Input () && player.GetCanInputActions () && dashReady) {
 				buttonHeldTime = buttonHeldTime + Time.deltaTime;
 
 				if (buttonHeldTime >= holdInputTime) {

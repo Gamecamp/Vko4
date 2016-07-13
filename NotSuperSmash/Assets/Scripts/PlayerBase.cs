@@ -15,7 +15,8 @@ public class PlayerBase : MonoBehaviour {
 
 	protected bool isGrounded;
 
-	protected bool isAttacking;
+	protected bool isLightAttacking;
+	protected bool isHeavyAttacking;
 	protected bool isAbleToEquip;
 	protected bool isGrappling;
 	protected bool isGuarding;
@@ -29,7 +30,8 @@ public class PlayerBase : MonoBehaviour {
 	protected float staggerDuration;
 	protected float staggerDurationPassed;
 
-	protected bool isActionInput;
+	protected bool isAction1Input;
+	protected bool isAction2Input;
 	protected bool isEquipInput;
 	protected bool isThrowingInput;
 	protected bool isGuardInput;
@@ -44,12 +46,12 @@ public class PlayerBase : MonoBehaviour {
 	protected float holdInputTime = 0.15f;
 	protected float knockbackThreshold = 10;
 
-	List<bool> restrictions;
+	List<bool> restrictions = new List<bool> ();
 
 	// Use this for initialization
 	void Start () {
 		isGrounded = false;
-		restrictions = new List<bool> ();
+
 	}
 	
 	// Update is called once per frame
@@ -181,12 +183,21 @@ public class PlayerBase : MonoBehaviour {
 		this.canInputActions = canInputActions;
 	}
 
-	public bool GetIsActionInput() {
-		return isActionInput;
+	public bool GetIsAction1Input() {
+		return isAction1Input;
 	}
 
-	public void SetIsActionInput(bool isActionInput) {
-		this.isActionInput = isActionInput;
+	public void SetIsAction1Input(bool isAction1Input) {
+		this.isAction1Input = isAction1Input;
+	}
+
+	public bool GetIsAction2Input() {
+		return isAction2Input;
+	}
+
+	public void SetIsAction2Input(bool isAction2Input) {
+		this.isAction2Input = isAction2Input;
+
 	}
 
 	public bool GetIsUsingSpecial1() {
@@ -217,17 +228,26 @@ public class PlayerBase : MonoBehaviour {
 		return staggerDurationPassed;
 	}
 
-	public void SetIsAttacking(bool isAttacking) {
-		this.isAttacking = isAttacking;
+	public void SetIsLightAttacking(bool isLightAttacking) {
+		this.isLightAttacking = isLightAttacking;
 	}
 
-	public bool GetIsAttacking() {
-		return isAttacking;
+	public bool GetIsLightAttacking() {
+		return isLightAttacking;
+	}
+
+	public void SetIsHeavyAttacking(bool isHeavyAttacking) {
+		this.isHeavyAttacking = isHeavyAttacking;
+	}
+
+	public bool GetIsHeavyAttacking() {
+		return isHeavyAttacking;
 	}
 
 	public List<bool> GetRestrictions() {
-		restrictions = new List<bool> ();
-		restrictions.Add(GetIsAttacking ());
+		restrictions.Clear ();
+		restrictions.Add(GetIsLightAttacking ());
+		restrictions.Add(GetIsHeavyAttacking());
 		restrictions.Add(GetIsGrappling());
 		restrictions.Add(GetIsGuarding());
 		restrictions.Add(GetIsUsingSpecial1());
@@ -239,7 +259,7 @@ public class PlayerBase : MonoBehaviour {
 	}
 
 	public void InterruptActions() {
-		SetIsAttacking (false);
+		SetIsLightAttacking (false);
 		SetIsGrappling(false);
 		SetIsUsingSpecial1 (false);
 		SetIsGuarding (false);

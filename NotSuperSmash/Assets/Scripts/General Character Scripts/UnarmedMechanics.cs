@@ -13,6 +13,9 @@ public class UnarmedMechanics : MonoBehaviour {
 	PlayerMovement targetPlayer;
 
 	string unarmed = "unarmed";
+	string unarmedHeavy = "unarmedHeavy";
+
+	string attackType;
 
 	List<PlayerMovement> playersHit = new List<PlayerMovement> ();
 
@@ -23,15 +26,18 @@ public class UnarmedMechanics : MonoBehaviour {
 		parent = transform.parent.gameObject;
 		attackerLocation = GameObject.Find ("PlayerPosition" + parent.name);
 
+		DetermineAttackType ();
+
 		playerWasHit = false;
 	}
-
+		
 
 
 	// Update is called once per frame
 	void Update () {
 
 	}
+		
 
 	void OnEnable() {
 		playerWasHit = false;
@@ -50,9 +56,17 @@ public class UnarmedMechanics : MonoBehaviour {
 
 			if (!playerWasHit) {
 				playerAttackReceived = col.gameObject.GetComponent<PlayerAttackReceived> ();
-				playerAttackReceived.ReceiveAttack (targetPlayer, parent, attackerLocation, unarmed);
+				playerAttackReceived.ReceiveAttack (targetPlayer, parent, attackerLocation, attackType);
 				playersHit.Add (targetPlayer);
 			}
 		}
+	}
+
+	void DetermineAttackType() {
+		if (gameObject.name == "UnarmedHitbox" + parent.name) {
+			attackType = unarmed;
+		} else if (gameObject.name == "UnarmedHeavyHitbox" + parent.name) {
+			attackType = unarmedHeavy;
+		} 
 	}
 }

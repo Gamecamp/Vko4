@@ -13,11 +13,11 @@ public class PlayerGrapple : MonoBehaviour {
 	GameObject grappleBox;
 
 	private float grappleAttemptDuration = 0;
-	private float grappleAttemptWindupDuration = 0.15f;
-	private float grappleAttemptMaxDuration = 0.3f;
+	private float grappleAttemptWindupDuration = 0.2f;
+	private float grappleAttemptMaxDuration = 0.7f;
 
 	private float grappleDuration = 0;
-	private float grappleMaxDuration = 1f;
+	private float grappleMaxDuration = 5;
 
 	private bool grappleIsFinished;
 	private bool grappleIsHappening;
@@ -122,18 +122,14 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void TurnGrapplers() {
-
 		player.LookTowards (targetPlayerLocation.transform.position);
-
 		targetPlayer.LookTowards(playerLocation.transform.position);
 	}
 
 	void PassGrapplingTime() {
 		grappleDuration = grappleDuration + Time.deltaTime;
-
 		if (grappleDuration >= grappleMaxDuration) {
 			grappleIsFinished = true;
-
 		}
 	}
 

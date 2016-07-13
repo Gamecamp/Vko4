@@ -28,7 +28,8 @@ public class PlayerStateHandling : MonoBehaviour {
 	void GetPlayerInput() {
 		player.SetIsJumpInput(InputManager.GetButtonInput (gameObject.name, "AButton"));
 		player.SetIsGuardInput (InputManager.GetButtonInput (gameObject.name, "LBButton"));
-		player.SetIsActionInput (InputManager.GetButtonInput (gameObject.name, "XButton"));
+		player.SetIsAction1Input (InputManager.GetButtonInput (gameObject.name, "XButton"));
+		player.SetIsAction2Input (InputManager.GetButtonInput (gameObject.name, "YButton"));
 		player.SetIsThrowingInput (InputManager.GetButtonInput (gameObject.name, "RBButton"));
 		player.SetIsEquipInput (InputManager.GetButtonInput(gameObject.name, "BButton"));
 	}
@@ -38,12 +39,6 @@ public class PlayerStateHandling : MonoBehaviour {
 		if (player.GetIsStaggered() || player.GetIsKnockedBack() || player.GetIsGrappled()) {
 			player.InterruptActions ();
 		}
-
-		if (player.GetIsAttacking () || player.GetIsGrappling () || player.GetIsGuarding()) {
-			player.SetCanMove (false);
-			player.SetCanInputActions (false);
-		}
-
 
 		restrictions = player.GetRestrictions ();
 

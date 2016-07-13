@@ -7,14 +7,13 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 	GameObject unarmedHitbox;
 
 	// use to control the various animation lengths
-	float beforeHurtAnimationLength;
-	float hurtfulAnimationLength;
-	float recoveryTime;
-	float chainResetTime;
+	private float beforeHurtAnimationLength;
+	private float hurtfulAnimationLength;
+	private float recoveryTime;
+	private float chainResetTime;
+	private float attackDuration;
 
-	float attackDuration;
-
-	private int numberInAttackChain;
+	private int numberInLightAttackChain;
 	private int maxChain;
 	private int attackPhaseHelper;
 
@@ -27,7 +26,7 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 		unarmedHitbox.SetActive (false);
 		attackInProgress = false;
 
-		numberInAttackChain = 1;
+		numberInLightAttackChain = 1;
 		attackPhaseHelper = 0;
 		maxChain = 3;
 
@@ -46,13 +45,13 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 
 	void UpdateAttacking () {
 
-		if (player.GetIsActionInput() && player.GetCanInputActions()) {
-			player.SetIsAttacking (true);
+		if (player.GetIsAction1Input() && player.GetCanInputActions()) {
+			player.SetIsLightAttacking (true);
 			attackInProgress = true;
 		}
 			
 
-		if (player.GetIsAttacking ()) {
+		if (player.GetIsLightAttacking ()) {
 
 			//  Attack doesn't hurt yet, swing windup time
 			attackDuration = attackDuration + Time.deltaTime;
@@ -66,9 +65,9 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 			// Attack has been delivered, still can't move, recovery starts
 			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
 				unarmedHitbox.SetActive (false);
-				if (numberInAttackChain < maxChain) {
+				if (numberInLightAttackChain < maxChain) {
 					
-					numberInAttackChain++;
+					numberInLightAttackChain++;
 				} else {
 					ResetAttackChain ();
 				}
@@ -85,7 +84,7 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 	}
 
 	void ResetAttack() {
-		player.SetIsAttacking (false);
+		player.SetIsLightAttacking (false);
 		unarmedHitbox.SetActive (false);
 		attackDuration = 0;
 		attackPhaseHelper = 0;
@@ -93,6 +92,6 @@ public class PlayerUnarmedAttack : MonoBehaviour {
 	}
 
 	void ResetAttackChain() {
-		numberInAttackChain = 1;
+		numberInLightAttackChain = 1;
 	}
 }
