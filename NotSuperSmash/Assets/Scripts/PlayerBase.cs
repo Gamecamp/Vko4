@@ -242,7 +242,8 @@ public class PlayerBase : MonoBehaviour {
 
 	public bool GetIsBaseballBatEquipped() {
 		return isBaseballBatEquipped;
-
+	}
+	
 	public float GetMaxHealth() {
 		return maxHealth;
 	}
