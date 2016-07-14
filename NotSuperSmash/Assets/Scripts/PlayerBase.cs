@@ -37,7 +37,8 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isAction2Input;
 	protected bool isEquipInput;
 	protected bool isThrowingInput;
-	protected bool isGuardInput;
+	protected bool isGuardInputOn;
+	protected bool isGuardInputOff;
 	protected bool isJumpInput;
 
 	protected bool canMove;
@@ -151,12 +152,20 @@ public class PlayerBase : MonoBehaviour {
 		this.isGuarding = isGuarding;
 	}
 
-	public bool GetIsGuardInput() {
-		return isGuardInput;
+	public bool GetIsGuardInputOn() {
+		return isGuardInputOn;
 	}
 
-	public void SetIsGuardInput(bool isGuardInput) {
-		this.isGuardInput = isGuardInput;
+	public bool GetIsGuardInputOff() {
+		return isGuardInputOff;
+	}
+
+	public void SetIsGuardInputOn(bool isGuardInputOn) {
+		this.isGuardInputOn = isGuardInputOn;
+	}
+
+	public void SetIsGuardInputOff(bool isGuardInputOff) {
+		this.isGuardInputOff = isGuardInputOff;
 	}
 
 	public bool GetCanMove() {

@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 418938}
   - 65: {fileID: 6552668}
   - 114: {fileID: 11402484}
-  - 114: {fileID: 11404278}
   m_Layer: 0
   m_Name: BaseballBatLightHitboxPlayer3
   m_TagString: Untagged
@@ -35,7 +34,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &103220
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +244,6 @@ GameObject:
   - 4: {fileID: 435570}
   - 65: {fileID: 6534504}
   - 114: {fileID: 11436018}
-  - 114: {fileID: 11402222}
   m_Layer: 0
   m_Name: BaseballBatHeavyHitboxPlayer3
   m_TagString: Untagged
@@ -928,33 +926,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11402222
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e685ffbb3767ec24794a7867e1f53d6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 103220}
-  attackerLocation: {fileID: 193732}
 --- !u!114 &11402484
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 102262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e685ffbb3767ec24794a7867e1f53d6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 103220}
-  attackerLocation: {fileID: 193732}
---- !u!114 &11404278
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1014,6 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392b67f36b5adf34fafec6913be0d5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guardHitbox: {fileID: 102800}
 --- !u!114 &11436018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1114,6 +1087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fd4e5de38f65f44af30a69b2eb310f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLocation: {fileID: 193732}
+  grappleBox: {fileID: 184648}
 --- !u!135 &13529668
 SphereCollider:
   m_ObjectHideFlags: 1

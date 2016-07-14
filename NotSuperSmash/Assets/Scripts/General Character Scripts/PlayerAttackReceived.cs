@@ -46,15 +46,16 @@ public class PlayerAttackReceived : MonoBehaviour {
 		this.attackingPlayer = attackingPlayer;
 		this.attackerLocation = attackerLocation;
 
-		DetermineAttackProperties ();
-		InterruptActions ();
-		TurnPlayer ();
+		if (!targetPlayer.GetIsGuarding ()) {
+			DetermineAttackProperties ();
+			InterruptActions ();
+			TurnPlayer ();
 
-		ReceiveDamage ();
-		ReceiveKnockback ();
-		ReceiveStagger ();
-
-
+			ReceiveDamage ();
+			ReceiveKnockback ();
+			ReceiveStagger ();
+		}
+			
 		previousAttackDone = true;
 	}
 

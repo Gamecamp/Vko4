@@ -19,7 +19,7 @@ public static class InputManager {
 	}
 
 	public static bool GetButtonInput (string playerName, string buttonName) {
-		buttonName = ("P" + playerName.Substring (6) + buttonName);
+		buttonName = (CheckPlayerNumber(playerName, buttonName));
 
 		bool isButtonPressed = false;
 		isButtonPressed = Input.GetButton (buttonName);
@@ -28,10 +28,19 @@ public static class InputManager {
 	}
 
 	public static bool GetButtonDownInput (string playerName, string buttonName) {
-		buttonName = ("P" + playerName.Substring (6) + buttonName);
+		buttonName = (CheckPlayerNumber(playerName, buttonName));
 
 		bool isButtonPressed = false;
 		isButtonPressed = Input.GetButtonDown (buttonName);
+
+		return isButtonPressed;
+	}
+
+	public static bool GetButtonUpInput (string playerName, string buttonName) {
+		buttonName = (CheckPlayerNumber(playerName, buttonName));
+
+		bool isButtonPressed = false;
+		isButtonPressed = Input.GetButtonUp (buttonName);
 
 		return isButtonPressed;
 	}
@@ -50,7 +59,6 @@ public static class InputManager {
 		}
 
 		axisName += axis;
-
 		return axisName;
 	}
 

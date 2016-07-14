@@ -27,7 +27,8 @@ public class PlayerStateHandling : MonoBehaviour {
 
 	void GetPlayerInput() {
 		player.SetIsJumpInput(InputManager.GetButtonDownInput (gameObject.name, "AButton"));
-		player.SetIsGuardInput (InputManager.GetButtonDownInput (gameObject.name, "LBButton"));
+		player.SetIsGuardInputOn (InputManager.GetButtonDownInput (gameObject.name, "LBButton"));
+		player.SetIsGuardInputOff (InputManager.GetButtonUpInput (gameObject.name, "LBButton"));
 		player.SetIsAction1Input (InputManager.GetButtonInput (gameObject.name, "XButton"));
 		player.SetIsAction2Input (InputManager.GetButtonDownInput (gameObject.name, "YButton"));
 		player.SetIsThrowingInput (InputManager.GetButtonDownInput (gameObject.name, "RBButton"));
@@ -51,8 +52,6 @@ public class PlayerStateHandling : MonoBehaviour {
 			}
 		}
 			
-
-
 		if (foundRestriction) {
 			player.SetCanMove (false);
 			player.SetCanInputActions (false);
