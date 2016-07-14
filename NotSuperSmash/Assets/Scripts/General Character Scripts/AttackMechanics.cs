@@ -24,6 +24,8 @@ public class AttackMechanics : MonoBehaviour {
 
 	private bool playerWasHit;
 
+	public GameObject hit;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -55,10 +57,17 @@ public class AttackMechanics : MonoBehaviour {
 					playerWasHit = true;
 				}
 			}
-
+			/*
 			if (!playerWasHit) {
 				playerAttackReceived = col.gameObject.GetComponent<PlayerAttackReceived> ();
 				playerAttackReceived.ReceiveAttack (targetPlayer, attackingPlayer, attackerLocation, attackType);
+				playersHit.Add (targetPlayer);
+			}
+			*/
+
+			if (!playerWasHit) {
+				playerAttackReceived = col.gameObject.GetComponent<PlayerAttackReceived> ();
+				playerAttackReceived.ReceiveAttack (targetPlayer, attackingPlayer, hit, attackType);
 				playersHit.Add (targetPlayer);
 			}
 		}

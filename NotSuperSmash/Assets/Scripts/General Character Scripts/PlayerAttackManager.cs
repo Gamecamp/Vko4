@@ -30,6 +30,8 @@ public class PlayerAttackManager : MonoBehaviour {
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
 
+	private bool animHit;
+
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
@@ -156,4 +158,6 @@ public class PlayerAttackManager : MonoBehaviour {
 	public void SetActiveWeapon(string weapon) {
 		activeWeapon = weapon;
 	}
+
+
 }
