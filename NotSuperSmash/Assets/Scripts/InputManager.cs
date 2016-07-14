@@ -2,20 +2,32 @@
 using System.Collections;
 
 public static class InputManager {
-	private static float deadZoneAmount = 0.15f;
+	private static float deadZoneAmount = 0.4f;
+	private static Vector2 stickInput;
 
-	public static float GetXInput(string playerName) {
-		string axisName = CheckPlayerNumber (playerName, "Horizontal");
-		float playerXInput = ApplyDeadZone(Input.GetAxis (axisName));
+//	public static float GetXInput(string playerName) {
+//		string axisName = CheckPlayerNumber (playerName, "Horizontal");
+//		float playerXInput = ApplyDeadZone(Input.GetAxis (axisName));
+//
+//		return playerXInput;
+//	}
+//
+//	public static float GetZInput(string playerName) {
+//		string axisName = CheckPlayerNumber (playerName, "Vertical");
+//		float playerZInput = ApplyDeadZone(Input.GetAxis (axisName));
+//
+//		return playerZInput;
+//	}
+//
+	public static Vector2 GetJoystickInput(string playerName) {
+		stickInput = new Vector2 (Input.GetAxis (CheckPlayerNumber (playerName, "Horizontal")), Input.GetAxis (CheckPlayerNumber (playerName, "Vertical")));
+		if (stickInput.magnitude < deadZoneAmount) {
+			stickInput = Vector2.zero;
+		} else {
+			stickInput = stickInput.normalized * ((stickInput.magnitude - deadZoneAmount) / (1 - deadZoneAmount));
+		}
 
-		return playerXInput;
-	}
-
-	public static float GetZInput(string playerName) {
-		string axisName = CheckPlayerNumber (playerName, "Vertical");
-		float playerZInput = ApplyDeadZone(Input.GetAxis (axisName));
-
-		return playerZInput;
+		return stickInput;
 	}
 
 	public static bool GetButtonInput (string playerName, string buttonName) {

@@ -14,6 +14,7 @@ public static class MyPhysics {
 	}
 
 	public static void ApplyKnockback(PlayerMovement obj, Vector3 direction, float force) {
+		direction = direction.normalized;
 		obj.StartKnockback (direction, force);
 	}
 

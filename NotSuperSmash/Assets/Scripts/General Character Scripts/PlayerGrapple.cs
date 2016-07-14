@@ -30,6 +30,8 @@ public class PlayerGrapple : MonoBehaviour {
 
 	Vector3 throwingVector;
 
+	Vector2 joystickInput;
+
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
@@ -92,10 +94,14 @@ public class PlayerGrapple : MonoBehaviour {
 
 	void UpdateGrappling() {
 		if (grappleIsHappening) {
-			throwingVector = new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
+			joystickInput = InputManager.GetJoystickInput (gameObject.name);
+			throwingVector = new Vector3 (joystickInput.x, 0, joystickInput.y);
 
 			if (Mathf.Abs(throwingVector.x) > 0.5f || Mathf.Abs(throwingVector.z) > 0.5f) {
 				MyPhysics.ApplyKnockback(targetPlayer, throwingVector, 50);
+
+				print ("Throwing vector: x - " + throwingVector.x + ", y - " + throwingVector.y + ", z - " + throwingVector.z);
+
 				ResetGrapple ();
 			}
 

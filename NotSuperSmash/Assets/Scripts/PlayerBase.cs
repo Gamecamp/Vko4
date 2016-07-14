@@ -17,6 +17,8 @@ public class PlayerBase : MonoBehaviour {
 	protected Vector3 moveVector;
 	protected Vector3 facingVector;
 	protected Vector3 knockbackDirection;
+	 
+	protected Vector3 respawnPoint = new Vector3(0,5,0);
 
 	protected bool isGrounded;
 
@@ -51,6 +53,8 @@ public class PlayerBase : MonoBehaviour {
 	public float jumpPower;
 	public float runSpeed;
 
+	Rigidbody rb;
+
 	protected float holdInputTime = 0.15f;
 	protected float knockbackThreshold = 10;
 
@@ -66,6 +70,10 @@ public class PlayerBase : MonoBehaviour {
 		}
 
 		Debug.DrawRay (transform.position, Vector3.down * (GetComponent<BoxCollider>().bounds.extents.y + 0.1f), Color.black);
+	}
+
+	public void SetRigidbody(Rigidbody rb) {
+		this.rb = rb;
 	}
 
 	public bool GetIsJumpInput() {
@@ -302,16 +310,40 @@ public class PlayerBase : MonoBehaviour {
 	}
 
 	public void Respawn() {
+		ResetStatus ();
+	
+	}
+
+	void ResetStatus() {
 		currentHealth = maxHealth;
-		transform.position = new Vector3(0, 0, 0);
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		transform.position = respawnPoint;
+
+		isLightAttacking = false;
+		isHeavyAttacking = false;
+		isGrappling = false;
+		isGuarding = false;
+
+		isBaseballBatEquipped = false;
+
+		isUsingSpecial1 = false;
+
+		isStaggered = false;
+		isKnockedBack = false;
+		isGrappled = false;
+
+		staggerDuration = 0;
+		staggerDurationPassed = 0;
+
+		canMove = true;
+		canInputActions = true;
+
 	}
 
 	public void Kill() {
-		transform.position = new Vector3 (transform.position.x, 10, transform.position.z);
-		transform.rotation = Quaternion.LookRotation (Vector3.down);
 		SetIsStaggered (true);
 		SetStaggerDuration (1000f);
-
 	}
 
 	public List<bool> GetRestrictions() {

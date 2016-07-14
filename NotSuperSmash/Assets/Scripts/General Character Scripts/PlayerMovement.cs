@@ -3,23 +3,27 @@ using System.Collections;
 
 public class PlayerMovement : PlayerBase {
 
-	Rigidbody rb;
+	Rigidbody rigidBody;
 
 	private bool knockbackType;
 
+	Vector2 joystickInput;
+
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
+		rigidBody = GetComponent<Rigidbody> ();
 		maxHealth = 100;
 		currentHealth = 100;
 		attackDamage = 50;
 		maxLives = 3;
 		currentLives = maxLives;
+		SetRigidbody (rigidBody);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		IsPlayerGrounded ();
+		CorrectAngle ();
 		ApplyMovement ();
 		ApplyPhysics ();
 		ApplyKnockbacks ();
@@ -37,9 +41,15 @@ public class PlayerMovement : PlayerBase {
 		}
 	}
 
+	void CorrectAngle () {
+		transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0); 
+	}
+
+
 	void ApplyMovement() {
 		if (GetCanMove() && GetCanInputActions()) {
-			moveVector += new Vector3(InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
+			joystickInput = InputManager.GetJoystickInput (gameObject.name);
+			moveVector += new Vector3 (joystickInput.x, 0, joystickInput.y);
 			if (isJumpInput && isGrounded) {
 				moveVector = new Vector3(moveVector.x, moveVector.y + jumpPower, moveVector.z);
 			}
