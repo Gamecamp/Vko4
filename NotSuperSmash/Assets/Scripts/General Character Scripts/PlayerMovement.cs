@@ -12,7 +12,9 @@ public class PlayerMovement : PlayerBase {
 		rb = GetComponent<Rigidbody> ();
 		maxHealth = 100;
 		currentHealth = 100;
-		attackDamage = 10;
+		attackDamage = 50;
+		maxLives = 3;
+		currentLives = maxLives;
 	}
 	
 	// Update is called once per frame
