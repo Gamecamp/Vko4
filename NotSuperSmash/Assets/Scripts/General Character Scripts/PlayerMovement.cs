@@ -8,6 +8,12 @@ public class PlayerMovement : PlayerBase {
 	private bool knockbackType;
 
 	Vector2 joystickInput;
+	Vector2 oldJoystickInput;
+
+	Vector3 facingVector;
+	Vector3 oldFacingVector;
+
+	private float step;
 
 	// Use this for initialization
 	void Start () {
@@ -47,17 +53,34 @@ public class PlayerMovement : PlayerBase {
 
 
 	void ApplyMovement() {
-		if (GetCanMove() && GetCanInputActions()) {
-			joystickInput = InputManager.GetJoystickInput (gameObject.name);
-			moveVector += new Vector3 (joystickInput.x, 0, joystickInput.y);
-			if (isJumpInput && isGrounded) {
-				moveVector = new Vector3(moveVector.x, moveVector.y + jumpPower, moveVector.z);
-			}
+		if (GetCanMove() && GetCanInputActions() && GetCanInputActionsMove()) {
+			GetInputForMoving ();
 			transform.Translate (moveVector * runSpeed * Time.deltaTime, Space.World);
-			facingVector = new Vector3 (moveVector.x, 0, moveVector.z);
-			if (facingVector != Vector3.zero) {
-				transform.forward = facingVector;
-			}
+			RotateCharacter ();
+		}
+
+		if (GetCanMove () && !GetCanInputActionsMove ()) {
+			moveVector += new Vector3 (oldJoystickInput.x, 0, oldJoystickInput.y);
+			transform.Translate (moveVector * runSpeed * Time.deltaTime, Space.World);
+			RotateCharacter ();
+		}
+	}
+
+	void GetInputForMoving() {
+		oldJoystickInput = joystickInput;
+		joystickInput = InputManager.GetJoystickInput (gameObject.name);
+		oldFacingVector = facingVector;
+		moveVector += new Vector3 (joystickInput.x, 0, joystickInput.y);
+		if (isJumpInput && isGrounded) {
+			moveVector = new Vector3(moveVector.x, moveVector.y + jumpPower, moveVector.z);
+		}
+	}
+
+	void RotateCharacter() {
+		step = Time.deltaTime;
+		facingVector = new Vector3 (moveVector.x, 0, moveVector.z);
+		if (facingVector != Vector3.zero) {
+			transform.forward = Vector3.RotateTowards(oldFacingVector, facingVector, step, 0.0F);
 		}
 	}
 

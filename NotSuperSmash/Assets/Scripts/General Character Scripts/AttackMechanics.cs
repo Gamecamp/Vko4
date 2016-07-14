@@ -62,6 +62,26 @@ public class AttackMechanics : MonoBehaviour {
 				playersHit.Add (targetPlayer);
 			}
 		}
+
+		if (col.gameObject.tag == "Ball") {
+			Rigidbody rb = col.gameObject.GetComponent<Rigidbody> ();
+
+			float force = 0;
+			print(rb.velocity);
+
+			if (gameObject.name == "UnarmedHitbox" + parent.name) {
+				force = 10000;
+			} else if (gameObject.name == "UnarmedHeavyHitbox" + parent.name) {
+				force = 13000;
+			} else if (gameObject.name == "BaseballBatLightHitbox" + parent.name) {
+				force = 60000;
+			} else if (gameObject.name == "BaseballBatHeavyHitbox" + parent.name) {
+				force = 80000;
+			}
+		
+			rb.AddForce ((col.gameObject.transform.position - attackerLocation.transform.position)*force);
+
+		}
 	}
 
 	void DetermineAttackType() {

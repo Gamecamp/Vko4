@@ -31,6 +31,7 @@ public class PlayerStateHandling : MonoBehaviour {
 		player.SetIsGuardInputOff (InputManager.GetButtonUpInput (gameObject.name, "LBButton"));
 		player.SetIsAction1Input (InputManager.GetButtonInput (gameObject.name, "XButton"));
 		player.SetIsAction2Input (InputManager.GetButtonDownInput (gameObject.name, "YButton"));
+		//player.SetIsSpecial1Input
 		player.SetIsThrowingInput (InputManager.GetButtonDownInput (gameObject.name, "RBButton"));
 		player.SetIsEquipInput (InputManager.GetButtonDownInput(gameObject.name, "BButton"));
 	}
@@ -51,7 +52,13 @@ public class PlayerStateHandling : MonoBehaviour {
 				break;
 			}
 		}
-			
+
+		if (player.GetIsLightAttacking () || player.GetIsHeavyAttacking () || player.GetIsGrappling ()) {
+			player.SetCanInputActionsMove (false);
+		} else {
+			player.SetCanInputActionsMove (true);
+		}
+
 		if (foundRestriction) {
 			player.SetCanMove (false);
 			player.SetCanInputActions (false);

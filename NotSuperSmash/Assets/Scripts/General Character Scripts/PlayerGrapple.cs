@@ -100,8 +100,6 @@ public class PlayerGrapple : MonoBehaviour {
 			if (Mathf.Abs(throwingVector.x) > 0.5f || Mathf.Abs(throwingVector.z) > 0.5f) {
 				MyPhysics.ApplyKnockback(targetPlayer, throwingVector, 50);
 
-				print ("Throwing vector: x - " + throwingVector.x + ", y - " + throwingVector.y + ", z - " + throwingVector.z);
-
 				ResetGrapple ();
 			}
 

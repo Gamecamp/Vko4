@@ -15,7 +15,6 @@ public class PlayerBase : MonoBehaviour {
 	protected float attackDamage;
 
 	protected Vector3 moveVector;
-	protected Vector3 facingVector;
 	protected Vector3 knockbackDirection;
 	 
 	protected Vector3 respawnPoint = new Vector3(0,5,0);
@@ -41,6 +40,7 @@ public class PlayerBase : MonoBehaviour {
 
 	protected bool isAction1Input;
 	protected bool isAction2Input;
+	protected bool isSpecial1Input;
 	protected bool isEquipInput;
 	protected bool isThrowingInput;
 	protected bool isGuardInputOn;
@@ -48,6 +48,7 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isJumpInput;
 
 	protected bool canMove;
+	protected bool canInputActionsMove;
 	protected bool canInputActions;
 
 	public float jumpPower;
@@ -188,6 +189,14 @@ public class PlayerBase : MonoBehaviour {
 		this.canMove = canMove;
 	}
 
+	public bool GetCanInputActionsMove() {
+		return canInputActionsMove;
+	}
+
+	public void SetCanInputActionsMove(bool canInputActionsMove) {
+		this.canInputActionsMove=canInputActionsMove;
+	}
+
 	public bool GetCanInputActions() {
 		return canInputActions;
 	}
@@ -211,6 +220,14 @@ public class PlayerBase : MonoBehaviour {
 	public void SetIsAction2Input(bool isAction2Input) {
 		this.isAction2Input = isAction2Input;
 
+	}
+
+	public bool GetIsSpecial1Input() {
+		return isSpecial1Input;
+	}
+
+	public void SetIsSpecial1Input(bool isSpecial1Input) {
+		this.isSpecial1Input = isSpecial1Input;
 	}
 
 	public bool GetIsUsingSpecial1() {
@@ -348,9 +365,9 @@ public class PlayerBase : MonoBehaviour {
 
 	public List<bool> GetRestrictions() {
 		restrictions.Clear ();
-		restrictions.Add(GetIsLightAttacking ());
-		restrictions.Add(GetIsHeavyAttacking());
-		restrictions.Add(GetIsGrappling());
+//		restrictions.Add(GetIsLightAttacking ());
+//		restrictions.Add(GetIsHeavyAttacking());
+//		restrictions.Add(GetIsGrappling());
 		restrictions.Add(GetIsUsingSpecial1());
 		restrictions.Add(GetIsStaggered());
 		restrictions.Add(GetIsKnockedBack());
