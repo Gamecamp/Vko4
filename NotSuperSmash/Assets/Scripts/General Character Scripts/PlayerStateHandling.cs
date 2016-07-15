@@ -6,9 +6,11 @@ public class PlayerStateHandling : MonoBehaviour {
 
 	private PlayerMovement player;
 
-	private List<bool> restrictions;
+	private List<bool> inputRestrictions;
+	private List<bool> inputRestrictionsMove;
 
-	private bool foundRestriction;
+	private bool foundInputRestriction;
+	private bool foundInputRestrictionMove;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +18,8 @@ public class PlayerStateHandling : MonoBehaviour {
 		player.SetCanMove (true);
 		player.SetCanInputActions (true);
 
-		restrictions = new List<bool> ();
+		inputRestrictions = new List<bool> ();
+		inputRestrictionsMove = new List<bool> ();
 	}
 	
 	// Update is called once per frame
@@ -29,7 +32,7 @@ public class PlayerStateHandling : MonoBehaviour {
 		player.SetIsJumpInput(InputManager.GetButtonDownInput (gameObject.name, "AButton"));
 		player.SetIsGuardInputOn (InputManager.GetButtonDownInput (gameObject.name, "LBButton"));
 		player.SetIsGuardInputOff (InputManager.GetButtonUpInput (gameObject.name, "LBButton"));
-		player.SetIsAction1Input (InputManager.GetButtonInput (gameObject.name, "XButton"));
+		player.SetIsAction1Input (InputManager.GetButtonDownInput (gameObject.name, "XButton"));
 		player.SetIsAction2Input (InputManager.GetButtonDownInput (gameObject.name, "YButton"));
 		//player.SetIsSpecial1Input
 		player.SetIsThrowingInput (InputManager.GetButtonDownInput (gameObject.name, "RBButton"));
@@ -37,29 +40,36 @@ public class PlayerStateHandling : MonoBehaviour {
 	}
 
 	void AlterStates() {
-
 		if (player.GetIsStaggered() || player.GetIsKnockedBack() || player.GetIsGrappled()) {
 			player.InterruptActions ();
 		}
+		GetRestrictions ();
+		UpdateStatus ();
+	}
 
-		restrictions = player.GetRestrictions ();
+	void GetRestrictions() {
+		inputRestrictions = player.GetRestrictions ();
+		inputRestrictionsMove = player.GetCanInputActionsMoveRestrictions ();
+		foundInputRestriction = false;
+		foundInputRestrictionMove = false;
 
-		foundRestriction = false;
-
-		for (int i = 0; i < restrictions.Count; i++) {
-			if (restrictions [i]) {
-				foundRestriction = true;
+		for (int i = 0; i < inputRestrictions.Count; i++) {
+			if (inputRestrictions [i]) {
+				foundInputRestriction = true;
 				break;
 			}
 		}
 
-		if (player.GetIsLightAttacking () || player.GetIsHeavyAttacking () || player.GetIsGrappling ()) {
-			player.SetCanInputActionsMove (false);
-		} else {
-			player.SetCanInputActionsMove (true);
+		for (int i = 0; i < inputRestrictionsMove.Count; i++) {
+			if (inputRestrictionsMove [i]) {
+				foundInputRestrictionMove = true;
+				break;
+			}
 		}
+	}
 
-		if (foundRestriction) {
+	void UpdateStatus() {
+		if (foundInputRestriction) {
 			player.SetCanMove (false);
 			player.SetCanInputActions (false);
 		} else if (player.GetIsGuarding ()) {
@@ -70,6 +80,10 @@ public class PlayerStateHandling : MonoBehaviour {
 			player.SetCanInputActions (true);
 		}
 
-
-	}
+		if (foundInputRestrictionMove) {
+			player.SetCanInputActionsMove (false);
+		} else {
+			player.SetCanInputActionsMove (true);
+		}
+				}
 }

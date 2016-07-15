@@ -15,6 +15,9 @@ public class PlayerBase : MonoBehaviour {
 	protected float attackDamage;
 
 	protected Vector3 moveVector;
+
+	protected Vector3 locationVector;
+	protected Vector3 previousLocationVector;
 	protected Vector3 knockbackDirection;
 	 
 	protected Vector3 respawnPoint = new Vector3(0,5,0);
@@ -24,6 +27,7 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isLightAttacking;
 	protected bool isHeavyAttacking;
 	protected bool isAbleToEquip;
+	protected bool isAttemptingGrapple;
 	protected bool isGrappling;
 	protected bool isGuarding;
 
@@ -59,12 +63,13 @@ public class PlayerBase : MonoBehaviour {
 	protected float holdInputTime = 0.15f;
 	protected float knockbackThreshold = 10;
 
-	List<bool> restrictions = new List<bool> ();
+	List<bool> canInputActionsRestrictions = new List<bool> ();
+	List<bool> canInputActionsMoveRestrictions = new List<bool>();
 
 	public void IsPlayerGrounded() {
 		RaycastHit hit;
 
-		if (Physics.Raycast (transform.position, Vector3.down, out hit, GetComponent<BoxCollider>().bounds.extents.y + 0.1f)) {
+		if (Physics.Raycast (transform.position, Vector3.down, out hit, GetComponent<BoxCollider>().bounds.extents.y)) {
 			isGrounded = true;
 		} else {
 			isGrounded = false;
@@ -93,6 +98,13 @@ public class PlayerBase : MonoBehaviour {
 		this.moveVector = moveVector;
 	}
 
+	public Vector3 GetPreviousLocationVector() {
+		return previousLocationVector;
+	}
+
+	public void SetPreviousLocationVector(Vector3 previousLocationVector) {
+		this.previousLocationVector = previousLocationVector;	
+	}
 	public bool GetIsGrounded() {
 		return isGrounded;
 	}
@@ -115,6 +127,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public void SetIsGrappling(bool isGrappling) {
 		this.isGrappling = isGrappling;
+	}
+
+	public bool GetIsAttemptingGrapple() {
+		return isAttemptingGrapple;
+	}
+
+	public void SetIsAttemptingGrapple(bool isAttemptingGrapple) {
+		this.isAttemptingGrapple = isAttemptingGrapple;
 	}
 
 	public bool GetIsEquipInput() {
@@ -364,21 +384,33 @@ public class PlayerBase : MonoBehaviour {
 	}
 
 	public List<bool> GetRestrictions() {
-		restrictions.Clear ();
-//		restrictions.Add(GetIsLightAttacking ());
-//		restrictions.Add(GetIsHeavyAttacking());
-//		restrictions.Add(GetIsGrappling());
-		restrictions.Add(GetIsUsingSpecial1());
-		restrictions.Add(GetIsStaggered());
-		restrictions.Add(GetIsKnockedBack());
-		restrictions.Add(GetIsGrappled());
-
-		return restrictions;
+		canInputActionsRestrictions.Clear ();
+		canInputActionsRestrictions.Add(GetIsStaggered());
+		canInputActionsRestrictions.Add(GetIsKnockedBack());
+		canInputActionsRestrictions.Add(GetIsGrappled());
+		canInputActionsRestrictions.Add (GetIsGrappling ());
+		return canInputActionsRestrictions;
 	}
+
+	public List<bool> GetCanInputActionsMoveRestrictions() {
+		canInputActionsMoveRestrictions.Clear ();
+		canInputActionsMoveRestrictions.Add(GetIsLightAttacking());
+		canInputActionsMoveRestrictions.Add(GetIsHeavyAttacking());
+		canInputActionsMoveRestrictions.Add(GetIsAttemptingGrapple());
+		canInputActionsMoveRestrictions.Add(GetIsUsingSpecial1());
+
+		return canInputActionsMoveRestrictions;
+	}
+
+	public void PrintStatus() {
+
+	}
+		
 
 	public void InterruptActions() {
 		SetIsLightAttacking (false);
 		SetIsHeavyAttacking (false);
+		SetIsAttemptingGrapple (false);
 		SetIsGrappling(false);
 		SetIsUsingSpecial1 (false);
 		SetIsGuarding (false);

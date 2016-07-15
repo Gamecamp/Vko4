@@ -5,10 +5,13 @@ public static class MyPhysics {
 	
 	private static float gravity = 9.81f;
 	private static float friction = 0.90f;
+	private static float yVelocity = 0;
 
 
 	public static void ApplyGravity(GameObject obj) {
-		obj.transform.Translate (0, -gravity * Time.deltaTime, 0, Space.World);
+		yVelocity -= gravity * Time.deltaTime;
+		Debug.Log(yVelocity);
+		obj.transform.Translate (0, yVelocity, 0, Space.World);
 	}
 	
 	public static void ApplyFriction(PlayerMovement obj) {
@@ -30,5 +33,9 @@ public static class MyPhysics {
 
 	public static void SetGravity(float newGravity) {
 		gravity = newGravity;
+	}
+
+	public static void ResetFallSpeed() {
+		yVelocity = 0;
 	}
 }

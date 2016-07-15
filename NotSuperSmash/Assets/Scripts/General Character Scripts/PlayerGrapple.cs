@@ -17,7 +17,8 @@ public class PlayerGrapple : MonoBehaviour {
 	private float grappleAttemptMaxDuration = 0.7f;
 
 	private float grappleDuration = 0;
-	private float grappleMaxDuration = 5;
+	private float grappleInputThreshold = 0.3f;
+	private float grappleMaxDuration = 1;
 
 	private float grappleAttemptCooldown = 1;
 	private float cooldownTimer = 0;
@@ -25,6 +26,8 @@ public class PlayerGrapple : MonoBehaviour {
 	private bool grappleIsFinished;
 	private bool grappleIsHappening;
 	private bool grappleAttemptInProgress;
+
+	private bool attemptReset;
 
 	private bool grappleWindupGoing;
 
@@ -52,12 +55,13 @@ public class PlayerGrapple : MonoBehaviour {
 	void UpdateGrapplingAttempt () {
 		
 		if (player.GetIsThrowingInput() && player.GetCanInputActions() && player.GetIsAbleToEquip()) {
-			player.SetIsGrappling (true);
+			player.SetIsAttemptingGrapple (true);
 			grappleWindupGoing = true;
 			grappleAttemptInProgress = true;
+			attemptReset = false;
 		}
 
-		if (player.GetIsGrappling ()) {
+		if (player.GetIsAttemptingGrapple()) {
 
 
 			grappleAttemptDuration = grappleAttemptDuration + Time.deltaTime;
@@ -80,27 +84,34 @@ public class PlayerGrapple : MonoBehaviour {
 
 	void ResetGrappleAttempt() {
 		grappleIsFinished = false;
-		grappleIsHappening = false;
 		grappleAttemptInProgress = false;
+		attemptReset = true;
 
 		grappleWindupGoing = false;
 		grappleDuration = 0;
 		grappleAttemptDuration = 0;
 
-		player.SetIsGrappling (false);
+		player.SetIsAttemptingGrapple (false);
 
 		StartGrappleAttemptCooldownTimer ();
 	}
 
 	void UpdateGrappling() {
 		if (grappleIsHappening) {
-			joystickInput = InputManager.GetJoystickInput (gameObject.name);
-			throwingVector = new Vector3 (joystickInput.x, 0, joystickInput.y);
+			if (!attemptReset) {
+				ResetGrappleAttempt();
+				player.SetIsGrappling (true);
+				player.SetIsAttemptingGrapple (false);
+			}
 
-			if (Mathf.Abs(throwingVector.x) > 0.5f || Mathf.Abs(throwingVector.z) > 0.5f) {
-				MyPhysics.ApplyKnockback(targetPlayer, throwingVector, 50);
+			if (grappleDuration >= grappleInputThreshold) {
+				joystickInput = InputManager.GetJoystickInput (gameObject.name);
+				throwingVector = new Vector3 (joystickInput.x, 0, joystickInput.y);
 
-				ResetGrapple ();
+				if (Mathf.Abs (throwingVector.x) > 0.5f || Mathf.Abs (throwingVector.z) > 0.5f) {
+					MyPhysics.ApplyKnockback (targetPlayer, throwingVector, 50);
+					ResetGrapple ();
+				}
 			}
 
 			PassGrapplingTime ();
@@ -134,6 +145,8 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void PassGrapplingTime() {
+		print ("passing grappling time: " + grappleDuration);
+		print (targetPlayer.GetIsGrappled ());
 		grappleDuration = grappleDuration + Time.deltaTime;
 		if (grappleDuration >= grappleMaxDuration) {
 			grappleIsFinished = true;

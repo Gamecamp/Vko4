@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/IikanHupailu.unity
+- path: Assets/Scenes/SimoTesti.unity
   isLoaded: 1
   isActive: 1

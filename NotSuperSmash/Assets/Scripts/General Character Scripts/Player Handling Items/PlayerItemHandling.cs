@@ -7,16 +7,13 @@ public class PlayerItemHandling : MonoBehaviour {
 	private PlayerAttackManager attackManager;
 	private Vector3 hiddenItem;
 
-	private GameObject baseballBatObj;
+	public GameObject baseballBatObj;
 
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
 
 	// Use this for initialization
 	void Start () {
-
-		baseballBatObj = GameObject.Find ("BaseballBat" + gameObject.name);
-
 
 		player = GetComponent<PlayerMovement> ();
 		attackManager = GetComponent<PlayerAttackManager> ();
