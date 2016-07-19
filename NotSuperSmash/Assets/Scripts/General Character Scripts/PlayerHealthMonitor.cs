@@ -24,9 +24,11 @@ public class PlayerHealthMonitor : MonoBehaviour {
 	}
 
 	void CheckAlive() {
-		if (currentHealth == 0) {
-			player.SetCurrentLives (player.GetCurrentLives () - 1);
+		if (currentHealth == 0 && currentLives > 0) {
 
+			currentLives = currentLives - 1;
+
+			player.SetCurrentLives (currentLives);
 			if (currentLives == 0) {
 				player.Kill ();
 			} else {

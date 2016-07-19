@@ -15,8 +15,12 @@ public class PlayerBase : MonoBehaviour {
 	protected float attackDamage;
 
 	protected Vector3 moveVector;
-	protected Vector3 facingVector;
+
+	protected Vector3 locationVector;
+	protected Vector3 previousLocationVector;
 	protected Vector3 knockbackDirection;
+	 
+	protected Vector3 respawnPoint = new Vector3(0,5,0);
 
 	protected bool isGrounded;
 
@@ -24,6 +28,8 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isHeavyAttacking;
 	protected bool isAbleToEquip;
 	protected bool isAbleToShoot;
+
+	protected bool isAttemptingGrapple;
 	protected bool isGrappling;
 	protected bool isGuarding;
 
@@ -41,6 +47,7 @@ public class PlayerBase : MonoBehaviour {
 
 	protected bool isAction1Input;
 	protected bool isAction2Input;
+	protected bool isSpecial1Input;
 	protected bool isEquipInput;
 	protected bool isThrowingInput;
 	protected bool isGuardInputOn;
@@ -48,26 +55,34 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isJumpInput;
 
 	protected bool canMove;
+	protected bool canInputActionsMove;
 	protected bool canInputActions;
 
 	public float jumpPower;
 	public float runSpeed;
 
+	Rigidbody rb;
+
 	protected float holdInputTime = 0.15f;
 	protected float knockbackThreshold = 10;
 
-	List<bool> restrictions = new List<bool> ();
+	List<bool> canInputActionsRestrictions = new List<bool> ();
+	List<bool> canInputActionsMoveRestrictions = new List<bool>();
 
 	public void IsPlayerGrounded() {
 		RaycastHit hit;
 
-		if (Physics.Raycast (transform.position, Vector3.down, out hit, GetComponent<BoxCollider>().bounds.extents.y + 0.1f)) {
+		if (Physics.Raycast (transform.position, Vector3.down, out hit, GetComponent<BoxCollider>().bounds.extents.y)) {
 			isGrounded = true;
 		} else {
 			isGrounded = false;
 		}
 
 		Debug.DrawRay (transform.position, Vector3.down * (GetComponent<BoxCollider>().bounds.extents.y + 0.1f), Color.black);
+	}
+
+	public void SetRigidbody(Rigidbody rb) {
+		this.rb = rb;
 	}
 
 	public bool GetIsJumpInput() {
@@ -86,6 +101,13 @@ public class PlayerBase : MonoBehaviour {
 		this.moveVector = moveVector;
 	}
 
+	public Vector3 GetPreviousLocationVector() {
+		return previousLocationVector;
+	}
+
+	public void SetPreviousLocationVector(Vector3 previousLocationVector) {
+		this.previousLocationVector = previousLocationVector;	
+	}
 	public bool GetIsGrounded() {
 		return isGrounded;
 	}
@@ -116,6 +138,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public void SetIsGrappling(bool isGrappling) {
 		this.isGrappling = isGrappling;
+	}
+
+	public bool GetIsAttemptingGrapple() {
+		return isAttemptingGrapple;
+	}
+
+	public void SetIsAttemptingGrapple(bool isAttemptingGrapple) {
+		this.isAttemptingGrapple = isAttemptingGrapple;
 	}
 
 	public bool GetIsEquipInput() {
@@ -190,6 +220,14 @@ public class PlayerBase : MonoBehaviour {
 		this.canMove = canMove;
 	}
 
+	public bool GetCanInputActionsMove() {
+		return canInputActionsMove;
+	}
+
+	public void SetCanInputActionsMove(bool canInputActionsMove) {
+		this.canInputActionsMove=canInputActionsMove;
+	}
+
 	public bool GetCanInputActions() {
 		return canInputActions;
 	}
@@ -213,6 +251,14 @@ public class PlayerBase : MonoBehaviour {
 	public void SetIsAction2Input(bool isAction2Input) {
 		this.isAction2Input = isAction2Input;
 
+	}
+
+	public bool GetIsSpecial1Input() {
+		return isSpecial1Input;
+	}
+
+	public void SetIsSpecial1Input(bool isSpecial1Input) {
+		this.isSpecial1Input = isSpecial1Input;
 	}
 
 	public bool GetIsUsingSpecial1() {
@@ -320,34 +366,70 @@ public class PlayerBase : MonoBehaviour {
 	}
 
 	public void Respawn() {
+		ResetStatus ();
+	
+	}
+
+	void ResetStatus() {
 		currentHealth = maxHealth;
-		transform.position = new Vector3(0, 0, 0);
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		transform.position = respawnPoint;
+
+		isLightAttacking = false;
+		isHeavyAttacking = false;
+		isGrappling = false;
+		isGuarding = false;
+
+		isBaseballBatEquipped = false;
+
+		isUsingSpecial1 = false;
+
+		isStaggered = false;
+		isKnockedBack = false;
+		isGrappled = false;
+
+		staggerDuration = 0;
+		staggerDurationPassed = 0;
+
+		canMove = true;
+		canInputActions = true;
+
 	}
 
 	public void Kill() {
-		transform.position = new Vector3 (transform.position.x, 10, transform.position.z);
-		transform.rotation = Quaternion.LookRotation (Vector3.down);
 		SetIsStaggered (true);
 		SetStaggerDuration (1000f);
-
 	}
 
 	public List<bool> GetRestrictions() {
-		restrictions.Clear ();
-		restrictions.Add(GetIsLightAttacking ());
-		restrictions.Add(GetIsHeavyAttacking());
-		restrictions.Add(GetIsGrappling());
-		restrictions.Add(GetIsUsingSpecial1());
-		restrictions.Add(GetIsStaggered());
-		restrictions.Add(GetIsKnockedBack());
-		restrictions.Add(GetIsGrappled());
-
-		return restrictions;
+		canInputActionsRestrictions.Clear ();
+		canInputActionsRestrictions.Add(GetIsStaggered());
+		canInputActionsRestrictions.Add(GetIsKnockedBack());
+		canInputActionsRestrictions.Add(GetIsGrappled());
+		canInputActionsRestrictions.Add (GetIsGrappling ());
+		return canInputActionsRestrictions;
 	}
+
+	public List<bool> GetCanInputActionsMoveRestrictions() {
+		canInputActionsMoveRestrictions.Clear ();
+		canInputActionsMoveRestrictions.Add(GetIsLightAttacking());
+		canInputActionsMoveRestrictions.Add(GetIsHeavyAttacking());
+		canInputActionsMoveRestrictions.Add(GetIsAttemptingGrapple());
+		canInputActionsMoveRestrictions.Add(GetIsUsingSpecial1());
+
+		return canInputActionsMoveRestrictions;
+	}
+
+	public void PrintStatus() {
+
+	}
+		
 
 	public void InterruptActions() {
 		SetIsLightAttacking (false);
 		SetIsHeavyAttacking (false);
+		SetIsAttemptingGrapple (false);
 		SetIsGrappling(false);
 		SetIsUsingSpecial1 (false);
 		SetIsGuarding (false);

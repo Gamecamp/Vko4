@@ -23,6 +23,8 @@ public class PlayerDashSpecial : MonoBehaviour {
 	Vector3 dashDirection;
 	Vector3 facingDirection;
 
+	Vector2 joystickInput;
+
 	// Use this for initialization
 	void Start () {
 		buttonHeldTime = 0;
@@ -45,18 +47,14 @@ public class PlayerDashSpecial : MonoBehaviour {
 			}
 		} 
 		if (!dashStarted) {
-			if (player.GetIsAction1Input () && player.GetCanInputActions () && dashReady) {
-				buttonHeldTime = buttonHeldTime + Time.deltaTime;
-
-				if (buttonHeldTime >= holdInputTime) {
-					dashDirection = new Vector3 (InputManager.GetXInput (gameObject.name), 0, InputManager.GetZInput (gameObject.name));
-					dashStarted = true;
-					player.SetIsUsingSpecial1 (true);
-					dashReady = false;
-					dashCooldownPassed = 0;
-				}
-			} else {
-				buttonHeldTime = 0;
+			if (player.GetIsSpecial1Input () && player.GetCanInputActions () && dashReady) {
+				joystickInput = InputManager.GetJoystickInput (gameObject.name);
+				dashDirection = new Vector3 (joystickInput.x, 0, joystickInput.y);
+				dashStarted = true;
+				player.SetIsUsingSpecial1 (true);
+				dashReady = false;
+				dashCooldownPassed = 0;
+				
 			}
 		} else {
 			transform.Translate (dashDirection * dashSpeed * Time.deltaTime, Space.World);
