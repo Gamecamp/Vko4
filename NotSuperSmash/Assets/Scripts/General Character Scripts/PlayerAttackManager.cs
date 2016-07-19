@@ -8,6 +8,7 @@ public class PlayerAttackManager : MonoBehaviour {
 	public GameObject unarmedHeavyHitbox;
 	public GameObject baseballBatLightHitbox;
 	public GameObject baseballBatHeavyHitbox;
+	public GameObject rangedWeaponPseudoHitbox;
 
 	GameObject hitboxUsedInAttack;
 
@@ -29,6 +30,7 @@ public class PlayerAttackManager : MonoBehaviour {
 
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
+	const string pistol = "pistol";
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +39,7 @@ public class PlayerAttackManager : MonoBehaviour {
 		unarmedHeavyHitbox.SetActive (false);
 		baseballBatLightHitbox.SetActive (false);
 		baseballBatHeavyHitbox.SetActive (false);
+		rangedWeaponPseudoHitbox.SetActive (false);
 		attackInProgress = false;
 
 		activeWeapon = unarmed;
@@ -71,14 +74,21 @@ public class PlayerAttackManager : MonoBehaviour {
 
 			// Attack hurtbox goes on
 			if (attackDuration >= beforeHurtAnimationLength && attackPhaseHelper == 0) {
-				hitboxUsedInAttack.SetActive (true);
+				if (activeWeapon == pistol) {
+					GetComponent<Bullet> ().Shoot (1f);
+				} else {
+					hitboxUsedInAttack.SetActive (true);
+				}
 				attackPhaseHelper++;
 			} 
 
 			// Attack has been delivered, still can't move, recovery starts
 			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
-				hitboxUsedInAttack.SetActive (false);
+				if (activeWeapon != pistol) {
+					hitboxUsedInAttack.SetActive (false);
+				}
 				if (maxChain > 1) {
+					// getting here too often at least with ranged weapons!
 					if (numberInAttackChain < maxChain) {
 						numberInAttackChain++;
 					} else {
@@ -137,6 +147,14 @@ public class PlayerAttackManager : MonoBehaviour {
 				maxChain = 1;
 			}
 			break;
+		case pistol:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			beforeHurtAnimationLength = 0.05f;
+			hurtfulAnimationLength = 0f;
+			recoveryTime = 0f;
+
+			maxChain = 8;
+			break;
 		}
 	}
 
@@ -151,6 +169,9 @@ public class PlayerAttackManager : MonoBehaviour {
 
 	void ResetAttackChain() {
 		numberInAttackChain = 1;
+		//if (activeWeapon == pistol) {
+		//	GetComponent<Bullet> ().Reload (5f);
+		//}
 	}
 
 	public void SetActiveWeapon(string weapon) {

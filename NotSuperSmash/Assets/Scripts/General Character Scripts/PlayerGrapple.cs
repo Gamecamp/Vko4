@@ -19,9 +19,6 @@ public class PlayerGrapple : MonoBehaviour {
 	private float grappleDuration = 0;
 	private float grappleMaxDuration = 5;
 
-	private float grappleAttemptCooldown = 1;
-	private float cooldownTimer = 0;
-
 	private bool grappleIsFinished;
 	private bool grappleIsHappening;
 	private bool grappleAttemptInProgress;
@@ -86,8 +83,6 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleAttemptDuration = 0;
 
 		player.SetIsGrappling (false);
-
-		StartGrappleAttemptCooldownTimer ();
 	}
 
 	void UpdateGrappling() {
@@ -153,9 +148,4 @@ public class PlayerGrapple : MonoBehaviour {
 	public bool GetGrappleIsHappening() {
 		return grappleIsHappening;
 	}
-
-	public void StartGrappleAttemptCooldownTimer() {
-		cooldownTimer = Time.deltaTime;
-	}
-		
 }

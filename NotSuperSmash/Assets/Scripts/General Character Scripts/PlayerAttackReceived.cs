@@ -20,6 +20,7 @@ public class PlayerAttackReceived : MonoBehaviour {
 	string unarmedHeavyAttack = "unarmedHeavy";
 	string baseballBatLight = "baseballBatLight";
 	string baseballBatHeavy = "baseballBatHeavy";
+	string pistolBullet = "pistolBullet";
 
 
 	// Use this for initialization
@@ -80,6 +81,9 @@ public class PlayerAttackReceived : MonoBehaviour {
 		} else if (attackType == baseballBatHeavy) {
 			knockbackAmount = 50;
 			staggerDuration = 1;
+		} else if (attackType == pistolBullet) {
+			knockbackAmount = 15;
+			staggerDuration = 0.2f;
 		}
 	}
 

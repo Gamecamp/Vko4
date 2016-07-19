@@ -23,10 +23,12 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isLightAttacking;
 	protected bool isHeavyAttacking;
 	protected bool isAbleToEquip;
+	protected bool isAbleToShoot;
 	protected bool isGrappling;
 	protected bool isGuarding;
 
 	protected bool isBaseballBatEquipped;
+	protected bool isPistolEquipped;
 
 	protected bool isUsingSpecial1;
 
@@ -98,6 +100,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public void SetIsAbleToEquip(bool isAbleToEquip) {
 		this.isAbleToEquip = isAbleToEquip;
+	}
+
+	public bool GetIsAbleToShoot() {
+		return isAbleToShoot;
+	}
+
+	public void SetIsAbleToShoot(bool isAbleToShoot) {
+		this.isAbleToShoot = isAbleToShoot;
 	}
 
 	public bool GetIsGrappling() {
@@ -255,6 +265,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public bool GetIsBaseballBatEquipped() {
 		return isBaseballBatEquipped;
+	}
+
+	public void SetIsPistolEquipped(bool isPistolEquipped) {
+		this.isPistolEquipped = isPistolEquipped;
+	}
+
+	public bool GetIsPistolEquipped() {
+		return isPistolEquipped;
 	}
 	
 	public float GetMaxHealth() {

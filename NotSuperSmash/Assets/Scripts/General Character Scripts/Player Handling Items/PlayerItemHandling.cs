@@ -7,23 +7,22 @@ public class PlayerItemHandling : MonoBehaviour {
 	private PlayerAttackManager attackManager;
 	private Vector3 hiddenItem;
 
-	private GameObject baseballBatObj;
+	public GameObject baseballBatObj;
+	public GameObject pistolObj;
 
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
+	const string pistol = "pistol";
 
 	// Use this for initialization
 	void Start () {
-
-		baseballBatObj = GameObject.Find ("BaseballBat" + gameObject.name);
-
-
 		player = GetComponent<PlayerMovement> ();
 		attackManager = GetComponent<PlayerAttackManager> ();
 		hiddenItem = new Vector3 (0, -10, 0);
 		player.SetIsAbleToEquip (true);
 
 		baseballBatObj.SetActive (false);
+		pistolObj.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -49,6 +48,7 @@ public class PlayerItemHandling : MonoBehaviour {
 		switch (weapon) {
 		case unarmed:
 			baseballBatObj.SetActive (false);
+			pistolObj.SetActive (false);
 			attackManager.SetActiveWeapon (unarmed);
 			player.SetIsAbleToEquip (true);
 			break;
@@ -56,6 +56,11 @@ public class PlayerItemHandling : MonoBehaviour {
 			baseballBatObj.SetActive (true);
 			attackManager.SetActiveWeapon (baseballBat);
 			player.SetIsBaseballBatEquipped (true);
+			break;
+		case pistol:
+			pistolObj.SetActive (true);
+			attackManager.SetActiveWeapon (pistol);
+			player.SetIsPistolEquipped (true);
 			break;
 		}
 	}
@@ -71,5 +76,6 @@ public class PlayerItemHandling : MonoBehaviour {
 	void SetWeaponStatesToFalse() {
 		player.SetIsAbleToEquip (false);
 		player.SetIsBaseballBatEquipped (false);
+		player.SetIsPistolEquipped (false);
 	}
 }

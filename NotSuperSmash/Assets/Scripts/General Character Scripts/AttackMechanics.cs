@@ -65,13 +65,13 @@ public class AttackMechanics : MonoBehaviour {
 	}
 
 	void DetermineAttackType() {
-		if (gameObject.name == "UnarmedHitbox" + parent.name) {
+		if (gameObject.name == "UnarmedHitbox") {
 			attackType = unarmedLight;
-		} else if (gameObject.name == "UnarmedHeavyHitbox" + parent.name) {
+		} else if (gameObject.name == "UnarmedHeavyHitbox") {
 			attackType = unarmedHeavy;
-		} else if (gameObject.name == "BaseballBatLightHitbox" + parent.name) {
+		} else if (gameObject.name == "BaseballBatLightHitbox") {
 			attackType = baseballBatLight;
-		} else if (gameObject.name == "BaseballBatHeavyHitbox" + parent.name) {
+		} else if (gameObject.name == "BaseballBatHeavyHitbox") {
 			attackType = baseballBatHeavy;
 		}
 	}
