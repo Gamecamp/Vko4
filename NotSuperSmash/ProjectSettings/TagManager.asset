@@ -9,10 +9,6 @@ TagManager:
   - LightAttackHitbox
   - HeavyAttackHitbox
   - ItemSpawn
-  - New Tag
-  - New Tag
-  - New Tag
-  - New Tag
   - Goal
   - Ball
   layers:

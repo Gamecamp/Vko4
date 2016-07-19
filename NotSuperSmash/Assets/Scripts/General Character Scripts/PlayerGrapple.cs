@@ -89,8 +89,6 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleAttemptDuration = 0;
 
 		player.SetIsAttemptingGrapple (false);
-
-		StartGrappleAttemptCooldownTimer ();
 	}
 
 	void UpdateGrappling() {
