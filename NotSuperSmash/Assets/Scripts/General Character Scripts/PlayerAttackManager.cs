@@ -8,6 +8,8 @@ public class PlayerAttackManager : MonoBehaviour {
 	public GameObject unarmedHeavyHitbox;
 	public GameObject baseballBatLightHitbox;
 	public GameObject baseballBatHeavyHitbox;
+	public GameObject katanaLightHitbox;
+	public GameObject katanaHeavyHitbox;
 	public GameObject rangedWeaponPseudoHitbox;
 
 	GameObject hitboxUsedInAttack;
@@ -32,6 +34,7 @@ public class PlayerAttackManager : MonoBehaviour {
 	const string baseballBat = "baseballBat";
 	const string pistol = "pistol";
 	const string shotgun = "shotgun";
+	const string katana = "katana";
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +43,8 @@ public class PlayerAttackManager : MonoBehaviour {
 		unarmedHeavyHitbox.SetActive (false);
 		baseballBatLightHitbox.SetActive (false);
 		baseballBatHeavyHitbox.SetActive (false);
+		katanaLightHitbox.SetActive (false);
+		katanaHeavyHitbox.SetActive (false);
 		rangedWeaponPseudoHitbox.SetActive (false);
 		attackInProgress = false;
 
@@ -165,6 +170,25 @@ public class PlayerAttackManager : MonoBehaviour {
 			recoveryTime = 0f;
 
 			maxChain = 5;
+			break;
+		case katana:
+			if (player.GetIsLightAttacking()) {
+				hitboxUsedInAttack = katanaLightHitbox;
+
+				beforeHurtAnimationLength = 0.2f;
+				hurtfulAnimationLength = 0.2f;
+				recoveryTime = 0.4f;
+
+				maxChain = 3;
+			} else {
+				hitboxUsedInAttack = katanaHeavyHitbox;
+
+				beforeHurtAnimationLength = 0.4f;
+				hurtfulAnimationLength = 0.2f;
+				recoveryTime = 0.8f;
+
+				maxChain = 1;
+			}
 			break;
 		}
 	}
