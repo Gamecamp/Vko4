@@ -68,6 +68,7 @@ public class PlayerMovement : PlayerBase {
 			transform.Translate (moveVector * runSpeed * Time.deltaTime, Space.World);
 			RotateCharacter ();
 		}
+
 		if (GetCanMove () && !GetCanInputActionsMove ()) {
 			moveVector += new Vector3 (oldJoystickInput.x, 0, oldJoystickInput.y);
 			oldJoystickInput.x = oldJoystickInput.x * 0.95f;

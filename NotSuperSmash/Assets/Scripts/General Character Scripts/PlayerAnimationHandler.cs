@@ -4,59 +4,59 @@ using System.Collections;
 public class PlayerAnimationHandler : MonoBehaviour {
 
 	private Animator anim;
-	private string combo1;
-	private string comboStop1;
-	private string combo2;
-	private string comboStop2;
-	private string combo3;
-	private string comboStop3;
+	private string unarmedCombo1;
+	private string unarmedCombo2;
+	private string unarmedCombo3;
 
-	private string running;
 	private string stagger;
 	private string knockback;
 	private string pickup;
 	private string grappleAttempt;
 	private string throwing;
 
+	private PlayerMovement player;
+	private float velocityMagnitude;
+
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator> ();
+		anim = GetComponentInChildren<Animator> ();
+		player = GetComponent<PlayerMovement> ();
+
+		unarmedCombo1 = "unarmed1";
+		unarmedCombo2 = "unarmed2";
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		setIdleRun ("velocityMagnitude");
+	}
+
+	private float GetVelocityMagnitude() {
+		return player.GetMoveVector ().magnitude;
 	}
 
 	// Tarviiko gettereitä ollenkaan..?? \_o.o_/
+	public void ResetComboAnimations() {
+		SetCombo1 (false);
+		SetCombo2 (false);
+		SetCombo3 (false);
+	}
+
+	public void setIdleRun(string animClip) {
+		anim.SetFloat (animClip, GetVelocityMagnitude ());
+	}
 
 	public void SetCombo1(bool b) {
-		anim.SetBool (combo1, b);
+		anim.SetBool (unarmedCombo1, b);
 	}
 
 	public void SetCombo2(bool b) {
-		anim.SetBool (combo2, b);
+		anim.SetBool (unarmedCombo2, b);
 	}
 
 	public void SetCombo3(bool b) {
-		anim.SetBool (combo3, b);
-	}
-
-	public void SetComboStop1(bool b) {
-		anim.SetBool (comboStop1, b);
-	}
-
-	public void SetComboStop2(bool b) {
-		anim.SetBool (comboStop2, b);
-	}
-
-	public void SetComboStop3(bool b) {
-		anim.SetBool (comboStop3, b);
-	}
-
-	public void SetRunning(bool b) {
-		anim.SetBool (running, b);
+		anim.SetBool (unarmedCombo3, b);
 	}
 
 	public void SetStagger(bool b) {

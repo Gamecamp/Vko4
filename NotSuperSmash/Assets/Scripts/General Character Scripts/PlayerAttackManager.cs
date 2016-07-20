@@ -27,11 +27,13 @@ public class PlayerAttackManager : MonoBehaviour {
 
 	private string activeWeapon;
 
-	private enum AttackState {idlePhase, startPhase, startAnimationPhase, damagePhase, comboPhase, recoveryPhase};
-	private AttackState attackPhase;
+	public enum AttackState {startPhase, damagePhase, comboPhase, recoveryPhase};
+	public AttackState attackPhase;
 	private bool isAttackHitbox;
-	private bool Action1Input;
-	private bool Action2Input;
+	private bool action1Input;
+	private bool action2Input;
+	private Animator anim;
+	private PlayerAnimationHandler animHandler;
 
 	private string animationComboOdd;
 	private string animationComboEven;
@@ -57,107 +59,62 @@ public class PlayerAttackManager : MonoBehaviour {
 		attackDuration = 0;
 
 		attackPhase = AttackState.startPhase;
+		animHandler = GetComponent<PlayerAnimationHandler> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		UpdateAttacking ();
+		print (attackPhase);
 	}
 
 	void UpdateAttacking () {
 
 		if (player.GetIsAction1Input () && player.GetCanInputActions ()) {
-			Action1Input = true;
+			action1Input = true;
 		} else if (player.GetIsAction2Input () && player.GetCanInputActions ()) {
-			Action2Input = true;
+			action2Input = true;
 		}
 			
 		if (attackPhase == AttackState.startPhase) {
-			if (Action1Input) {
-				Action1Input = false;
+			if (action1Input) {
+				action1Input = false;
 				player.SetIsLightAttacking (true);
 				DetermineAttackProperties ();
 				DetermineRightAnimation ();
-			} else if (Action2Input) {
-				Action2Input = false;
+			} else if (action2Input) {
+				action2Input = false;
 				player.SetIsHeavyAttacking (true);
 				DetermineAttackProperties ();
 				//anim.start/play( DetermineRightAnimation (hitboxUsedInAttack.name) , true);
 			}
 		} else if (attackPhase == AttackState.damagePhase) {
 			hitboxUsedInAttack.SetActive (true);
+			animHandler.ResetComboAnimations ();
 		} else if (attackPhase == AttackState.comboPhase) {
 			hitboxUsedInAttack.SetActive (false);
 			ComboHit ();
 		} else if (attackPhase == AttackState.recoveryPhase) {
 			ResetAttack ();
 			ResetAttackChain ();
+			print ("reset");
 		}
-			
-//		if (attackPhase == AttackState.setUpPhase) {
-//			if (player.GetIsAction1Input () && player.GetCanInputActions () && !attackInProgress) {
-//				player.SetIsLightAttacking (true);
-//				DetermineAttackProperties ();
-//				attackInProgress = true;
-//			} else if (player.GetIsAction2Input () && player.GetCanInputActions () && !attackInProgress) {
-//				player.SetIsHeavyAttacking (true);
-//				DetermineAttackProperties ();
-//				attackInProgress = true;
-//			}
-//		}
-//
-//		if (player.GetIsLightAttacking () || player.GetIsHeavyAttacking ()) {
-//
-//			//  Attack doesn't hurt yet, swing windup time
-//			attackDuration = attackDuration + Time.deltaTime;
-//
-//			// Attack hurtbox goes on
-//			if (attackDuration >= beforeHurtAnimationLength && attackPhaseHelper == 0) {
-//				hitboxUsedInAttack.SetActive (true);
-//				attackPhaseHelper++;
-//			} 
-//
-//			// Attack has been delivered, still can't move, recovery starts
-//			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
-//				hitboxUsedInAttack.SetActive (false);
-//				if (maxChain > 1) {
-//					if (numberInAttackChain < maxChain) {
-//						numberInAttackChain++;
-//					} else {
-//						ResetAttackChain ();
-//					}
-//				}
-//				attackPhaseHelper++;
-//			}
-//
-//			// After recovery control is given back to the player
-//			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength + recoveryTime && attackPhaseHelper == 2) {
-//				ResetAttack ();
-//			}
-//		} else if (attackInProgress) {
-//			ResetAttack ();
-//		}
 	}
 
-	string DetermineRightAnimation(string animationPrefix) {
-		string anim = animationPrefix.Substring (0, animationPrefix.Length - 7);
-
-		if (currentCombo == maxCombo) {
-			anim = animationComboFinal;
-		} else if (currentCombo % 2 != 0) {
-			//odd
-			anim = animationComboOdd;
-		} else {
-			//even
-			anim = animationComboEven;
+	void DetermineRightAnimation() {
+		if (currentCombo == 1) {
+			animHandler.SetCombo1 (true);
+		} else if (currentCombo == 2) {
+			animHandler.SetCombo2 (true);
+		} else if (currentCombo == maxCombo) {
+			//animHandler.SetCombo3 (true);
 		}
-
-		return anim;
 	}
 
 	void ComboHit() {
-		if((currentCombo != maxCombo) && (Action1Input || Action2Input)) {
+		if((currentCombo != maxCombo) && (action1Input || action2Input)) {
 			attackPhase = AttackState.startPhase;
+			hitboxUsedInAttack.SetActive (false);
 			currentCombo++;
 		}
 	}
@@ -205,8 +162,14 @@ public class PlayerAttackManager : MonoBehaviour {
 		}
 	}
 
-	public void ChangeAttackPhase(AttackState attackPhase) {
-		this.attackPhase == attackPhase;
+	public void ChangeAttackPhase(string toAttackPhase) {
+		if (toAttackPhase.Equals ("damagePhase")) {
+			this.attackPhase = AttackState.damagePhase;
+		} else if (toAttackPhase.Equals ("comboPhase")) {
+			this.attackPhase = AttackState.comboPhase;
+		} else if (toAttackPhase.Equals ("recoveryPhase")) {
+			this.attackPhase = AttackState.recoveryPhase;
+		}
 	}
 
 	void ResetAttack() {
@@ -220,9 +183,54 @@ public class PlayerAttackManager : MonoBehaviour {
 
 	void ResetAttackChain() {
 		currentCombo = 1;
+		attackPhase = AttackState.startPhase;
 	}
 
 	public void SetActiveWeapon(string weapon) {
 		activeWeapon = weapon;
 	}
+		
+	//		if (attackPhase == AttackState.setUpPhase) {
+	//			if (player.GetIsAction1Input () && player.GetCanInputActions () && !attackInProgress) {
+	//				player.SetIsLightAttacking (true);
+	//				DetermineAttackProperties ();
+	//				attackInProgress = true;
+	//			} else if (player.GetIsAction2Input () && player.GetCanInputActions () && !attackInProgress) {
+	//				player.SetIsHeavyAttacking (true);
+	//				DetermineAttackProperties ();
+	//				attackInProgress = true;
+	//			}
+	//		}
+	//
+	//		if (player.GetIsLightAttacking () || player.GetIsHeavyAttacking ()) {
+	//
+	//			//  Attack doesn't hurt yet, swing windup time
+	//			attackDuration = attackDuration + Time.deltaTime;
+	//
+	//			// Attack hurtbox goes on
+	//			if (attackDuration >= beforeHurtAnimationLength && attackPhaseHelper == 0) {
+	//				hitboxUsedInAttack.SetActive (true);
+	//				attackPhaseHelper++;
+	//			} 
+	//
+	//			// Attack has been delivered, still can't move, recovery starts
+	//			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
+	//				hitboxUsedInAttack.SetActive (false);
+	//				if (maxChain > 1) {
+	//					if (numberInAttackChain < maxChain) {
+	//						numberInAttackChain++;
+	//					} else {
+	//						ResetAttackChain ();
+	//					}
+	//				}
+	//				attackPhaseHelper++;
+	//			}
+	//
+	//			// After recovery control is given back to the player
+	//			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength + recoveryTime && attackPhaseHelper == 2) {
+	//				ResetAttack ();
+	//			}
+	//		} else if (attackInProgress) {
+	//			ResetAttack ();
+	//		}
 }
