@@ -35,6 +35,7 @@ public class PlayerBase : MonoBehaviour {
 
 	protected bool isBaseballBatEquipped;
 	protected bool isPistolEquipped;
+	protected bool isShotgunEquipped;
 
 	protected bool isUsingSpecial1;
 
@@ -319,6 +320,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public bool GetIsPistolEquipped() {
 		return isPistolEquipped;
+	}
+
+	public void SetIsShotgunEquipped(bool isShotgunEquipped) {
+		this.isShotgunEquipped = isShotgunEquipped;
+	}
+
+	public bool GetIsShotgunEquipped() {
+		return isShotgunEquipped;
 	}
 	
 	public float GetMaxHealth() {

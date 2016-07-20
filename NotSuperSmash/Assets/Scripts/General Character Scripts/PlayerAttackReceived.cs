@@ -21,6 +21,7 @@ public class PlayerAttackReceived : MonoBehaviour {
 	string baseballBatLight = "baseballBatLight";
 	string baseballBatHeavy = "baseballBatHeavy";
 	string pistolBullet = "pistolBullet";
+	string shotgunBullet = "shotgunBullet";
 
 
 	// Use this for initialization
@@ -84,6 +85,9 @@ public class PlayerAttackReceived : MonoBehaviour {
 		} else if (attackType == pistolBullet) {
 			knockbackAmount = 15;
 			staggerDuration = 0.2f;
+		} else if (attackType == shotgunBullet) {
+			knockbackAmount = 25;
+			staggerDuration = 1.5f;
 		}
 	}
 

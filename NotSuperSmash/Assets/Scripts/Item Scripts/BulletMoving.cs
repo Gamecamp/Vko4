@@ -10,12 +10,11 @@ public class BulletMoving : MonoBehaviour {
 	private PlayerMovement targetPlayer;
 	private PlayerMovement shootingPlayer;
 	private GameObject shooterLocation;
-	private string attackType = "pistolBullet";
+	private string attackType;
 
 	// Use this for initialization
 	void Start () {
-		speed = 50f;
-		killTimer = 2f;
+		speed = 60f;
 	}
 	
 	// Update is called once per frame
@@ -40,8 +39,21 @@ public class BulletMoving : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	public void SetShooterInfo(PlayerMovement shootingPlayer, GameObject shooterLocation) {
+	public void SetShooterInfo(PlayerMovement shootingPlayer, GameObject shooterLocation, string gun) {
 		this.shooterLocation = shooterLocation;
 		this.shootingPlayer = shootingPlayer;
+		attackType = gun;
+
+		switch (gun) {
+		case "pistolBullet":
+			killTimer = 1.5f;
+			break;
+		case "shotgunBullet":
+			killTimer = 0.2f;
+			break;
+		default:
+			killTimer = 2f;
+			break;
+		}
 	}
 }

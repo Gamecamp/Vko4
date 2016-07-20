@@ -9,10 +9,12 @@ public class PlayerItemHandling : MonoBehaviour {
 
 	public GameObject baseballBatObj;
 	public GameObject pistolObj;
+	public GameObject shotgunObj;
 
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
 	const string pistol = "pistol";
+	const string shotgun = "shotgun";
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +25,7 @@ public class PlayerItemHandling : MonoBehaviour {
 
 		baseballBatObj.SetActive (false);
 		pistolObj.SetActive (false);
+		shotgunObj.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -49,6 +52,7 @@ public class PlayerItemHandling : MonoBehaviour {
 		case unarmed:
 			baseballBatObj.SetActive (false);
 			pistolObj.SetActive (false);
+			shotgunObj.SetActive (false);
 			attackManager.SetActiveWeapon (unarmed);
 			player.SetIsAbleToEquip (true);
 			break;
@@ -61,6 +65,11 @@ public class PlayerItemHandling : MonoBehaviour {
 			pistolObj.SetActive (true);
 			attackManager.SetActiveWeapon (pistol);
 			player.SetIsPistolEquipped (true);
+			break;
+		case shotgun:
+			shotgunObj.SetActive (true);
+			attackManager.SetActiveWeapon (shotgun);
+			player.SetIsShotgunEquipped (true);
 			break;
 		}
 	}
@@ -77,5 +86,6 @@ public class PlayerItemHandling : MonoBehaviour {
 		player.SetIsAbleToEquip (false);
 		player.SetIsBaseballBatEquipped (false);
 		player.SetIsPistolEquipped (false);
+		player.SetIsShotgunEquipped (false);
 	}
 }

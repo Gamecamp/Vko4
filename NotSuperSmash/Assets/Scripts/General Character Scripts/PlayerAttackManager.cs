@@ -31,6 +31,7 @@ public class PlayerAttackManager : MonoBehaviour {
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
 	const string pistol = "pistol";
+	const string shotgun = "shotgun";
 
 	// Use this for initialization
 	void Start () {
@@ -75,7 +76,9 @@ public class PlayerAttackManager : MonoBehaviour {
 			// Attack hurtbox goes on
 			if (attackDuration >= beforeHurtAnimationLength && attackPhaseHelper == 0) {
 				if (activeWeapon == pistol) {
-					GetComponent<Bullet> ().Shoot (1f);
+					GetComponent<Bullet> ().Shoot (0.5f);
+				} else if (activeWeapon == shotgun) {
+					GetComponent<Bullet> ().Shoot (1.5f);
 				} else {
 					hitboxUsedInAttack.SetActive (true);
 				}
@@ -84,7 +87,7 @@ public class PlayerAttackManager : MonoBehaviour {
 
 			// Attack has been delivered, still can't move, recovery starts
 			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
-				if (activeWeapon != pistol) {
+				if (activeWeapon != pistol || activeWeapon != shotgun) {
 					hitboxUsedInAttack.SetActive (false);
 				}
 				if (maxChain > 1) {
@@ -154,6 +157,14 @@ public class PlayerAttackManager : MonoBehaviour {
 			recoveryTime = 0f;
 
 			maxChain = 8;
+			break;
+		case shotgun:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			beforeHurtAnimationLength = 0.1f;
+			hurtfulAnimationLength = 0f;
+			recoveryTime = 0f;
+
+			maxChain = 5;
 			break;
 		}
 	}
