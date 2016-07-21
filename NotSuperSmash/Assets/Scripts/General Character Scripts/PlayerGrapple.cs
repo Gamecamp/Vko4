@@ -72,7 +72,6 @@ public class PlayerGrapple : MonoBehaviour {
 			}
 
 			if (grappleAttemptDuration >= grappleAttemptMaxDuration) {
-				grappleBox.SetActive (false);
 				grappleAttemptDuration = 0;
 				ResetGrappleAttempt ();
 			}
@@ -83,6 +82,7 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void ResetGrappleAttempt() {
+		grappleBox.SetActive (false);
 		grappleIsFinished = false;
 		grappleAttemptInProgress = false;
 		attemptReset = true;
@@ -92,7 +92,6 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleAttemptDuration = 0;
 
 		player.SetIsAttemptingGrapple (false);
-
 		StartGrappleAttemptCooldownTimer ();
 	}
 

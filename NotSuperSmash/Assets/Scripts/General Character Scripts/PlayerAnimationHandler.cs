@@ -4,9 +4,14 @@ using System.Collections;
 public class PlayerAnimationHandler : MonoBehaviour {
 
 	private Animator anim;
-	private string unarmedCombo1;
-	private string unarmedCombo2;
-	private string unarmedCombo3;
+	private string unarmedLightCombo;
+	private string unarmedHeavyCombo;
+
+	private string meleeLightCombo;
+	private string meleeHeavyCombo;
+
+	private string meleeSpearLightCombo;
+	private string meleeSpearHeavyCombo;
 
 	private string stagger;
 	private string knockback;
@@ -23,8 +28,14 @@ public class PlayerAnimationHandler : MonoBehaviour {
 		anim = GetComponentInChildren<Animator> ();
 		player = GetComponent<PlayerMovement> ();
 
-		unarmedCombo1 = "unarmed1";
-		unarmedCombo2 = "unarmed2";
+		unarmedLightCombo = "unarmedLight";
+		unarmedHeavyCombo = "unarmedHeavy";
+
+		meleeLightCombo = "meleeLight";
+		meleeHeavyCombo = "meleeHeavy";
+
+		meleeSpearLightCombo = "meleeSpearLight";
+		meleeSpearHeavyCombo = "meleeSpearHeavy";
 	}
 	
 	// Update is called once per frame
@@ -37,28 +48,63 @@ public class PlayerAnimationHandler : MonoBehaviour {
 	}
 
 	// Tarviiko gettereitä ollenkaan..?? \_o.o_/
-	public void ResetComboAnimations() {
-		SetCombo1 (false);
-		SetCombo2 (false);
-		SetCombo3 (false);
+	public void ResetComboTriggers() {
+		SetAnimationTrigger (unarmedLightCombo, 1, false);
+		SetAnimationTrigger (unarmedLightCombo, 2, false);
+		SetAnimationTrigger (unarmedLightCombo, 3, false);
+		SetAnimationTrigger (unarmedHeavyCombo, 1, false);
+
+		SetAnimationTrigger (meleeLightCombo, 1, false);
+		SetAnimationTrigger (meleeLightCombo, 2, false);
+		SetAnimationTrigger (meleeLightCombo, 3, false);
+		SetAnimationTrigger (meleeHeavyCombo, 1, false);
+
+		SetAnimationTrigger (meleeSpearLightCombo, 1, false);
+		SetAnimationTrigger (meleeSpearLightCombo, 2, false);
+		SetAnimationTrigger (meleeSpearLightCombo, 3, false);
+		SetAnimationTrigger (meleeSpearHeavyCombo, 1, false);
 	}
 
 	public void setIdleRun(string animClip) {
 		anim.SetFloat (animClip, GetVelocityMagnitude ());
 	}
 
-	public void SetCombo1(bool b) {
-		anim.SetBool (unarmedCombo1, b);
+	public void SetAnimationTrigger(string attackType, int comboNumber, bool b) {
+		anim.SetBool (attackType + comboNumber, b);
 	}
 
-	public void SetCombo2(bool b) {
-		anim.SetBool (unarmedCombo2, b);
+	public void SetTrigger(string pause) {
+		anim.SetTrigger (pause);
 	}
 
-	public void SetCombo3(bool b) {
-		anim.SetBool (unarmedCombo3, b);
-	}
+//	// *** UNARMED *** //
+//	public void SetUnarmedLightCombo(int comboNumber, bool b) {
+//		anim.SetBool (unarmedLightCombo + comboNumber, b);
+//	}
+//
+//	public void SetUnarmedHeavyCombo(int comboNumber, bool b) {
+//		anim.SetBool (unarmedHeavyCombo + comboNumber, b);
+//	}
+//
+//	// *** MELEE *** //
+//	public void SetMeleeLightCombo(int comboNumber, bool b) {
+//		anim.SetBool (meleeLightCombo + comboNumber, b);
+//	}
+//
+//	public void SetMeleeHeavyCombo(int comboNumber, bool b) {
+//		anim.SetBool (meleeHeavyCombo + comboNumber, b);
+//	}
+//
+//	// *** SPEAR *** //
+//	public void SetMeleeSpearLightCombo(int comboNumber, bool b) {
+//		anim.SetBool (meleeSpearLightCombo + comboNumber, b);
+//	}
+//
+//	public void SetMeleeSpearHeavyCombo(int comboNumber, bool b) {
+//		anim.SetBool (meleeSpearHeavyCombo + comboNumber, b);
+//	}
 
+	// *** OTHER *** //
 	public void SetStagger(bool b) {
 		anim.SetBool (stagger, b);
 	}
