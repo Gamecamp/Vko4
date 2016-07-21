@@ -35,6 +35,7 @@ public class PlayerAttackManager : MonoBehaviour {
 	const string pistol = "pistol";
 	const string shotgun = "shotgun";
 	const string katana = "katana";
+	const string sawedOff = "sawedOff";
 
 	// Use this for initialization
 	void Start () {
@@ -84,6 +85,8 @@ public class PlayerAttackManager : MonoBehaviour {
 					GetComponent<Bullet> ().Shoot (0.5f);
 				} else if (activeWeapon == shotgun) {
 					GetComponent<Bullet> ().Shoot (1.5f);
+				} else if (activeWeapon == sawedOff) {
+					GetComponent<Bullet> ().Shoot (1.5f);
 				} else {
 					hitboxUsedInAttack.SetActive (true);
 				}
@@ -92,7 +95,7 @@ public class PlayerAttackManager : MonoBehaviour {
 
 			// Attack has been delivered, still can't move, recovery starts
 			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
-				if (activeWeapon != pistol || activeWeapon != shotgun) {
+				if (activeWeapon != pistol || activeWeapon != shotgun || activeWeapon != sawedOff) {
 					hitboxUsedInAttack.SetActive (false);
 				}
 				if (maxChain > 1) {
@@ -189,6 +192,14 @@ public class PlayerAttackManager : MonoBehaviour {
 
 				maxChain = 1;
 			}
+			break;
+		case sawedOff:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			beforeHurtAnimationLength = 0.1f;
+			hurtfulAnimationLength = 0f;
+			recoveryTime = 0f;
+
+			maxChain = 5;
 			break;
 		}
 	}

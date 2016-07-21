@@ -37,6 +37,7 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isPistolEquipped;
 	protected bool isShotgunEquipped;
 	protected bool isKatanaEquipped;
+	protected bool isSawedOffEquipped;
 
 	protected bool isUsingSpecial1;
 
@@ -321,6 +322,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public bool GetIsPistolEquipped() {
 		return isPistolEquipped;
+	}
+
+	public void SetIsSawedOffEquipped(bool isSawedOffEquipped) {
+		this.isSawedOffEquipped = isSawedOffEquipped;
+	}
+
+	public bool GetIsSawedOffEquipped() {
+		return isSawedOffEquipped;
 	}
 
 	public void SetIsShotgunEquipped(bool isShotgunEquipped) {

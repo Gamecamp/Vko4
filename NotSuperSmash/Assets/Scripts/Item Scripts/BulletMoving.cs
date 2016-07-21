@@ -49,6 +49,9 @@ public class BulletMoving : MonoBehaviour {
 			killTimer = 1.5f;
 			break;
 		case "shotgunBullet":
+			killTimer = 0.5f;
+			break;
+		case "sawedOffBullet":
 			killTimer = 0.2f;
 			break;
 		default:

@@ -11,12 +11,14 @@ public class PlayerItemHandling : MonoBehaviour {
 	public GameObject pistolObj;
 	public GameObject shotgunObj;
 	public GameObject katanaObj;
+	public GameObject sawedOffObj;
 
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
 	const string pistol = "pistol";
 	const string shotgun = "shotgun";
 	const string katana = "katana";
+	const string sawedOff = "sawedOff";
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +31,7 @@ public class PlayerItemHandling : MonoBehaviour {
 		pistolObj.SetActive (false);
 		shotgunObj.SetActive (false);
 		katanaObj.SetActive (false);
+		sawedOffObj.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -57,6 +60,7 @@ public class PlayerItemHandling : MonoBehaviour {
 			pistolObj.SetActive (false);
 			shotgunObj.SetActive (false);
 			katanaObj.SetActive (false);
+			sawedOffObj.SetActive (false);
 			attackManager.SetActiveWeapon (unarmed);
 			player.SetIsAbleToEquip (true);
 			break;
@@ -80,6 +84,11 @@ public class PlayerItemHandling : MonoBehaviour {
 			attackManager.SetActiveWeapon (katana);
 			player.SetIsKatanaEquipped (true);
 			break;
+		case sawedOff:
+			sawedOffObj.SetActive (true);
+			attackManager.SetActiveWeapon (sawedOff);
+			player.SetIsSawedOffEquipped (true);
+			break;
 		}
 	}
 
@@ -97,5 +106,6 @@ public class PlayerItemHandling : MonoBehaviour {
 		player.SetIsPistolEquipped (false);
 		player.SetIsShotgunEquipped (false);
 		player.SetIsKatanaEquipped (false);
+		player.SetIsSawedOffEquipped (false);
 	}
 }

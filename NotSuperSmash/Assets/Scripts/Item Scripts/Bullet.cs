@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 	public GameObject bullet;
 	public GameObject pistolBulletShootingPoint;
 	public GameObject shotgunBulletShootingPoint;
+	public GameObject sawedOffBulletShootingPoint;
 
 	private float timer;
 
@@ -14,6 +15,7 @@ public class Bullet : MonoBehaviour {
 
 	const string pistol = "pistolBullet";
 	const string shotgun = "shotgunBullet";
+	const string sawedOff = "sawedOffBullet";
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,7 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((player.GetIsPistolEquipped() || player.GetIsShotgunEquipped()) && timer > 0) {
+		if ((player.GetIsPistolEquipped() || player.GetIsShotgunEquipped() || player.GetIsSawedOffEquipped()) && timer > 0) {
 			timer -= Time.deltaTime;
 		}
 
@@ -46,17 +48,33 @@ public class Bullet : MonoBehaviour {
 				temp = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation) as GameObject;
 				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
 				GameObject temp1;
-				temp1 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler(0, 10, 0)) as GameObject;
+				temp1 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 5, 0)) as GameObject;
 				temp1.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
 				GameObject temp2;
-				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler(0, -10, 0)) as GameObject;
+				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -5, 0)) as GameObject;
 				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
 				GameObject temp3;
-				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler(0, -5, 0)) as GameObject;
+				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -2.5f, 0)) as GameObject;
 				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
 				GameObject temp4;
-				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler(0, 5, 0)) as GameObject;
+				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 2.5f, 0)) as GameObject;
 				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
+			} else if (player.GetIsSawedOffEquipped ()) {
+				GameObject temp;
+				temp = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation) as GameObject;
+				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				GameObject temp1;
+				temp1 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 10, 0)) as GameObject;
+				temp1.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				GameObject temp2;
+				temp2 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -10, 0)) as GameObject;
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				GameObject temp3;
+				temp2 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -5, 0)) as GameObject;
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				GameObject temp4;
+				temp2 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 5, 0)) as GameObject;
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
 			}
 
 			timer = bulletCooldown;
