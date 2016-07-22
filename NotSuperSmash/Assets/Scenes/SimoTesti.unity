@@ -1311,7 +1311,7 @@ Prefab:
       objectReference: {fileID: 778303210}
     - target: {fileID: 103220, guid: 8403e5cf53bf9a0459e4a104d536544e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11404278, guid: 8403e5cf53bf9a0459e4a104d536544e, type: 2}
@@ -1411,7 +1411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &922217354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,7 +1428,6 @@ MonoBehaviour:
   unarmedHeavyHitbox: {fileID: 1353075812}
   baseballBatLightHitbox: {fileID: 1651154505}
   baseballBatHeavyHitbox: {fileID: 686687639}
-  attackPhase: 0
 --- !u!114 &922217355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2490,7 +2489,6 @@ MonoBehaviour:
   unarmedHeavyHitbox: {fileID: 321209306}
   baseballBatLightHitbox: {fileID: 1931497817}
   baseballBatHeavyHitbox: {fileID: 616147580}
-  attackPhase: 0
 --- !u!114 &1308903594
 MonoBehaviour:
   m_ObjectHideFlags: 0

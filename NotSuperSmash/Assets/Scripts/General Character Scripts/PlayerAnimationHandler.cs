@@ -49,32 +49,29 @@ public class PlayerAnimationHandler : MonoBehaviour {
 
 	// Tarviiko gettereitä ollenkaan..?? \_o.o_/
 	public void ResetComboTriggers() {
-		SetAnimationTrigger (unarmedLightCombo, 1, false);
-		SetAnimationTrigger (unarmedLightCombo, 2, false);
-		SetAnimationTrigger (unarmedLightCombo, 3, false);
-		SetAnimationTrigger (unarmedHeavyCombo, 1, false);
+		SetAnimationTrigger (unarmedLightCombo, 1);
+		SetAnimationTrigger (unarmedLightCombo, 2);
+		SetAnimationTrigger (unarmedLightCombo, 3);
+		SetAnimationTrigger (unarmedHeavyCombo, 1);
 
-		SetAnimationTrigger (meleeLightCombo, 1, false);
-		SetAnimationTrigger (meleeLightCombo, 2, false);
-		SetAnimationTrigger (meleeLightCombo, 3, false);
-		SetAnimationTrigger (meleeHeavyCombo, 1, false);
+		SetAnimationTrigger (meleeLightCombo, 1);
+		SetAnimationTrigger (meleeLightCombo, 2);
+		SetAnimationTrigger (meleeLightCombo, 3);
+		SetAnimationTrigger (meleeHeavyCombo, 1);
 
-		SetAnimationTrigger (meleeSpearLightCombo, 1, false);
-		SetAnimationTrigger (meleeSpearLightCombo, 2, false);
-		SetAnimationTrigger (meleeSpearLightCombo, 3, false);
-		SetAnimationTrigger (meleeSpearHeavyCombo, 1, false);
+		SetAnimationTrigger (meleeSpearLightCombo, 1);
+		SetAnimationTrigger (meleeSpearLightCombo, 2);
+		SetAnimationTrigger (meleeSpearLightCombo, 3);
+		SetAnimationTrigger (meleeSpearHeavyCombo, 1);
 	}
 
 	public void setIdleRun(string animClip) {
 		anim.SetFloat (animClip, GetVelocityMagnitude ());
 	}
 
-	public void SetAnimationTrigger(string attackType, int comboNumber, bool b) {
-		anim.SetBool (attackType + comboNumber, b);
-	}
-
-	public void SetTrigger(string pause) {
-		anim.SetTrigger (pause);
+	public void SetAnimationTrigger(string attackType, int comboNumber) {
+		anim.SetTrigger (attackType + comboNumber);
+		print (attackType + comboNumber);
 	}
 
 //	// *** UNARMED *** //

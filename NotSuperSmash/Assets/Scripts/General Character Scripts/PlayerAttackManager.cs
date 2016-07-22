@@ -3,30 +3,27 @@ using System.Collections;
 
 public class PlayerAttackManager : MonoBehaviour {
 
+	private GameObject hitboxUsedInAttack;
 	private PlayerMovement player;
+
 	public GameObject unarmedLightHitbox;
 	public GameObject unarmedHeavyHitbox;
 	public GameObject baseballBatLightHitbox;
 	public GameObject baseballBatHeavyHitbox;
 
-	private GameObject hitboxUsedInAttack;
+	private ComboAttack[] combos;
 
 	private int currentCombo;
 	private int maxCombo;
-	private string activeWeapon;
-	private bool attackInProgress;
 
-	public enum AttackState {startPhase, damagePhase, comboPhase, recoveryPhase};
-	public AttackState attackPhase;
 	private bool action1Input;
 	private bool action2Input;
-	private Animator anim;
-	private PlayerAnimationHandler animHandler;
-	private bool isNextComboHit;
 
+	private string activeWeapon;
 	private string attackType;
-	const string unarmed = "unarmed";
-	const string baseballBat = "baseballBat";
+
+	const string Unarmed = "unarmed";
+	const string BaseballBat = "baseballBat";
 
 	// Use this for initialization
 	void Start () {
@@ -36,81 +33,93 @@ public class PlayerAttackManager : MonoBehaviour {
 		baseballBatLightHitbox.SetActive (false);
 		baseballBatHeavyHitbox.SetActive (false);
 
-		activeWeapon = unarmed;
+		hitboxUsedInAttack = unarmedLightHitbox;
+		activeWeapon = Unarmed;
 		currentCombo = 1;
 
-		attackPhase = AttackState.startPhase;
-		animHandler = GetComponent<PlayerAnimationHandler> ();
-
-		hitboxUsedInAttack = unarmedLightHitbox;
+		InitializeCombos ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		UpdateAttacking ();
-
-
+		UpdateAttackInput ();
+		UpdateComboStates ();
+		UpdateComboCounter ();
+		PrintActives ();
 	}
 
-	void UpdateAttacking () {
+	void InitializeCombos() {
+		combos = new ComboAttack[3];
+
+		for (int i = 0; i < combos.Length; i++) {
+			combos[i] = new ComboAttack (player, hitboxUsedInAttack, attackType, i + 1);
+		}
+	}
+		
+	void UpdateComboStates() {
+
+		for (int i = 0; i < combos.Length; i++) {
+			if (combos [i].GetIsActive ()) {
+				combos [i].UpdateAttackStates ();
+			}
+		}
+	}
+
+	void PrintActives() {
+		float huh = 00;
+
+		for (int i = 0; i < combos.Length; i++) {
+			if (combos [i].GetIsActive ()) {
+				huh++;
+			}
+		}
+
+				print (huh);
+				huh = 0;
+	}
+
+	void UpdateComboCounter() {
+		for (int i = 0; i < combos.Length; i++) {
+			if (combos [i].GetIsActive ()) {
+				if (combos [i].comboNumber > currentCombo) {
+					currentCombo = combos [i].comboNumber;
+				}else if (combos [i].GetIsComboFlagged ()) {
+					currentCombo = combos [i].comboNumber;
+					combos [i].comboFlagged = false;
+				}
+			}
+
+		}
+	}
+
+	void ActivateCombo() {
+
+		for (int i = 0; i < combos.Length; i++) {
+			if (combos [i].comboNumber == currentCombo) {
+				combos [i].ActivateCombo (hitboxUsedInAttack, attackType);
+			}
+		}
+	}
+
+	void UpdateAttackInput () {
 
 		if (player.GetIsAction1Input () && player.GetCanInputActions ()) {
 			action1Input = true;
 			player.SetIsLightAttacking (true);
-			attackInProgress = true;
+			DetermineAttackProperties ();
+			ActivateCombo ();
+			print ("dd");
 		} else if (player.GetIsAction2Input () && player.GetCanInputActions ()) {
 			action2Input = true;
 			player.SetIsHeavyAttacking (true);
-			attackInProgress = true;
-		}
-
-		if (player.gameObject.name == "Player1") {
-			print ("light " + player.GetIsLightAttacking ());
-			print ("heavy " + player.GetIsHeavyAttacking ());
-			print (currentCombo);
-			print (attackPhase);
-			print ("isNextCombo " + isNextComboHit);
-			isNextComboHit = false;
-		}
-
-		if (player.GetIsLightAttacking () || player.GetIsHeavyAttacking ()) {
-			if (attackPhase == AttackState.startPhase) {
-				if (action1Input) {
-					action1Input = false;
-					DetermineAttackProperties ();
-					animHandler.SetAnimationTrigger (attackType, currentCombo, true);
-				} else if (action2Input) {
-					action2Input = false;
-					DetermineAttackProperties ();
-					animHandler.SetAnimationTrigger (attackType, currentCombo, true);
-				}
-			} else if (attackPhase == AttackState.damagePhase) {
-				hitboxUsedInAttack.SetActive (true);
-				animHandler.ResetComboTriggers ();
-			} else if (attackPhase == AttackState.comboPhase) {
-				hitboxUsedInAttack.SetActive (false);
-				isNextComboHit = false;
-				ComboHit ();
-			} else if (attackPhase == AttackState.recoveryPhase && !isNextComboHit || currentCombo == maxCombo) {
-				ResetAttack ();
-				ResetAttackChain ();
-			} 
-		} else {
-			ResetAttack ();
+			DetermineAttackProperties ();
+			ActivateCombo ();
 		}
 	}
-
-	void ComboHit() {
-		if((currentCombo != maxCombo) && (action1Input || action2Input)) {
-			attackPhase = AttackState.startPhase;
-			currentCombo++;
-			isNextComboHit = true;
-		}
-	}
-
+		
 	void DetermineAttackProperties() {
 		switch (activeWeapon) {
-		case unarmed:
+		case Unarmed:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = unarmedLightHitbox;
 				attackType = "unarmedLight";
@@ -121,7 +130,7 @@ public class PlayerAttackManager : MonoBehaviour {
 				maxCombo = 1;
 			}
 			break;
-		case baseballBat:
+		case BaseballBat:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = baseballBatLightHitbox;
 				attackType = "meleeLight";
@@ -134,25 +143,28 @@ public class PlayerAttackManager : MonoBehaviour {
 			break;
 		}
 	}
-
+		
 	public void ChangeAttackPhase(string toAttackPhase) {
-		if (toAttackPhase.Equals ("damagePhase")) {
-			this.attackPhase = AttackState.damagePhase;
-		} else if (toAttackPhase.Equals ("comboPhase")) {
-			this.attackPhase = AttackState.comboPhase;
-		} else if (toAttackPhase.Equals ("recoveryPhase")) {
-			this.attackPhase = AttackState.recoveryPhase;
+
+		for (int i = 0; i < combos.Length; i++) {
+			if ( (toAttackPhase.Equals ("damagePhase1") || toAttackPhase.Equals ("comboPhase1") ||
+				toAttackPhase.Equals ("resetComboPhase1")) && combos [i].comboNumber == 1) {
+				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
+				print("jea");
+			} else if ( (toAttackPhase.Equals ("damagePhase2") || toAttackPhase.Equals ("comboPhase2") || 
+				toAttackPhase.Equals ("resetComboPhase2")) && combos[i].comboNumber == 2) {
+				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
+			} else if ( (toAttackPhase.Equals ("damagePhase3") || toAttackPhase.Equals ("comboPhase3") ||
+				toAttackPhase.Equals ("resetComboPhase3")) && combos [i].comboNumber == 3) {
+				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
+			}
 		}
 	}
-
+		
 	void ResetAttack() {
 		player.SetIsLightAttacking (false);
 		player.SetIsHeavyAttacking (false);
-		hitboxUsedInAttack.SetActive (false);
-		attackInProgress = false;
-		attackPhase = AttackState.startPhase;
 		currentCombo = 1;
-		isNextComboHit = false;
 	}
 
 	void ResetAttackChain() {
@@ -162,48 +174,4 @@ public class PlayerAttackManager : MonoBehaviour {
 	public void SetActiveWeapon(string weapon) {
 		activeWeapon = weapon;
 	}
-		
-	//		if (attackPhase == AttackState.setUpPhase) {
-	//			if (player.GetIsAction1Input () && player.GetCanInputActions () && !attackInProgress) {
-	//				player.SetIsLightAttacking (true);
-	//				DetermineAttackProperties ();
-	//				attackInProgress = true;
-	//			} else if (player.GetIsAction2Input () && player.GetCanInputActions () && !attackInProgress) {
-	//				player.SetIsHeavyAttacking (true);
-	//				DetermineAttackProperties ();
-	//				attackInProgress = true;
-	//			}
-	//		}
-	//
-	//		if (player.GetIsLightAttacking () || player.GetIsHeavyAttacking ()) {
-	//
-	//			//  Attack doesn't hurt yet, swing windup time
-	//			attackDuration = attackDuration + Time.deltaTime;
-	//
-	//			// Attack hurtbox goes on
-	//			if (attackDuration >= beforeHurtAnimationLength && attackPhaseHelper == 0) {
-	//				hitboxUsedInAttack.SetActive (true);
-	//				attackPhaseHelper++;
-	//			} 
-	//
-	//			// Attack has been delivered, still can't move, recovery starts
-	//			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
-	//				hitboxUsedInAttack.SetActive (false);
-	//				if (maxChain > 1) {
-	//					if (numberInAttackChain < maxChain) {
-	//						numberInAttackChain++;
-	//					} else {
-	//						ResetAttackChain ();
-	//					}
-	//				}
-	//				attackPhaseHelper++;
-	//			}
-	//
-	//			// After recovery control is given back to the player
-	//			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength + recoveryTime && attackPhaseHelper == 2) {
-	//				ResetAttack ();
-	//			}
-	//		} else if (attackInProgress) {
-	//			ResetAttack ();
-	//		}
 }

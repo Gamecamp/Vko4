@@ -799,7 +799,7 @@ ModelImporter:
       events:
       - time: 0.24020314
         functionName: ChangeAttackPhase
-        data: damagePhase
+        data: damagePhase3
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -807,7 +807,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.74693877
         functionName: ChangeAttackPhase
-        data: recoveryPhase
+        data: resetComboPhase3
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1295,7 +1295,7 @@ ModelImporter:
       events:
       - time: 0.22448981
         functionName: ChangeAttackPhase
-        data: damagePhase
+        data: damagePhase2
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1303,7 +1303,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.5061224
         functionName: ChangeAttackPhase
-        data: comboPhase
+        data: comboPhase2
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1311,7 +1311,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.75510204
         functionName: ChangeAttackPhase
-        data: recoveryPhase
+        data: resetComboPhase2
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1415,7 +1415,7 @@ ModelImporter:
       events:
       - time: 0.21571334
         functionName: ChangeAttackPhase
-        data: damagePhase
+        data: damagePhase1
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1423,7 +1423,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.5836735
         functionName: ChangeAttackPhase
-        data: comboPhase
+        data: comboPhase1
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1431,7 +1431,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.8367347
         functionName: ChangeAttackPhase
-        data: recoveryPhase
+        data: resetComboPhase1
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
