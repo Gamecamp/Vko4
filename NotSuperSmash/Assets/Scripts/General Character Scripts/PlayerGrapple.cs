@@ -140,8 +140,6 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void PassGrapplingTime() {
-		print ("passing grappling time: " + grappleDuration);
-		print (targetPlayer.GetIsGrappled ());
 		grappleDuration = grappleDuration + Time.deltaTime;
 		if (grappleDuration >= grappleMaxDuration) {
 			grappleIsFinished = true;

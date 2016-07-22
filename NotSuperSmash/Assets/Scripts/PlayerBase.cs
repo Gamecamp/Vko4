@@ -61,6 +61,8 @@ public class PlayerBase : MonoBehaviour {
 	protected bool canInputActionsMove;
 	protected bool canInputActions;
 
+	protected float velocity;
+
 	public float jumpPower;
 	public float runSpeed;
 
@@ -392,12 +394,15 @@ public class PlayerBase : MonoBehaviour {
 		this.attackDamage = attackDamage;
 	}
 
-	public void Respawn() {
-		ResetStatus ();
-	
+	public float GetVelocity() {
+		return velocity;
 	}
 
-	void ResetStatus() {
+	public void SetVelocity(float velocity) {
+		this.velocity = velocity;
+	}
+		
+	protected void ResetStatus() {
 		currentHealth = maxHealth;
 		rb.velocity = Vector3.zero;
 		rb.angularVelocity = Vector3.zero;
