@@ -160,7 +160,7 @@ public class PlayerAttackManager : MonoBehaviour {
 			break;
 		case pistol:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			beforeHurtAnimationLength = 0.05f;
+			beforeHurtAnimationLength = 0f;
 			hurtfulAnimationLength = 0f;
 			recoveryTime = 0f;
 
@@ -168,7 +168,7 @@ public class PlayerAttackManager : MonoBehaviour {
 			break;
 		case shotgun:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			beforeHurtAnimationLength = 0.1f;
+			beforeHurtAnimationLength = 0f;
 			hurtfulAnimationLength = 0f;
 			recoveryTime = 0f;
 
@@ -195,7 +195,7 @@ public class PlayerAttackManager : MonoBehaviour {
 			break;
 		case sawedOff:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			beforeHurtAnimationLength = 0.1f;
+			beforeHurtAnimationLength = 0f;
 			hurtfulAnimationLength = 0f;
 			recoveryTime = 0f;
 

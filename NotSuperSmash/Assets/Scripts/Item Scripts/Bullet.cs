@@ -13,6 +13,11 @@ public class Bullet : MonoBehaviour {
 	private PlayerMovement player;
 	private GameObject playerLocation;
 
+	private int currentClipSize;
+	private int pistolClipSize = 16;
+	private int shotgunClipSize = 4;
+	private int sawedOffClipSize = 4;
+
 	const string pistol = "pistolBullet";
 	const string shotgun = "shotgunBullet";
 	const string sawedOff = "sawedOffBullet";
@@ -30,7 +35,7 @@ public class Bullet : MonoBehaviour {
 			timer -= Time.deltaTime;
 		}
 
-		if (timer <= 0) {
+		if (timer <= 0 && currentClipSize > 0) {
 			player.SetIsAbleToShoot (true);
 		} else {
 			player.SetIsAbleToShoot (false);
@@ -77,6 +82,7 @@ public class Bullet : MonoBehaviour {
 				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
 			}
 
+			currentClipSize--;
 			timer = bulletCooldown;
 		}
 	}
@@ -85,6 +91,16 @@ public class Bullet : MonoBehaviour {
 		// never called atm
 		if (player.GetIsAbleToShoot()) {
 			timer = reloadCooldown;
+		}
+	}
+
+	public void SetCurrentClipSize() {
+		if (player.GetIsPistolEquipped ()) {
+			currentClipSize = pistolClipSize;
+		} else if (player.GetIsShotgunEquipped ()) {
+			currentClipSize = shotgunClipSize;
+		} else if (player.GetIsSawedOffEquipped ()) {
+			currentClipSize = sawedOffClipSize;
 		}
 	}
 }

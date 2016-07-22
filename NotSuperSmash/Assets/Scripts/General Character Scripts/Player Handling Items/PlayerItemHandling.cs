@@ -73,11 +73,13 @@ public class PlayerItemHandling : MonoBehaviour {
 			pistolObj.SetActive (true);
 			attackManager.SetActiveWeapon (pistol);
 			player.SetIsPistolEquipped (true);
+			GetComponent<Bullet> ().SetCurrentClipSize ();
 			break;
 		case shotgun:
 			shotgunObj.SetActive (true);
 			attackManager.SetActiveWeapon (shotgun);
 			player.SetIsShotgunEquipped (true);
+			GetComponent<Bullet> ().SetCurrentClipSize ();
 			break;
 		case katana:
 			katanaObj.SetActive (true);
@@ -88,6 +90,7 @@ public class PlayerItemHandling : MonoBehaviour {
 			sawedOffObj.SetActive (true);
 			attackManager.SetActiveWeapon (sawedOff);
 			player.SetIsSawedOffEquipped (true);
+			GetComponent<Bullet> ().SetCurrentClipSize ();
 			break;
 		}
 	}
