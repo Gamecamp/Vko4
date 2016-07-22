@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour {
 	private int currentClipSize;
 	private int pistolClipSize = 16;
 	private int shotgunClipSize = 4;
-	private int sawedOffClipSize = 4;
+	private int sawedOffClipSize = 2;
 
 	const string pistol = "pistolBullet";
 	const string shotgun = "shotgunBullet";
