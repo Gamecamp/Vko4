@@ -429,11 +429,6 @@ public class PlayerBase : MonoBehaviour {
 
 	}
 
-	public void Kill() {
-		SetIsStaggered (true);
-		SetStaggerDuration (1000f);
-	}
-
 	public List<bool> GetRestrictions() {
 		canInputActionsRestrictions.Clear ();
 		canInputActionsRestrictions.Add(GetIsStaggered());
