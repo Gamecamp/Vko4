@@ -36,6 +36,7 @@ public class PlayerAttackManager : MonoBehaviour {
 		hitboxUsedInAttack = unarmedLightHitbox;
 		activeWeapon = Unarmed;
 		currentCombo = 1;
+		maxCombo = 3;
 
 		InitializeCombos ();
 	}
@@ -52,10 +53,37 @@ public class PlayerAttackManager : MonoBehaviour {
 		combos = new ComboAttack[3];
 
 		for (int i = 0; i < combos.Length; i++) {
-			combos[i] = new ComboAttack (player, hitboxUsedInAttack, attackType, i + 1);
+			combos[i] = new ComboAttack (player, hitboxUsedInAttack, attackType, i + 1, maxCombo);
 		}
 	}
 		
+	void UpdateAttackInput () {
+		if (!isComboActive ()) {
+			if (player.GetIsAction1Input () && player.GetCanInputActions ()) {
+				action1Input = true;
+				player.SetIsLightAttacking (true);
+				DetermineAttackProperties ();
+				ActivateComboAttack ();
+			} else if (player.GetIsAction2Input () && player.GetCanInputActions ()) {
+				action2Input = true;
+				player.SetIsHeavyAttacking (true);
+				DetermineAttackProperties ();
+				ActivateComboAttack ();
+			}
+		}
+	}
+
+	bool isComboActive() {
+		bool isComboActive = false;
+
+		for (int i = 0; i < combos.Length; i++) {
+			if (combos [i].GetIsActive ()) {
+				isComboActive = true;
+			}
+		}
+		return isComboActive;
+	}
+
 	void UpdateComboStates() {
 
 		for (int i = 0; i < combos.Length; i++) {
@@ -65,58 +93,63 @@ public class PlayerAttackManager : MonoBehaviour {
 		}
 	}
 
+	void UpdateComboCounter() {
+		print ("manager, currentCombo = " + currentCombo);
+		for (int i = 0; i < combos.Length; i++) {
+			ContinueCombo (combos [i]);
+			ResetCombo (combos[i]);
+		}
+	}
+
+	void ContinueCombo(ComboAttack combo) {
+		if (combo.GetIsActive () && combo.GetIsComboFlagged ()) {
+			currentCombo++;
+			combo.currentCombo = this.currentCombo;
+			ActivateComboAttack ();
+			combo.SetIsComboFlagged (false);
+		}
+	}
+
+	void ResetCombo(ComboAttack combo) {
+		if (combo.GetResetCombo ()) {
+			player.SetIsLightAttacking (false);
+			player.SetIsHeavyAttacking (false);
+			action1Input = false;
+			action2Input = false;
+			currentCombo = 1;
+
+			combo.SetResetCombo (false);
+			print ("manager reset!!");
+		}
+	}
+
+	void ActivateComboAttack() {
+
+		for (int i = 0; i < combos.Length; i++) {
+			if (combos [i].comboNumber == currentCombo) {
+				combos [i].ActivateCombo (hitboxUsedInAttack, attackType, action1Input, action2Input, currentCombo);
+			}
+		}
+	}
+
+/// <summary>
+/// ****//////// PRINTTITIÄIATÄIATÄIAT
+/// </summary>
 	void PrintActives() {
 		float huh = 00;
 
 		for (int i = 0; i < combos.Length; i++) {
+			
 			if (combos [i].GetIsActive ()) {
 				huh++;
+				print ("Combo number " + combos [i].comboNumber + " is active.");
 			}
 		}
 
-				print (huh);
-				huh = 0;
+		print (huh);
+		huh = 0;
 	}
 
-	void UpdateComboCounter() {
-		for (int i = 0; i < combos.Length; i++) {
-			if (combos [i].GetIsActive ()) {
-				if (combos [i].comboNumber > currentCombo) {
-					currentCombo = combos [i].comboNumber;
-				}else if (combos [i].GetIsComboFlagged ()) {
-					currentCombo = combos [i].comboNumber;
-					combos [i].comboFlagged = false;
-				}
-			}
-
-		}
-	}
-
-	void ActivateCombo() {
-
-		for (int i = 0; i < combos.Length; i++) {
-			if (combos [i].comboNumber == currentCombo) {
-				combos [i].ActivateCombo (hitboxUsedInAttack, attackType);
-			}
-		}
-	}
-
-	void UpdateAttackInput () {
-
-		if (player.GetIsAction1Input () && player.GetCanInputActions ()) {
-			action1Input = true;
-			player.SetIsLightAttacking (true);
-			DetermineAttackProperties ();
-			ActivateCombo ();
-			print ("dd");
-		} else if (player.GetIsAction2Input () && player.GetCanInputActions ()) {
-			action2Input = true;
-			player.SetIsHeavyAttacking (true);
-			DetermineAttackProperties ();
-			ActivateCombo ();
-		}
-	}
-		
 	void DetermineAttackProperties() {
 		switch (activeWeapon) {
 		case Unarmed:
@@ -148,14 +181,14 @@ public class PlayerAttackManager : MonoBehaviour {
 
 		for (int i = 0; i < combos.Length; i++) {
 			if ( (toAttackPhase.Equals ("damagePhase1") || toAttackPhase.Equals ("comboPhase1") ||
-				toAttackPhase.Equals ("resetComboPhase1")) && combos [i].comboNumber == 1) {
+				toAttackPhase.Equals ("resetComboAttackPhase1")) && combos [i].comboNumber == 1) {
 				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
-				print("jea");
+				print ("event");
 			} else if ( (toAttackPhase.Equals ("damagePhase2") || toAttackPhase.Equals ("comboPhase2") || 
-				toAttackPhase.Equals ("resetComboPhase2")) && combos[i].comboNumber == 2) {
+				toAttackPhase.Equals ("resetComboAttackPhase2")) && combos[i].comboNumber == 2) {
 				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
 			} else if ( (toAttackPhase.Equals ("damagePhase3") || toAttackPhase.Equals ("comboPhase3") ||
-				toAttackPhase.Equals ("resetComboPhase3")) && combos [i].comboNumber == 3) {
+				toAttackPhase.Equals ("resetComboAttackPhase3")) && combos [i].comboNumber == 3) {
 				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
 			}
 		}

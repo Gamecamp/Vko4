@@ -786,7 +786,7 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
@@ -805,9 +805,17 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.74693877
+      - time: 0.65863454
         functionName: ChangeAttackPhase
-        data: resetComboPhase3
+        data: comboPhase3
+        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.89440423
+        functionName: ChangeAttackPhase
+        data: resetComboAttackPhase3
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1309,9 +1317,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.75510204
+      - time: 0.86570114
         functionName: ChangeAttackPhase
-        data: resetComboPhase2
+        data: resetComboAttackPhase2
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0
@@ -1429,9 +1437,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.8367347
+      - time: 0.8782094
         functionName: ChangeAttackPhase
-        data: resetComboPhase1
+        data: resetComboAttackPhase1
         objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
           type: 3}
         floatParameter: 0

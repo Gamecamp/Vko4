@@ -3,35 +3,41 @@ using System.Collections;
 
 public class ComboAttack {
 
+	private PlayerMovement player;
 	private GameObject hitboxUsedInAttack;
 	private PlayerAnimationHandler animHandler;
 
-	public enum AttackState {startPhase, damagePhase, comboPhase, resetComboPhase};
+	public enum AttackState {startPhase, damagePhase, comboPhase, resetComboAttackPhase};
 	public AttackState attackPhase;
 	public int comboNumber;
+	public int currentCombo;
+	private int maxCombo;
 
 	private bool action1Input;
 	private bool action2Input;
 	private bool isComboFlagged;
 	private bool isActive;
-	public bool comboFlagged;
+	private bool resetCombo;
 
 	private string attackType;
 
-	public ComboAttack (PlayerMovement player, GameObject hurtBox, string attackType, int comboNumber) {
+	public ComboAttack (PlayerMovement player, GameObject hurtBox, string attackType, int comboNumber, int maxCombo) {
 		animHandler = player.gameObject.GetComponent<PlayerAnimationHandler> ();
+		this.player = player;
 
 		attackPhase = AttackState.startPhase;
 		hitboxUsedInAttack = hurtBox;
 		this.comboNumber = comboNumber;
+		this.maxCombo = maxCombo;
 		this.attackType = attackType;
+		isComboFlagged = false;
+		resetCombo = false;
 	}
 
 	public void UpdateAttackStates () {
 
 		if (attackPhase == AttackState.startPhase && action1Input) {
 			action1Input = false;
-			MonoBehaviour.print ("start");
 			animHandler.SetAnimationTrigger (attackType, comboNumber);
 		} else if (attackPhase == AttackState.startPhase && action2Input) {
 			action2Input = false;
@@ -40,9 +46,14 @@ public class ComboAttack {
 			hitboxUsedInAttack.SetActive (true);
 		} else if (attackPhase == AttackState.comboPhase) {
 			hitboxUsedInAttack.SetActive (false);
-			//ComboFlagged ();
-		} else if (attackPhase == AttackState.resetComboPhase) {
-			ProcessAndResetCombo ();
+
+			if (comboNumber < maxCombo) {
+				IsComboBeingActivated ();
+			}
+
+		} else if (attackPhase == AttackState.resetComboAttackPhase) {
+			ProcessAndResetComboAttack ();
+			MonoBehaviour.print ("endPhase");
 		}
 	}
 		
@@ -51,26 +62,67 @@ public class ComboAttack {
 			this.attackPhase = AttackState.damagePhase;
 		} else if (toAttackPhase.Equals ("comboPhase")) {
 			this.attackPhase = AttackState.comboPhase;
-		} else if (toAttackPhase.Equals ("resetComboPhase")) {
-			this.attackPhase = AttackState.resetComboPhase;
+		} else if (toAttackPhase.Equals ("resetComboAttackPhase")) {
+			this.attackPhase = AttackState.resetComboAttackPhase;
 		}
 	}
 
-	void ProcessAndResetCombo() {
-		hitboxUsedInAttack.SetActive (false);
-		attackPhase = AttackState.startPhase;
-		isComboFlagged = false;
-		isActive = false;
+	void IsComboBeingActivated() {
+		if (attackType.Contains ("Light") && player.GetIsAction1Input()) {
+			isComboFlagged = true;
+			MonoBehaviour.print ("combo");
+		}
+
+		if (attackType.Contains ("Heavy") && player.GetIsAction2Input()) {
+			isComboFlagged = true;
+		}
 	}
 
-	public void ActivateCombo(GameObject hurtBox, string attackType) {
+	void ProcessAndResetComboAttack() {
+		hitboxUsedInAttack.SetActive (false);
+		isComboFlagged = false;
+		isActive = false;
+		attackType = "";
+		attackPhase = AttackState.startPhase;
+
+		if (IsEndCombo ()) {
+			resetCombo = true;
+		}
+		currentCombo = 1;
+	}
+
+	public void ActivateCombo(GameObject hurtBox, string attackType, bool action1, bool action2, int curCombo) {
 		hitboxUsedInAttack = hurtBox;
 		this.attackType = attackType;
+		action1Input = action1;
+		action2Input = action2;
 		isActive = true;
+		this.currentCombo = curCombo;
+	}
+
+	private bool IsEndCombo() {
+		bool end = false;
+		MonoBehaviour.print (comboNumber + " combo's currentCombo = " + currentCombo);
+		if (comboNumber >= currentCombo) {
+			end = true;
+		}
+		return end;
+	}
+
+	public bool GetResetCombo() {
+		return resetCombo;
+	}
+
+	public void SetResetCombo(bool b) {
+		resetCombo = b;
 	}
 		
 	public bool GetIsComboFlagged() {
 		return isComboFlagged;
+	}
+
+	public void SetIsComboFlagged(bool b) {
+		isComboFlagged = b;
 	}
 
 	public bool GetIsActive() {

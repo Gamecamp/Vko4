@@ -71,7 +71,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
 
 	public void SetAnimationTrigger(string attackType, int comboNumber) {
 		anim.SetTrigger (attackType + comboNumber);
-		print (attackType + comboNumber);
+		//print (attackType + comboNumber);
 	}
 
 //	// *** UNARMED *** //
