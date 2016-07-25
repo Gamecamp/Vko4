@@ -7,11 +7,24 @@ public class PlayerItemHandling : MonoBehaviour {
 	private PlayerAttackManager attackManager;
 	private Vector3 hiddenItem;
 
+	private bool weaponThrown;
+
+	private string currentWeapon;
+	private GameObject currentThrowable;
+	private float throwForce = 50f;
+	public GameObject throwingPoint;
+
 	public GameObject baseballBatObj;
 	public GameObject pistolObj;
 	public GameObject shotgunObj;
 	public GameObject katanaObj;
 	public GameObject sawedOffObj;
+
+	public GameObject throwBaseballBat;
+	public GameObject throwPistol;
+	public GameObject throwShotgun;
+	public GameObject throwKatana;
+	public GameObject throwSawedOff;
 
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
@@ -26,6 +39,7 @@ public class PlayerItemHandling : MonoBehaviour {
 		attackManager = GetComponent<PlayerAttackManager> ();
 		hiddenItem = new Vector3 (0, -10, 0);
 		player.SetIsAbleToEquip (true);
+		weaponThrown = false;
 
 		baseballBatObj.SetActive (false);
 		pistolObj.SetActive (false);
@@ -36,14 +50,32 @@ public class PlayerItemHandling : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!player.GetIsAbleToEquip () && player.GetIsThrowingInput ()) {
+		if (!player.GetIsAbleToEquip () && player.GetIsThrowingInput () && player.GetCanInputActions() && !weaponThrown) {
+			GameObject temp;
+			temp = Instantiate (currentThrowable, throwingPoint.transform.position, transform.rotation) as GameObject;
+			Rigidbody rb;
+			rb = temp.GetComponent<Rigidbody> ();
+			rb.AddForce ((throwingPoint.transform.position - transform.position).normalized * throwForce);
+			rb.angularVelocity = new Vector3 (0, 100, 0);
+
+			weaponThrown = true;
+
 			EquipWeapon (unarmed);
+
+			StartCoroutine (AbleToEquipAgain ());
 		}
 		
 	}
 
+	IEnumerator AbleToEquipAgain() {
+		yield return new WaitForSeconds (0.3f);
+		player.SetIsAbleToEquip (true);
+		weaponThrown = false;
+
+	}
+
 	void OnTriggerStay(Collider col) {
-		if (player.GetIsAbleToEquip() && player.GetIsEquipInput()) {
+		if (player.GetIsAbleToEquip() && player.GetIsEquipInput() && player.GetCanInputActions()) {
 			if (col.gameObject.tag == "Item") {
 				ReturnSpawnAndIconToRandomPools (col.gameObject);
 				EquipWeapon (col.gameObject.name);
@@ -54,6 +86,8 @@ public class PlayerItemHandling : MonoBehaviour {
 	void EquipWeapon(string weapon) {
 		SetWeaponStatesToFalse ();
 
+		currentWeapon = weapon;
+
 		switch (weapon) {
 		case unarmed:
 			baseballBatObj.SetActive (false);
@@ -62,35 +96,39 @@ public class PlayerItemHandling : MonoBehaviour {
 			katanaObj.SetActive (false);
 			sawedOffObj.SetActive (false);
 			attackManager.SetActiveWeapon (unarmed);
-			player.SetIsAbleToEquip (true);
 			break;
 		case baseballBat:
 			baseballBatObj.SetActive (true);
 			attackManager.SetActiveWeapon (baseballBat);
 			player.SetIsBaseballBatEquipped (true);
+			currentThrowable = throwBaseballBat;
 			break;
 		case pistol:
 			pistolObj.SetActive (true);
 			attackManager.SetActiveWeapon (pistol);
 			player.SetIsPistolEquipped (true);
 			GetComponent<Bullet> ().SetCurrentClipSize ();
+			currentThrowable = throwPistol;
 			break;
 		case shotgun:
 			shotgunObj.SetActive (true);
 			attackManager.SetActiveWeapon (shotgun);
 			player.SetIsShotgunEquipped (true);
 			GetComponent<Bullet> ().SetCurrentClipSize ();
+			currentThrowable = throwShotgun;
 			break;
 		case katana:
 			katanaObj.SetActive (true);
 			attackManager.SetActiveWeapon (katana);
 			player.SetIsKatanaEquipped (true);
+			currentThrowable = throwKatana;
 			break;
 		case sawedOff:
 			sawedOffObj.SetActive (true);
 			attackManager.SetActiveWeapon (sawedOff);
 			player.SetIsSawedOffEquipped (true);
 			GetComponent<Bullet> ().SetCurrentClipSize ();
+			currentThrowable = throwSawedOff;
 			break;
 		}
 	}

@@ -52,9 +52,9 @@ public class PlayerGrapple : MonoBehaviour {
 	void UpdateGrapplingAttempt () {
 		
 		if (player.GetIsThrowingInput() && player.GetCanInputActions() && player.GetIsAbleToEquip()) {
+			grappleAttemptInProgress = true;
 			player.SetIsAttemptingGrapple (true);
 			grappleWindupGoing = true;
-			grappleAttemptInProgress = true;
 			attemptReset = false;
 		}
 
@@ -83,6 +83,7 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleIsFinished = false;
 		grappleAttemptInProgress = false;
 		attemptReset = true;
+		grappleBox.SetActive (false);
 
 		grappleWindupGoing = false;
 		grappleDuration = 0;
@@ -94,7 +95,7 @@ public class PlayerGrapple : MonoBehaviour {
 	void UpdateGrappling() {
 		if (grappleIsHappening) {
 			if (!attemptReset) {
-				ResetGrappleAttempt();
+				ResetGrappleAttempt ();
 				player.SetIsGrappling (true);
 				player.SetIsAttemptingGrapple (false);
 			}
@@ -114,7 +115,7 @@ public class PlayerGrapple : MonoBehaviour {
 			if (grappleIsFinished) {
 				ResetGrapple ();
 			}
-		}
+		} 
 	}
 
 	public void BeginGrappling(PlayerMovement targetPlayer) {
