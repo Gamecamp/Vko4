@@ -11,6 +11,8 @@ public class PlayerAttackManager : MonoBehaviour {
 	public GameObject baseballBatLightHitbox;
 	public GameObject baseballBatHeavyHitbox;
 
+	private PlayerAnimationHandler animHandler;
+
 	private ComboAttack[] combos;
 
 	private int currentCombo;
@@ -25,6 +27,9 @@ public class PlayerAttackManager : MonoBehaviour {
 	const string Unarmed = "unarmed";
 	const string BaseballBat = "baseballBat";
 
+	bool combo;
+	bool attackInProgress;
+
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
@@ -38,15 +43,44 @@ public class PlayerAttackManager : MonoBehaviour {
 		currentCombo = 1;
 		maxCombo = 3;
 
-		InitializeCombos ();
+		animHandler = GetComponent<PlayerAnimationHandler> ();
+		combo = false;
+		attackInProgress = false;
+		//InitializeCombos ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		UpdateAttackInput ();
-		UpdateComboStates ();
-		UpdateComboCounter ();
-		PrintActives ();
+		if (player.GetIsAction1Input () && player.GetCanInputActions ()) {
+			if (!attackInProgress) {
+				player.SetIsLightAttacking (true);
+				DetermineAttackProperties ();
+				animHandler.SetAnimationTrigger (attackType);
+				attackInProgress = true;
+			} else if (attackInProgress && combo) {
+				animHandler.SetAnimationTrigger (attackType);
+			}
+		}
+
+		if (!player.GetIsLightAttacking ()) {
+			DeactivateHitbox ();
+			EndCombo ();
+		}
+	}
+
+	public void ActivateHitbox() {
+		hitboxUsedInAttack.SetActive (true);
+		combo = true;
+	}
+
+	public void DeactivateHitbox() {
+		hitboxUsedInAttack.SetActive (false);
+		combo = false;
+	}
+
+	public void EndCombo() {
+		player.SetIsLightAttacking (false);
+		attackInProgress = false;
 	}
 
 	void InitializeCombos() {
@@ -94,7 +128,7 @@ public class PlayerAttackManager : MonoBehaviour {
 	}
 
 	void UpdateComboCounter() {
-		print ("manager, currentCombo = " + currentCombo);
+		//print ("manager, currentCombo = " + currentCombo);
 		for (int i = 0; i < combos.Length; i++) {
 			ContinueCombo (combos [i]);
 			ResetCombo (combos[i]);
@@ -119,7 +153,7 @@ public class PlayerAttackManager : MonoBehaviour {
 			currentCombo = 1;
 
 			combo.SetResetCombo (false);
-			print ("manager reset!!");
+			//print ("manager reset!!");
 		}
 	}
 
@@ -142,11 +176,11 @@ public class PlayerAttackManager : MonoBehaviour {
 			
 			if (combos [i].GetIsActive ()) {
 				huh++;
-				print ("Combo number " + combos [i].comboNumber + " is active.");
+				//print ("Combo number " + combos [i].comboNumber + " is active.");
 			}
 		}
 
-		print (huh);
+		//print (huh);
 		huh = 0;
 	}
 
@@ -183,7 +217,7 @@ public class PlayerAttackManager : MonoBehaviour {
 			if ( (toAttackPhase.Equals ("damagePhase1") || toAttackPhase.Equals ("comboPhase1") ||
 				toAttackPhase.Equals ("resetComboAttackPhase1")) && combos [i].comboNumber == 1) {
 				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
-				print ("event");
+				//print ("event");
 			} else if ( (toAttackPhase.Equals ("damagePhase2") || toAttackPhase.Equals ("comboPhase2") || 
 				toAttackPhase.Equals ("resetComboAttackPhase2")) && combos[i].comboNumber == 2) {
 				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));

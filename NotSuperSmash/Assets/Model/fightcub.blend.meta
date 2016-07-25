@@ -364,7 +364,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: Stagger
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -798,26 +805,23 @@ ModelImporter:
       curves: []
       events:
       - time: 0.24020314
-        functionName: ChangeAttackPhase
-        data: damagePhase3
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+        functionName: Activate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.65863454
-        functionName: ChangeAttackPhase
-        data: comboPhase3
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+      - time: 0.6028206
+        functionName: Deactivate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.89440423
-        functionName: ChangeAttackPhase
-        data: resetComboAttackPhase3
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+      - time: 0.9090293
+        functionName: End
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -1204,7 +1208,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: Deactivate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1302,26 +1313,23 @@ ModelImporter:
       curves: []
       events:
       - time: 0.22448981
-        functionName: ChangeAttackPhase
-        data: damagePhase2
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+        functionName: Activate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5061224
-        functionName: ChangeAttackPhase
-        data: comboPhase2
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+      - time: 0.5776481
+        functionName: Deactivate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.86570114
-        functionName: ChangeAttackPhase
-        data: resetComboAttackPhase2
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+      - time: 0.9229828
+        functionName: End
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -1422,26 +1430,23 @@ ModelImporter:
       curves: []
       events:
       - time: 0.21571334
-        functionName: ChangeAttackPhase
-        data: damagePhase1
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+        functionName: Activate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5836735
-        functionName: ChangeAttackPhase
-        data: comboPhase1
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+      - time: 0.5748988
+        functionName: Deactivate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.8782094
-        functionName: ChangeAttackPhase
-        data: resetComboAttackPhase1
-        objectReferenceParameter: {fileID: 11500000, guid: 9cb1a23492d302a4ca3a7522ded145ea,
-          type: 3}
+      - time: 0.9124752
+        functionName: End
+        data: 
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

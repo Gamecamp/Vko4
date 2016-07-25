@@ -69,6 +69,11 @@ public class PlayerAnimationHandler : MonoBehaviour {
 		anim.SetFloat (animClip, GetVelocityMagnitude ());
 	}
 
+	public void SetAnimationTrigger(string attackType) {
+		anim.SetTrigger (attackType);
+		//print (attackType + comboNumber);
+	}
+
 	public void SetAnimationTrigger(string attackType, int comboNumber) {
 		anim.SetTrigger (attackType + comboNumber);
 		//print (attackType + comboNumber);
