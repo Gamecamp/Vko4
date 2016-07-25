@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba3ed0c63a2d7b4c9fd9aade47f21ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 1
+  frequency: 5
 --- !u!114 &11456666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba3ed0c63a2d7b4c9fd9aade47f21ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 1
+  frequency: 5
 --- !u!114 &11472486
 MonoBehaviour:
   m_ObjectHideFlags: 1
