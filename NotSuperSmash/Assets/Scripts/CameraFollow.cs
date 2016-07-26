@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour {
 	private Camera camera;
 
 	private Vector3 middlePoint;
+	private Vector2 distanceBetweenGuys;
 	private float distanceFromMiddlePoint;
 	private float xDistanceBetweenPlayers;
 	private float zDistanceBetweenPlayers;
@@ -20,17 +21,20 @@ public class CameraFollow : MonoBehaviour {
 	private float minimumYDistance = 20;
 
 	private float cameraYDistance;
+	private float cameraZDistance;
 	private float aspectRatio;
 	private float tanFov;
+	private float tanZ;
 	private float margin;
 
-	private float zDistanceMultiplier = 0.65f;
-	private float yDistanceMultiplier = 0.5f;
+	private float zDistanceMultiplier = 1f;
+	private float yDistanceMultiplier = 1f;
 
 	// Use this for initialization
 	void Start () {
 		aspectRatio = Screen.width / Screen.height;
-		tanFov = Mathf.Tan (Mathf.Deg2Rad * Camera.main.fieldOfView * 0.5f);
+		tanFov = Mathf.Tan (Mathf.Deg2Rad * Camera.main.fieldOfView * 0.7f);
+		tanZ = Mathf.Tan (Mathf.Deg2Rad * 30);
 		highPoint = 0;
 		lowPoint = 0;
 		leftPoint = 0;
@@ -42,24 +46,7 @@ public class CameraFollow : MonoBehaviour {
 		DetermineCameraRestrictions ();
 		DetermineMiddlePoint ();
 		CheckDistanceBetweenPlayers ();
-
-		cameraYDistance = (higherDistanceBetweenPlayers / 2.0f / aspectRatio) / tanFov;
-//
-//		float zDistance = Mathf.Abs (vectorBetweenPlayers.z);
-//		distanceMultiplier = 1 + zDistance / 90;
-
-		if (higherDistanceBetweenPlayers * zDistanceMultiplier < minimumZDistance) {
-			middlePoint.z = middlePoint.z - minimumZDistance;
-		} else {
-			middlePoint.z = middlePoint.z - higherDistanceBetweenPlayers * zDistanceMultiplier;
-		}
-
-		if (cameraYDistance * yDistanceMultiplier  < minimumYDistance) {
-			middlePoint.y = minimumYDistance;
-		} else {
-			middlePoint.y = cameraYDistance * yDistanceMultiplier;
-		}
-
+		DetermineCameraDistances ();
 
 		transform.position = middlePoint;
 	}
@@ -106,14 +93,42 @@ public class CameraFollow : MonoBehaviour {
 		xDistanceBetweenPlayers = highPoint - lowPoint;
 		zDistanceBetweenPlayers = rightPoint - leftPoint;
 
-		xDistanceBetweenPlayers = xDistanceBetweenPlayers / aspectRatio;
-		zDistanceBetweenPlayers = zDistanceBetweenPlayers * aspectRatio;
+//		xDistanceBetweenPlayers = xDistanceBetweenPlayers / aspectRatio;
+//		zDistanceBetweenPlayers = zDistanceBetweenPlayers * aspectRatio;
+//
+//		if (xDistanceBetweenPlayers > zDistanceBetweenPlayers) {
+//			higherDistanceBetweenPlayers = xDistanceBetweenPlayers;
+//		} else {
+//			higherDistanceBetweenPlayers = zDistanceBetweenPlayers;
+//		}
 
-		if (xDistanceBetweenPlayers > zDistanceBetweenPlayers) {
-			higherDistanceBetweenPlayers = xDistanceBetweenPlayers;
+		distanceBetweenGuys = new Vector2 (rightPoint, highPoint) - new Vector2 (leftPoint, lowPoint);
+
+
+	}
+
+	void DetermineCameraDistances() {
+		
+		cameraYDistance = (distanceBetweenGuys.magnitude / 2.0f / aspectRatio) / tanFov;
+
+
+//		if (higherDistanceBetweenPlayers * zDistanceMultiplier < minimumZDistance) {
+//			middlePoint.z = middlePoint.z - minimumZDistance;
+//		} else {
+//			middlePoint.z = middlePoint.z - higherDistanceBetweenPlayers * zDistanceMultiplier;
+//		}
+
+
+//
+		if (cameraYDistance * yDistanceMultiplier  < minimumYDistance) {
+			middlePoint.y = minimumYDistance;
 		} else {
-			higherDistanceBetweenPlayers = zDistanceBetweenPlayers;
+			middlePoint.y = cameraYDistance * yDistanceMultiplier;
 		}
+
+		cameraZDistance = (middlePoint.y) / tanZ;
+
+		middlePoint.z = middlePoint.z - cameraZDistance * zDistanceMultiplier;
 	}
 	
 }
