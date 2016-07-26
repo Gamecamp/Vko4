@@ -14,7 +14,7 @@ public class BulletMoving : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		speed = 60f;
+		speed = 120f;
 	}
 	
 	// Update is called once per frame
@@ -46,16 +46,16 @@ public class BulletMoving : MonoBehaviour {
 
 		switch (gun) {
 		case "pistolBullet":
-			killTimer = 1.5f;
+			killTimer = 3f;
 			break;
 		case "shotgunBullet":
-			killTimer = 0.5f;
+			killTimer = 0.8f;
 			break;
 		case "sawedOffBullet":
-			killTimer = 0.2f;
+			killTimer = 0.4f;
 			break;
 		default:
-			killTimer = 2f;
+			killTimer = 4f;
 			break;
 		}
 	}
