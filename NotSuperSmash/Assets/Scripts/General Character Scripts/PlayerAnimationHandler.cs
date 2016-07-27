@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Experimental.Director;
 
 public class PlayerAnimationHandler : MonoBehaviour {
 
@@ -34,11 +35,24 @@ public class PlayerAnimationHandler : MonoBehaviour {
 
 		meleeSpearLightCombo = "meleeSpearLight";
 		meleeSpearHeavyCombo = "meleeSpearHeavy";
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		SetAnimationFloat ("velocityMagnitude", GetVelocityMagnitude ());
+	}
+
+	public void SetLayerWeight(int layerIndex, float weightValue) {
+		anim.SetLayerWeight (layerIndex, weightValue);
+	}
+
+	public void SetIsMelee(bool b) {
+		anim.SetBool ("isMelee", b);
+	}
+
+	public void SetIsRanged(bool b) {
+		anim.SetBool ("isRanged", b);
 	}
 
 	private float GetVelocityMagnitude() {

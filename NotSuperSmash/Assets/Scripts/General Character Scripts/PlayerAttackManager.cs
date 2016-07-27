@@ -14,12 +14,14 @@ public class PlayerAttackManager : MonoBehaviour {
 	private GameObject hitboxUsedInAttack;
 	private PlayerMovement player;
 	private PlayerAnimationHandler animHandler;
+	private Bullet _bullet;
 
 	private bool attackInProgress;
 	private bool canCombo;
 
 	private string activeWeapon;
 	private string attackType;
+	private float rateOfFire;
 
 	const string Unarmed = "unarmed";
 	const string BaseballBat = "baseballBat";
@@ -31,6 +33,7 @@ public class PlayerAttackManager : MonoBehaviour {
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
 		animHandler = GetComponent<PlayerAnimationHandler> ();
+		_bullet = GetComponent<Bullet> ();
 
 		unarmedLightHitbox.SetActive (false);
 		unarmedHeavyHitbox.SetActive (false);
@@ -77,8 +80,15 @@ public class PlayerAttackManager : MonoBehaviour {
 	}
 	private void StartCombo () {
 		DetermineAttackProperties ();
-		animHandler.SetAnimationTrigger (attackType);
 		attackInProgress = true;
+
+		if (attackType == "ranged") {
+			_bullet.Shoot (rateOfFire);
+			EndCombo ();
+		} else {
+			animHandler.SetLayerWeight (1, 0f);
+			animHandler.SetAnimationTrigger (attackType);
+		}
 	}
 
 	public void ActivateHitbox() {
@@ -87,18 +97,15 @@ public class PlayerAttackManager : MonoBehaviour {
 	}
 
 	/*
-			if (attackDuration >= beforeHurtAnimationLength && attackPhaseHelper == 0) {
-				if (activeWeapon == pistol) {
-					GetComponent<Bullet> ().Shoot (0.5f);
-				} else if (activeWeapon == shotgun) {
-					GetComponent<Bullet> ().Shoot (1.5f);
-				} else if (activeWeapon == sawedOff) {
-					GetComponent<Bullet> ().Shoot (1.5f);
-				} else {
-					hitboxUsedInAttack.SetActive (true);
-				}
-				attackPhaseHelper++;
-			} 
+		if (activeWeapon == pistol) {
+			GetComponent<Bullet> ().Shoot (0.5f);
+		} else if (activeWeapon == shotgun) {
+			GetComponent<Bullet> ().Shoot (1.5f);
+		} else if (activeWeapon == sawedOff) {
+			GetComponent<Bullet> ().Shoot (1.5f);
+		} else {
+			hitboxUsedInAttack.SetActive (true);
+		}
 	*/
 
 	public void DeactivateHitbox() {
@@ -110,6 +117,7 @@ public class PlayerAttackManager : MonoBehaviour {
 		player.SetIsLightAttacking (false);
 		player.SetIsHeavyAttacking (false);
 		attackInProgress = false;
+		animHandler.SetLayerWeight (1, 1f);
 	}
 
 	void DetermineAttackProperties() {
@@ -138,37 +146,35 @@ public class PlayerAttackManager : MonoBehaviour {
 				attackType = "meleeLight";
 			} else {
 				hitboxUsedInAttack = katanaHeavyHitbox;
-				attackType = "meleeheavy";
+				attackType = "meleeHeavy";
 			}
 			break;
 		case Pistol:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
 			attackType = "ranged";
+			rateOfFire = 0.5f;
 			//maxChain = 8;
 			break;
 		case Shotgun:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
 			attackType = "ranged";
+			rateOfFire = 1.5f;
 			//maxChain = 5;
 			break;
 		case SawedOff:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
 			attackType = "ranged";
+			rateOfFire = 1.5f;
 			//maxChain = 5;
 			break;
 		}
 	}
 
-	/* KYSY RELOADISTA!!!!!!
-	void ResetAttackChain() {
-		numberInAttackChain = 1;
-		//if (activeWeapon == pistol) {
-		//	GetComponent<Bullet> ().Reload (5f);
-		//}
-	}
-	*/
-
 	public void SetActiveWeapon(string weapon) {
 		activeWeapon = weapon;
+	}
+
+	public float GetRateOfFire() {
+		return rateOfFire;
 	}
 }
