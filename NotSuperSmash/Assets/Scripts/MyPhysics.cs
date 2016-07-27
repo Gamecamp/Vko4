@@ -9,13 +9,13 @@ public static class MyPhysics {
 
 
 	public static void ApplyGravity(GameObject obj) {
-		yVelocity -= gravity * Time.deltaTime;
-		Debug.Log(yVelocity);
-		obj.transform.Translate (0, yVelocity, 0, Space.World);
+//		yVelocity -= gravity * Time.deltaTime;
+//		Debug.Log(yVelocity);
+//		obj.transform.Translate (0, yVelocity, 0, Space.World);
 	}
 	
 	public static void ApplyFriction(PlayerMovement obj) {
-		obj.SetMoveVector(obj.GetMoveVector() * friction);
+		obj.SetMoveVector(new Vector3(obj.GetMoveVector().x * friction, obj.GetMoveVector().y * friction, obj.GetMoveVector().z * friction));
 	}
 
 	public static void ApplyKnockback(PlayerMovement obj, Vector3 direction, float force) {

@@ -22,8 +22,6 @@ public class PlayerCollisionDamage : MonoBehaviour {
 			CountCollisionDamage ();
 			ApplyCollisionDamage ();
 			StopKnockback ();
-
-			print ("Collision damage = " + collisionDamage);
 		}
 	}
 
