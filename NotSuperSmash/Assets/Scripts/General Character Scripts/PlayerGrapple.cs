@@ -79,7 +79,6 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void ResetGrappleAttempt() {
-		grappleBox.SetActive (false);
 		grappleIsFinished = false;
 		grappleAttemptInProgress = false;
 		attemptReset = true;
@@ -90,8 +89,6 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleAttemptDuration = 0;
 
 		player.SetIsAttemptingGrapple (false);
-
-		StartGrappleAttemptCooldownTimer ();
 	}
 
 	void UpdateGrappling() {

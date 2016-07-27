@@ -38,19 +38,23 @@ public class PlayerAnimationHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		setIdleRun ("velocityMagnitude");
+		SetAnimationFloat ("velocityMagnitude", GetVelocityMagnitude ());
 	}
 
 	private float GetVelocityMagnitude() {
 		return player.GetMoveVector ().magnitude;
 	}
 
-	public void setIdleRun(string animClip) {
-		anim.SetFloat (animClip, GetVelocityMagnitude ());
+	public void SetAnimationBool(string animationBool, bool b) {
+		anim.SetBool (animationBool, b);
 	}
 
-	public void SetAnimationTrigger(string attackType) {
-		anim.SetTrigger (attackType);
+	public void SetAnimationFloat(string name, float value) {
+		anim.SetFloat (name, value);
+	}
+
+	public void SetAnimationTrigger(string animationTrigger) {
+		anim.SetTrigger (animationTrigger);
 	}
 
 	// *** OTHER *** //

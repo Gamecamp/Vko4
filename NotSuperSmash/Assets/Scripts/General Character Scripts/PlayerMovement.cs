@@ -15,8 +15,6 @@ public class PlayerMovement : PlayerBase {
 	private float invulnerableTime = 3;
 	private float invulnerableTimePassed = 0;
 
-	float velocity;
-
 	Vector2 joystickInput;
 	Vector2 oldJoystickInput;
 

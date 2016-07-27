@@ -21,12 +21,12 @@ public class PlayerAttackManager : MonoBehaviour {
 	private string activeWeapon;
 	private string attackType;
 
-	const string unarmed = "unarmed";
-	const string baseballBat = "baseballBat";
-	const string pistol = "pistol";
-	const string shotgun = "shotgun";
-	const string katana = "katana";
-	const string sawedOff = "sawedOff";
+	const string Unarmed = "unarmed";
+	const string BaseballBat = "baseballBat";
+	const string Pistol = "pistol";
+	const string Shotgun = "shotgun";
+	const string Katana = "katana";
+	const string SawedOff = "sawedOff";
 
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
@@ -108,7 +108,7 @@ public class PlayerAttackManager : MonoBehaviour {
 
 	public void EndCombo() {
 		player.SetIsLightAttacking (false);
-		player.SetIsLightAttacking (false);
+		player.SetIsHeavyAttacking (false);
 		attackInProgress = false;
 	}
 
@@ -132,39 +132,29 @@ public class PlayerAttackManager : MonoBehaviour {
 				attackType = "meleeHeavy";
 			}
 			break;
-		case katana:
+		case Katana:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = katanaLightHitbox;
-
-				beforeHurtAnimationLength = 0.2f;
-				hurtfulAnimationLength = 0.2f;
-				recoveryTime = 0.4f;
-
-				maxChain = 3;
+				attackType = "meleeLight";
 			} else {
 				hitboxUsedInAttack = katanaHeavyHitbox;
-
-				beforeHurtAnimationLength = 0.4f;
-				hurtfulAnimationLength = 0.2f;
-				recoveryTime = 0.8f;
-
-				maxChain = 1;
+				attackType = "meleeheavy";
 			}
 			break;
-		case pistol:
+		case Pistol:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-
-			maxChain = 8;
+			attackType = "ranged";
+			//maxChain = 8;
 			break;
-		case shotgun:
+		case Shotgun:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-
-			maxChain = 5;
+			attackType = "ranged";
+			//maxChain = 5;
 			break;
-		case sawedOff:
+		case SawedOff:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-
-			maxChain = 5;
+			attackType = "ranged";
+			//maxChain = 5;
 			break;
 		}
 	}
