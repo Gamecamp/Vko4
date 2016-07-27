@@ -24,7 +24,7 @@ public class PlayerHealthMonitor : MonoBehaviour {
 	}
 
 	void CheckAlive() {
-		if (currentHealth == 0 && currentLives > 0) {
+		if (currentHealth <= 0 && currentLives > 0) {
 
 			currentLives = currentLives - 1;
 

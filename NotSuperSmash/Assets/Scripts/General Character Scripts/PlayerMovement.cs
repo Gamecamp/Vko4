@@ -7,6 +7,14 @@ public class PlayerMovement : PlayerBase {
 
 	private bool knockbackType;
 
+	private bool respawning;
+	private bool invulnerable;
+
+	private float respawnTime = 3;
+	private float respawnTimePassed = 0;
+	private float invulnerableTime = 3;
+	private float invulnerableTimePassed = 0;
+
 	float velocity;
 
 	Vector2 joystickInput;
@@ -14,6 +22,8 @@ public class PlayerMovement : PlayerBase {
 
 	Vector3 facingVector;
 	Vector3 movementDifference;
+
+	Renderer renderer;
 
 	private float step;
 
@@ -26,6 +36,7 @@ public class PlayerMovement : PlayerBase {
 		maxLives = 3;
 		currentLives = maxLives;
 		SetRigidbody (rigidBody);
+		renderer = GetComponent<Renderer> ();
 	}
 	
 	// Update is called once per frame
@@ -34,9 +45,10 @@ public class PlayerMovement : PlayerBase {
 		CorrectAngle ();
 		ApplyMovement ();
 		ApplyPhysics ();
-		CountVelocity ();
 		ApplyKnockbacks ();
 		ApplyStagger ();
+		CountVelocity ();
+		HandleRespawn ();
 	}
 
 	void ApplyKnockbacks() {
@@ -51,8 +63,8 @@ public class PlayerMovement : PlayerBase {
 	}
 
 	void CountVelocity() {
-		movementDifference = (transform.position - previousLocationVector) /Time.deltaTime;
-		velocity = movementDifference.magnitude;
+		movementDifference = (new Vector3 (transform.position.x, 0, transform.position.z) - new Vector3(GetPreviousLocationVector().x, 0, GetPreviousLocationVector().z)) /Time.deltaTime;
+		SetVelocity(movementDifference.magnitude);
 	}
 
 	void CorrectAngle () {
@@ -82,7 +94,7 @@ public class PlayerMovement : PlayerBase {
 
 	void GetInputForMoving() {
 		oldJoystickInput = joystickInput;
-		joystickInput = InputManager.GetJoystickInput (gameObject.name);
+		joystickInput = InputManager.GetJoystickInput (gameObject.name).normalized;
 		moveVector += new Vector3 (joystickInput.x, 0, joystickInput.y);
 		if (isJumpInput && isGrounded) {
 			moveVector = new Vector3(moveVector.x, moveVector.y + jumpPower, moveVector.z);
@@ -107,6 +119,52 @@ public class PlayerMovement : PlayerBase {
 	public void StartStagger(float staggerDuration) {
 		SetIsStaggered (true);
 		SetStaggerDuration (staggerDuration);
+	}
+
+	void HandleRespawn() {
+		if (respawning) {
+
+			respawnTimePassed = respawnTimePassed + Time.deltaTime;
+
+			if (respawnTimePassed > respawnTime) {
+				invulnerable = true;
+				StartCoroutine (Blink ());
+				respawning = false;
+				respawnTimePassed = 0;
+				ResetStatus ();
+			}
+		}
+
+		if (invulnerable) {
+			gameObject.tag = "Invulnerable";
+
+			invulnerableTimePassed = invulnerableTimePassed + Time.deltaTime;
+
+			if (invulnerableTimePassed >= invulnerableTime) {
+				invulnerable = false;
+				invulnerableTimePassed = 0;
+				gameObject.tag = "Player";
+			}
+		}
+	}
+
+	public void Respawn() {
+		respawning = true;
+	}
+
+	public void Kill() {
+		SetIsStaggered (true);
+		SetStaggerDuration (1000f);
+	}
+
+	IEnumerator Blink() {
+		float endTime = Time.time + invulnerableTime;
+		while (Time.time < endTime) {
+			renderer.enabled = false;
+			yield return new WaitForSeconds (0.1f);
+			renderer.enabled = true;
+			yield return new WaitForSeconds (0.1f);
+		}
 	}
 
 

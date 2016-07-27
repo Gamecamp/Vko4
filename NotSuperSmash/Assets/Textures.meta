@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 923ab1c7f07a8fa45b2d93a0d3e4e41f
 folderAsset: yes
 timeCreated: 1469446694
+=======
+guid: 49b6156b7d08f864fbc6375b75ef4b7e
+folderAsset: yes
+timeCreated: 1469092915
+>>>>>>> refs/remotes/origin/pistol
 licenseType: Free
 DefaultImporter:
   userData: 

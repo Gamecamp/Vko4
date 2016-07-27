@@ -17,6 +17,8 @@ public class AttackMechanics : MonoBehaviour {
 	string unarmedHeavy = "unarmedHeavy";
 	string baseballBatLight = "baseballBatLight";
 	string baseballBatHeavy = "baseballBatHeavy";
+	string katanaLight = "katanaLight";
+	string katanaHeavy = "katanaHeavy";
 
 	string attackType;
 
@@ -83,14 +85,18 @@ public class AttackMechanics : MonoBehaviour {
 	}
 
 	void DetermineAttackType() {
-		if (gameObject.name == "UnarmedHitbox" + parent.name) {
+		if (gameObject.name == "UnarmedHitbox") {
 			attackType = unarmedLight;
-		} else if (gameObject.name == "UnarmedHeavyHitbox" + parent.name) {
+		} else if (gameObject.name == "UnarmedHeavyHitbox") {
 			attackType = unarmedHeavy;
-		} else if (gameObject.name == "BaseballBatLightHitbox" + parent.name) {
+		} else if (gameObject.name == "BaseballBatLightHitbox") {
 			attackType = baseballBatLight;
-		} else if (gameObject.name == "BaseballBatHeavyHitbox" + parent.name) {
+		} else if (gameObject.name == "BaseballBatHeavyHitbox") {
 			attackType = baseballBatHeavy;
+		} else if (gameObject.name == "KatanaLightHitbox") {
+			attackType = katanaLight;
+		} else if (gameObject.name == "KatanaHeavyHitbox") {
+			attackType = katanaHeavy;
 		}
 	}
 }

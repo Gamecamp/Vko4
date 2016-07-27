@@ -20,9 +20,6 @@ public class PlayerGrapple : MonoBehaviour {
 	private float grappleInputThreshold = 0.3f;
 	private float grappleMaxDuration = 1;
 
-	private float grappleAttemptCooldown = 1;
-	private float cooldownTimer = 0;
-
 	private bool grappleIsFinished;
 	private bool grappleIsHappening;
 	private bool grappleAttemptInProgress;
@@ -55,9 +52,9 @@ public class PlayerGrapple : MonoBehaviour {
 	void UpdateGrapplingAttempt () {
 		
 		if (player.GetIsThrowingInput() && player.GetCanInputActions() && player.GetIsAbleToEquip()) {
+			grappleAttemptInProgress = true;
 			player.SetIsAttemptingGrapple (true);
 			grappleWindupGoing = true;
-			grappleAttemptInProgress = true;
 			attemptReset = false;
 		}
 
@@ -86,19 +83,21 @@ public class PlayerGrapple : MonoBehaviour {
 		grappleIsFinished = false;
 		grappleAttemptInProgress = false;
 		attemptReset = true;
+		grappleBox.SetActive (false);
 
 		grappleWindupGoing = false;
 		grappleDuration = 0;
 		grappleAttemptDuration = 0;
 
 		player.SetIsAttemptingGrapple (false);
+
 		StartGrappleAttemptCooldownTimer ();
 	}
 
 	void UpdateGrappling() {
 		if (grappleIsHappening) {
 			if (!attemptReset) {
-				ResetGrappleAttempt();
+				ResetGrappleAttempt ();
 				player.SetIsGrappling (true);
 				player.SetIsAttemptingGrapple (false);
 			}
@@ -118,7 +117,7 @@ public class PlayerGrapple : MonoBehaviour {
 			if (grappleIsFinished) {
 				ResetGrapple ();
 			}
-		}
+		} 
 	}
 
 	public void BeginGrappling(PlayerMovement targetPlayer) {
@@ -144,8 +143,6 @@ public class PlayerGrapple : MonoBehaviour {
 	}
 
 	void PassGrapplingTime() {
-		print ("passing grappling time: " + grappleDuration);
-		print (targetPlayer.GetIsGrappled ());
 		grappleDuration = grappleDuration + Time.deltaTime;
 		if (grappleDuration >= grappleMaxDuration) {
 			grappleIsFinished = true;
@@ -169,9 +166,4 @@ public class PlayerGrapple : MonoBehaviour {
 	public bool GetGrappleIsHappening() {
 		return grappleIsHappening;
 	}
-
-	public void StartGrappleAttemptCooldownTimer() {
-		cooldownTimer = Time.deltaTime;
-	}
-		
 }

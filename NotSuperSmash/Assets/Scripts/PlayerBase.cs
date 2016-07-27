@@ -27,11 +27,17 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isLightAttacking;
 	protected bool isHeavyAttacking;
 	protected bool isAbleToEquip;
+	protected bool isAbleToShoot;
+
 	protected bool isAttemptingGrapple;
 	protected bool isGrappling;
 	protected bool isGuarding;
 
 	protected bool isBaseballBatEquipped;
+	protected bool isPistolEquipped;
+	protected bool isShotgunEquipped;
+	protected bool isKatanaEquipped;
+	protected bool isSawedOffEquipped;
 
 	protected bool isUsingSpecial1;
 
@@ -54,6 +60,8 @@ public class PlayerBase : MonoBehaviour {
 	protected bool canMove;
 	protected bool canInputActionsMove;
 	protected bool canInputActions;
+
+	protected float velocity;
 
 	public float jumpPower;
 	public float runSpeed;
@@ -119,6 +127,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public void SetIsAbleToEquip(bool isAbleToEquip) {
 		this.isAbleToEquip = isAbleToEquip;
+	}
+
+	public bool GetIsAbleToShoot() {
+		return isAbleToShoot;
+	}
+
+	public void SetIsAbleToShoot(bool isAbleToShoot) {
+		this.isAbleToShoot = isAbleToShoot;
 	}
 
 	public bool GetIsGrappling() {
@@ -301,6 +317,38 @@ public class PlayerBase : MonoBehaviour {
 	public bool GetIsBaseballBatEquipped() {
 		return isBaseballBatEquipped;
 	}
+
+	public void SetIsPistolEquipped(bool isPistolEquipped) {
+		this.isPistolEquipped = isPistolEquipped;
+	}
+
+	public bool GetIsPistolEquipped() {
+		return isPistolEquipped;
+	}
+
+	public void SetIsSawedOffEquipped(bool isSawedOffEquipped) {
+		this.isSawedOffEquipped = isSawedOffEquipped;
+	}
+
+	public bool GetIsSawedOffEquipped() {
+		return isSawedOffEquipped;
+	}
+
+	public void SetIsShotgunEquipped(bool isShotgunEquipped) {
+		this.isShotgunEquipped = isShotgunEquipped;
+	}
+
+	public bool GetIsShotgunEquipped() {
+		return isShotgunEquipped;
+	}
+
+	public void SetIsKatanaEquipped(bool isKatanaEquipped) {
+		this.isKatanaEquipped = isKatanaEquipped;
+	}
+
+	public bool GetIsKatanaEquipped() {
+		return isKatanaEquipped;
+	}
 	
 	public float GetMaxHealth() {
 		return maxHealth;
@@ -346,12 +394,15 @@ public class PlayerBase : MonoBehaviour {
 		this.attackDamage = attackDamage;
 	}
 
-	public void Respawn() {
-		ResetStatus ();
-	
+	public float GetVelocity() {
+		return velocity;
 	}
 
-	void ResetStatus() {
+	public void SetVelocity(float velocity) {
+		this.velocity = velocity;
+	}
+		
+	protected void ResetStatus() {
 		currentHealth = maxHealth;
 		rb.velocity = Vector3.zero;
 		rb.angularVelocity = Vector3.zero;
@@ -376,11 +427,6 @@ public class PlayerBase : MonoBehaviour {
 		canMove = true;
 		canInputActions = true;
 
-	}
-
-	public void Kill() {
-		SetIsStaggered (true);
-		SetStaggerDuration (1000f);
 	}
 
 	public List<bool> GetRestrictions() {
