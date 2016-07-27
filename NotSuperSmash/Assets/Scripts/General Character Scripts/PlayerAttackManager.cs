@@ -2,24 +2,20 @@
 using System.Collections;
 
 public class PlayerAttackManager : MonoBehaviour {
-
-	private GameObject hitboxUsedInAttack;
-	private PlayerMovement player;
-
+	
 	public GameObject unarmedLightHitbox;
 	public GameObject unarmedHeavyHitbox;
 	public GameObject baseballBatLightHitbox;
 	public GameObject baseballBatHeavyHitbox;
 
+	private GameObject hitboxUsedInAttack;
+	private PlayerMovement player;
 	private PlayerAnimationHandler animHandler;
-
-	private ComboAttack[] combos;
-
-	private int currentCombo;
-	private int maxCombo;
 
 	private bool action1Input;
 	private bool action2Input;
+	private bool attackInProgress;
+	private bool canCombo;
 
 	private string activeWeapon;
 	private string attackType;
@@ -27,12 +23,10 @@ public class PlayerAttackManager : MonoBehaviour {
 	const string Unarmed = "unarmed";
 	const string BaseballBat = "baseballBat";
 
-	bool combo;
-	bool attackInProgress;
-
-	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
+		animHandler = GetComponent<PlayerAnimationHandler> ();
+
 		unarmedLightHitbox.SetActive (false);
 		unarmedHeavyHitbox.SetActive (false);
 		baseballBatLightHitbox.SetActive (false);
@@ -40,148 +34,58 @@ public class PlayerAttackManager : MonoBehaviour {
 
 		hitboxUsedInAttack = unarmedLightHitbox;
 		activeWeapon = Unarmed;
-		currentCombo = 1;
-		maxCombo = 3;
 
-		animHandler = GetComponent<PlayerAnimationHandler> ();
-		combo = false;
 		attackInProgress = false;
-		//InitializeCombos ();
+		canCombo = false;
 	}
-
-	// Update is called once per frame
+		
 	void Update () {
-		if (player.GetIsAction1Input () && player.GetCanInputActions ()) {
-			if (!attackInProgress) {
-				player.SetIsLightAttacking (true);
-				DetermineAttackProperties ();
-				animHandler.SetAnimationTrigger (attackType);
-				attackInProgress = true;
-			} else if (attackInProgress && combo) {
+
+		if (GetAttackInput () && player.GetCanInputActions ()) {
+			if (attackInProgress == false) {
+				StartCombo ();
+			} else if (attackInProgress && canCombo) {
 				animHandler.SetAnimationTrigger (attackType);
 			}
 		}
 
-		if (!player.GetIsLightAttacking ()) {
+		if (!player.GetIsLightAttacking () && !player.GetIsHeavyAttacking ()) {
 			DeactivateHitbox ();
 			EndCombo ();
 		}
 	}
 
+	private bool GetAttackInput() {
+		if (player.GetIsAction1Input ()) {
+			player.SetIsLightAttacking (true);
+			return true;
+		} else if (player.GetIsAction2Input ()) {
+			player.SetIsHeavyAttacking (true);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	private void StartCombo () {
+		DetermineAttackProperties ();
+		animHandler.SetAnimationTrigger (attackType);
+		attackInProgress = true;
+	}
+
 	public void ActivateHitbox() {
 		hitboxUsedInAttack.SetActive (true);
-		combo = true;
+		canCombo = true;
 	}
 
 	public void DeactivateHitbox() {
 		hitboxUsedInAttack.SetActive (false);
-		combo = false;
+		canCombo = false;
 	}
 
 	public void EndCombo() {
 		player.SetIsLightAttacking (false);
+		player.SetIsLightAttacking (false);
 		attackInProgress = false;
-	}
-
-	void InitializeCombos() {
-		combos = new ComboAttack[3];
-
-		for (int i = 0; i < combos.Length; i++) {
-			combos[i] = new ComboAttack (player, hitboxUsedInAttack, attackType, i + 1, maxCombo);
-		}
-	}
-		
-	void UpdateAttackInput () {
-		if (!isComboActive ()) {
-			if (player.GetIsAction1Input () && player.GetCanInputActions ()) {
-				action1Input = true;
-				player.SetIsLightAttacking (true);
-				DetermineAttackProperties ();
-				ActivateComboAttack ();
-			} else if (player.GetIsAction2Input () && player.GetCanInputActions ()) {
-				action2Input = true;
-				player.SetIsHeavyAttacking (true);
-				DetermineAttackProperties ();
-				ActivateComboAttack ();
-			}
-		}
-	}
-
-	bool isComboActive() {
-		bool isComboActive = false;
-
-		for (int i = 0; i < combos.Length; i++) {
-			if (combos [i].GetIsActive ()) {
-				isComboActive = true;
-			}
-		}
-		return isComboActive;
-	}
-
-	void UpdateComboStates() {
-
-		for (int i = 0; i < combos.Length; i++) {
-			if (combos [i].GetIsActive ()) {
-				combos [i].UpdateAttackStates ();
-			}
-		}
-	}
-
-	void UpdateComboCounter() {
-		//print ("manager, currentCombo = " + currentCombo);
-		for (int i = 0; i < combos.Length; i++) {
-			ContinueCombo (combos [i]);
-			ResetCombo (combos[i]);
-		}
-	}
-
-	void ContinueCombo(ComboAttack combo) {
-		if (combo.GetIsActive () && combo.GetIsComboFlagged ()) {
-			currentCombo++;
-			combo.currentCombo = this.currentCombo;
-			ActivateComboAttack ();
-			combo.SetIsComboFlagged (false);
-		}
-	}
-
-	void ResetCombo(ComboAttack combo) {
-		if (combo.GetResetCombo ()) {
-			player.SetIsLightAttacking (false);
-			player.SetIsHeavyAttacking (false);
-			action1Input = false;
-			action2Input = false;
-			currentCombo = 1;
-
-			combo.SetResetCombo (false);
-			//print ("manager reset!!");
-		}
-	}
-
-	void ActivateComboAttack() {
-
-		for (int i = 0; i < combos.Length; i++) {
-			if (combos [i].comboNumber == currentCombo) {
-				combos [i].ActivateCombo (hitboxUsedInAttack, attackType, action1Input, action2Input, currentCombo);
-			}
-		}
-	}
-
-/// <summary>
-/// ****//////// PRINTTITIÄIATÄIATÄIAT
-/// </summary>
-	void PrintActives() {
-		float huh = 00;
-
-		for (int i = 0; i < combos.Length; i++) {
-			
-			if (combos [i].GetIsActive ()) {
-				huh++;
-				//print ("Combo number " + combos [i].comboNumber + " is active.");
-			}
-		}
-
-		//print (huh);
-		huh = 0;
 	}
 
 	void DetermineAttackProperties() {
@@ -190,52 +94,21 @@ public class PlayerAttackManager : MonoBehaviour {
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = unarmedLightHitbox;
 				attackType = "unarmedLight";
-				maxCombo = 3;
 			} else {
 				hitboxUsedInAttack = unarmedHeavyHitbox;
 				attackType = "unarmedHeavy";
-				maxCombo = 1;
 			}
 			break;
 		case BaseballBat:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = baseballBatLightHitbox;
 				attackType = "meleeLight";
-				maxCombo = 3;
 			} else {
 				hitboxUsedInAttack = baseballBatHeavyHitbox;
 				attackType = "meleeHeavy";
-				maxCombo = 1;
 			}
 			break;
 		}
-	}
-		
-	public void ChangeAttackPhase(string toAttackPhase) {
-
-		for (int i = 0; i < combos.Length; i++) {
-			if ( (toAttackPhase.Equals ("damagePhase1") || toAttackPhase.Equals ("comboPhase1") ||
-				toAttackPhase.Equals ("resetComboAttackPhase1")) && combos [i].comboNumber == 1) {
-				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
-				//print ("event");
-			} else if ( (toAttackPhase.Equals ("damagePhase2") || toAttackPhase.Equals ("comboPhase2") || 
-				toAttackPhase.Equals ("resetComboAttackPhase2")) && combos[i].comboNumber == 2) {
-				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
-			} else if ( (toAttackPhase.Equals ("damagePhase3") || toAttackPhase.Equals ("comboPhase3") ||
-				toAttackPhase.Equals ("resetComboAttackPhase3")) && combos [i].comboNumber == 3) {
-				combos [i].SetAttackPhase (toAttackPhase.Substring(0, toAttackPhase.Length - 1));
-			}
-		}
-	}
-		
-	void ResetAttack() {
-		player.SetIsLightAttacking (false);
-		player.SetIsHeavyAttacking (false);
-		currentCombo = 1;
-	}
-
-	void ResetAttackChain() {
-		currentCombo = 1;
 	}
 
 	public void SetActiveWeapon(string weapon) {

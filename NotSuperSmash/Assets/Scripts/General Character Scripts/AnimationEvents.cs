@@ -11,10 +11,6 @@ public class AnimationEvents : MonoBehaviour {
 		attackManager = GetComponentInParent<PlayerAttackManager> ();
 	}
 
-	public void ChangeAttackPhase(string to) {
-		attackManager.ChangeAttackPhase (to);
-	}
-
 	public void Activate() {
 		attackManager.ActivateHitbox ();
 	}
