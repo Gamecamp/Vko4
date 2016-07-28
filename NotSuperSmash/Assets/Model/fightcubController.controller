@@ -84,7 +84,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: HoldingWeapon
     m_StateMachine: {fileID: 110764592}
-    m_Mask: {fileID: 101100000, guid: f3f4e3b67707a8e4f81bf9babf4acba8, type: 2}
+    m_Mask: {fileID: 101100000, guid: c427990d645f490409221430e2543632, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -225,7 +225,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110297614}
   m_Solo: 0
-  m_Mute: 1
+  m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.1
@@ -588,7 +588,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110219682}
   m_Solo: 0
-  m_Mute: 1
+  m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.15241939
@@ -657,7 +657,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110215874}
   m_Solo: 0
-  m_Mute: 1
+  m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.21559119
@@ -795,7 +795,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110215874}
   m_Solo: 0
-  m_Mute: 1
+  m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.25
@@ -1594,7 +1594,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400038, guid: 2f3ef064f9ac6904285c356e8047a089, type: 3}
+  m_Motion: {fileID: 7400004, guid: 318b8b30b0f407346a137e2231f668c6, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -39,7 +39,6 @@ public class ThrowWeapon : MonoBehaviour {
 						new Vector3(col.gameObject.transform.position.x, 0, col.gameObject.transform.position.z)), 20f);
 				col.gameObject.GetComponent<PlayerMovement> ().SetCurrentHealth (col.gameObject.GetComponent<PlayerMovement> ().GetCurrentHealth () - throwDamage);
 				itemCanHurt = false;
-				col.gameObject.GetComponent<PlayerMovement> ().StartStagger (0.5f);
 			}
 		}
 	}

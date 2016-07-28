@@ -3,8 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : PlayerBase {
 
-	private Rigidbody rigidBody;
-	private PlayerAnimationHandler animHandler;
+	Rigidbody rigidBody;
 
 	private bool knockbackType;
 
@@ -29,7 +28,6 @@ public class PlayerMovement : PlayerBase {
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
-		animHandler = GetComponent<PlayerAnimationHandler> ();
 		maxHealth = 100;
 		currentHealth = 100;
 		attackDamage = 50;
@@ -119,7 +117,6 @@ public class PlayerMovement : PlayerBase {
 	public void StartStagger(float staggerDuration) {
 		SetIsStaggered (true);
 		SetStaggerDuration (staggerDuration);
-		animHandler.SetAnimationTrigger ("stagger");
 	}
 
 	void HandleRespawn() {
