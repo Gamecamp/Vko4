@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class PlayerAttackManager : MonoBehaviour {
-
-	PlayerMovement player;
+	
 	public GameObject unarmedLightHitbox;
 	public GameObject unarmedHeavyHitbox;
 	public GameObject baseballBatLightHitbox;
@@ -14,35 +13,32 @@ public class PlayerAttackManager : MonoBehaviour {
 	public GameObject spearHeavyHitbox;
 	public GameObject rangedWeaponPseudoHitbox;
 
-	GameObject hitboxUsedInAttack;
-
-	// use to control the various animation lengths
-	private float beforeHurtAnimationLength;
-	private float hurtfulAnimationLength;
-	private float recoveryTime;
-	private float attackDuration;
-
-	private float chainResetTime;
-
-	private int numberInAttackChain;
-	private int maxChain;
-	private int attackPhaseHelper;
+	private GameObject hitboxUsedInAttack;
+	private PlayerMovement player;
+	private PlayerAnimationHandler animHandler;
+	private Bullet _bullet;
 
 	private bool attackInProgress;
+	private bool canCombo;
 
 	private string activeWeapon;
+	private string attackType;
+	private float rateOfFire;
 
-	const string unarmed = "unarmed";
-	const string baseballBat = "baseballBat";
-	const string pistol = "pistol";
-	const string shotgun = "shotgun";
-	const string katana = "katana";
-	const string sawedOff = "sawedOff";
-	const string spear = "spear";
 
-	// Use this for initialization
+	const string Spear = "spear";
+	const string Unarmed = "unarmed";
+	const string BaseballBat = "baseballBat";
+	const string Pistol = "pistol";
+	const string Shotgun = "shotgun";
+	const string Katana = "katana";
+	const string SawedOff = "sawedOff";
+
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
+		animHandler = GetComponent<PlayerAnimationHandler> ();
+		_bullet = GetComponent<Bullet> ();
+
 		unarmedLightHitbox.SetActive (false);
 		unarmedHeavyHitbox.SetActive (false);
 		baseballBatLightHitbox.SetActive (false);
@@ -54,197 +50,146 @@ public class PlayerAttackManager : MonoBehaviour {
 		rangedWeaponPseudoHitbox.SetActive (false);
 		attackInProgress = false;
 
-		activeWeapon = unarmed;
+		hitboxUsedInAttack = unarmedLightHitbox;
+		activeWeapon = Unarmed;
 
-		numberInAttackChain = 1;
-
-		attackPhaseHelper = 0;
-		attackDuration = 0;
+		attackInProgress = false;
+		canCombo = false;
 	}
-
-	// Update is called once per frame
+		
 	void Update () {
-		UpdateAttacking ();
+
+		if (GetAttackInput () && player.GetCanInputActions ()) {
+			if (attackInProgress == false) {
+				StartCombo ();
+			} else if (attackInProgress && canCombo) {
+				animHandler.SetAnimationTrigger (attackType);
+			}
+		}
+
+		if (!player.GetIsLightAttacking () && !player.GetIsHeavyAttacking ()) {
+			DeactivateHitbox ();
+			EndCombo ();
+		}
 	}
 
-	void UpdateAttacking () {
-
-		if (player.GetIsAction1Input() && player.GetCanInputActions() && !attackInProgress) {
+	private bool GetAttackInput() {
+		if (player.GetIsAction1Input ()) {
 			player.SetIsLightAttacking (true);
-			DetermineAttackProperties();
-			attackInProgress = true;
-		} else if (player.GetIsAction2Input() && player.GetCanInputActions() && !attackInProgress) {
+			return true;
+		} else if (player.GetIsAction2Input ()) {
 			player.SetIsHeavyAttacking (true);
-			DetermineAttackProperties();
-			attackInProgress = true;
+			return true;
+		} else {
+			return false;
 		}
+	}
+	private void StartCombo () {
+		DetermineAttackProperties ();
+		attackInProgress = true;
 
-		if (player.GetIsLightAttacking () || player.GetIsHeavyAttacking ()) {
-
-			//  Attack doesn't hurt yet, swing windup time
-			attackDuration = attackDuration + Time.deltaTime;
-
-			// Attack hurtbox goes on
-			if (attackDuration >= beforeHurtAnimationLength && attackPhaseHelper == 0) {
-				if (activeWeapon == pistol) {
-					GetComponent<Bullet> ().Shoot (0.5f);
-				} else if (activeWeapon == shotgun) {
-					GetComponent<Bullet> ().Shoot (1.5f);
-				} else if (activeWeapon == sawedOff) {
-					GetComponent<Bullet> ().Shoot (1.5f);
-				} else {
-					hitboxUsedInAttack.SetActive (true);
-				}
-				attackPhaseHelper++;
-			} 
-
-			// Attack has been delivered, still can't move, recovery starts
-			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength && attackPhaseHelper == 1) {
-				if (activeWeapon != pistol || activeWeapon != shotgun || activeWeapon != sawedOff) {
-					hitboxUsedInAttack.SetActive (false);
-				}
-				if (maxChain > 1) {
-					// getting here too often at least with ranged weapons!
-					if (numberInAttackChain < maxChain) {
-						numberInAttackChain++;
-					} else {
-						ResetAttackChain ();
-					}
-				}
-				attackPhaseHelper++;
-			}
-
-			// After recovery control is given back to the player
-			if (attackDuration >= beforeHurtAnimationLength + hurtfulAnimationLength + recoveryTime && attackPhaseHelper == 2) {
-				ResetAttack ();
-			}
-		} else if (attackInProgress) {
-			ResetAttack ();
+		if (attackType == "ranged") {
+			_bullet.Shoot (rateOfFire);
+			EndCombo ();
+		} else {
+			animHandler.SetLayerWeight (1, 0f);
+			animHandler.SetAnimationTrigger (attackType);
 		}
+	}
+
+	public void ActivateHitbox() {
+		hitboxUsedInAttack.SetActive (true);
+		canCombo = true;
+	}
+
+	/*
+		if (activeWeapon == pistol) {
+			GetComponent<Bullet> ().Shoot (0.5f);
+		} else if (activeWeapon == shotgun) {
+			GetComponent<Bullet> ().Shoot (1.5f);
+		} else if (activeWeapon == sawedOff) {
+			GetComponent<Bullet> ().Shoot (1.5f);
+		} else {
+			hitboxUsedInAttack.SetActive (true);
+		}
+	*/
+
+	public void DeactivateHitbox() {
+		hitboxUsedInAttack.SetActive (false);
+		canCombo = false;
+	}
+
+	public void EndCombo() {
+		player.SetIsLightAttacking (false);
+		player.SetIsHeavyAttacking (false);
+		attackInProgress = false;
+		animHandler.SetLayerWeight (1, 1);
 	}
 
 	void DetermineAttackProperties() {
 		switch (activeWeapon) {
-		case unarmed:
+		case Unarmed:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = unarmedLightHitbox;
-
-				beforeHurtAnimationLength = 0.1f;
-				hurtfulAnimationLength = 0.1f;
-				recoveryTime = 0.05f;
-
-				maxChain = 3;
+				attackType = "unarmedLight";
 			} else {
 				hitboxUsedInAttack = unarmedHeavyHitbox;
-
-				beforeHurtAnimationLength = 0.2f;
-				hurtfulAnimationLength = 0.2f;
-				recoveryTime = 0.1f;
-
-				maxChain = 1;
+				attackType = "unarmedHeavy";
 			}
 			break;
-		case baseballBat:
+		case BaseballBat:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = baseballBatLightHitbox;
-
-				beforeHurtAnimationLength = 0.3f;
-				hurtfulAnimationLength = 0.4f;
-				recoveryTime = 0.5f;
-
-				maxChain = 3;
+				attackType = "meleeLight";
 			} else {
 				hitboxUsedInAttack = baseballBatHeavyHitbox;
-
-				beforeHurtAnimationLength = 0.7f;
-				hurtfulAnimationLength = 0.8f;
-				recoveryTime = 0.9f;
-
-				maxChain = 1;
+				attackType = "meleeHeavy";
 			}
 			break;
-		case pistol:
-			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			beforeHurtAnimationLength = 0f;
-			hurtfulAnimationLength = 0f;
-			recoveryTime = 0f;
-
-			maxChain = 8;
-			break;
-		case shotgun:
-			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			beforeHurtAnimationLength = 0f;
-			hurtfulAnimationLength = 0f;
-			recoveryTime = 0f;
-
-			maxChain = 5;
-			break;
-		case katana:
+		case Katana:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = katanaLightHitbox;
-
-				beforeHurtAnimationLength = 0.2f;
-				hurtfulAnimationLength = 0.2f;
-				recoveryTime = 0.4f;
-
-				maxChain = 3;
+				attackType = "meleeLight";
 			} else {
 				hitboxUsedInAttack = katanaHeavyHitbox;
-
-				beforeHurtAnimationLength = 0.4f;
-				hurtfulAnimationLength = 0.2f;
-				recoveryTime = 0.6f;
-
-				maxChain = 1;
+				attackType = "meleeHeavy";
 			}
 			break;
-		case sawedOff:
+		case Pistol:
 			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			beforeHurtAnimationLength = 0f;
-			hurtfulAnimationLength = 0f;
-			recoveryTime = 0f;
-
-			maxChain = 5;
+			attackType = "ranged";
+			rateOfFire = 0.5f;
+			//maxChain = 8;
 			break;
-		case spear:
+		case Shotgun:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			attackType = "ranged";
+			rateOfFire = 1.5f;
+			//maxChain = 5;
+			break;
+		case SawedOff:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			attackType = "ranged";
+			rateOfFire = 1.5f;
+			//maxChain = 5;
+			break;
+		case Spear:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = spearLightHitbox;
-
-				beforeHurtAnimationLength = 0.2f;
-				hurtfulAnimationLength = 0.2f;
-				recoveryTime = 0.4f;
-
-				maxChain = 3;
+				attackType = "meleeLight";
 			} else {
 				hitboxUsedInAttack = spearHeavyHitbox;
-
-				beforeHurtAnimationLength = 0.4f;
-				hurtfulAnimationLength = 0.6f;
-				recoveryTime = 0.8f;
-
-				maxChain = 1;
+				attackType = "meleeHeavy";
 			}
 			break;
 		}
 	}
 
-	void ResetAttack() {
-		player.SetIsLightAttacking (false);
-		player.SetIsHeavyAttacking (false);
-		hitboxUsedInAttack.SetActive (false);
-		attackDuration = 0;
-		attackPhaseHelper = 0;
-		attackInProgress = false;
-	}
-
-	void ResetAttackChain() {
-		numberInAttackChain = 1;
-		//if (activeWeapon == pistol) {
-		//	GetComponent<Bullet> ().Reload (5f);
-		//}
-	}
-
 	public void SetActiveWeapon(string weapon) {
 		activeWeapon = weapon;
+	}
+
+	public float GetRateOfFire() {
+		return rateOfFire;
 	}
 }
