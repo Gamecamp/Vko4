@@ -117,7 +117,7 @@ public class PlayerAttackManager : MonoBehaviour {
 		player.SetIsLightAttacking (false);
 		player.SetIsHeavyAttacking (false);
 		attackInProgress = false;
-		animHandler.SetLayerWeight (1, 1f);
+		animHandler.SetLayerWeight (1, 1);
 	}
 
 	void DetermineAttackProperties() {

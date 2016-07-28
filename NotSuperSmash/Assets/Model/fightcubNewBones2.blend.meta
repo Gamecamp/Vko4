@@ -1,0 +1,2257 @@
+fileFormatVersion: 2
+guid: 2f3ef064f9ac6904285c356e8047a089
+timeCreated: 1469705659
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm_Controller_L
+    100002: Armature
+    100004: ArmController_R
+    100006: butt
+    100008: chest
+    100010: Cube
+    100012: //RootNode
+    100014: head
+    100016: L_arm1
+    100018: L_arm2
+    100020: L_ear1
+    100022: L_ear2
+    100024: L_foot
+    100026: L_hand1
+    100028: L_hand2
+    100030: L_headmidpiece
+    100032: L_hip
+    100034: L_leg1
+    100036: L_leg2
+    100038: L_shoulder
+    100040: Leg_Controller_L
+    100042: Leg_Controller_R
+    100044: neck
+    100046: R_arm1
+    100048: R_arm2
+    100050: R_ear1
+    100052: R_ear2
+    100054: R_foot
+    100056: R_hand1
+    100058: R_hand2
+    100060: R_headmidpiece
+    100062: R_hip
+    100064: R_leg1
+    100066: R_leg2
+    100068: R_shoulder
+    100070: stomach
+    100072: tail1
+    100074: tail2
+    400000: Arm_Controller_L
+    400002: Armature
+    400004: ArmController_R
+    400006: butt
+    400008: chest
+    400010: Cube
+    400012: //RootNode
+    400014: head
+    400016: L_arm1
+    400018: L_arm2
+    400020: L_ear1
+    400022: L_ear2
+    400024: L_foot
+    400026: L_hand1
+    400028: L_hand2
+    400030: L_headmidpiece
+    400032: L_hip
+    400034: L_leg1
+    400036: L_leg2
+    400038: L_shoulder
+    400040: Leg_Controller_L
+    400042: Leg_Controller_R
+    400044: neck
+    400046: R_arm1
+    400048: R_arm2
+    400050: R_ear1
+    400052: R_ear2
+    400054: R_foot
+    400056: R_hand1
+    400058: R_hand2
+    400060: R_headmidpiece
+    400062: R_hip
+    400064: R_leg1
+    400066: R_leg2
+    400068: R_shoulder
+    400070: stomach
+    400072: tail1
+    400074: tail2
+    4300000: Cube
+    7400000: Default Take
+    7400002: holding_melee
+    7400004: holdingGun_Spear
+    7400006: holdingPistol
+    7400008: idle
+    7400010: Melee1
+    7400012: melee1_001
+    7400014: melee2
+    7400016: meleeSpear
+    7400018: run
+    7400020: runWithGun_Spear_001
+    7400022: runWithMelee
+    7400024: runWithMelee_001
+    7400026: runWithPistol
+    7400028: runWithGun_Spear
+    7400030: slap1
+    7400032: slap2
+    7400034: melee1
+    7400036: Stagger
+    7400038: Stagger_001
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: -1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: holding_melee
+      takeName: holding_melee
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: holdingGun_Spear
+      takeName: holdingGun_Spear
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: holdingPistol
+      takeName: holdingPistol
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Melee1
+      takeName: Melee1
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: melee1_001
+      takeName: melee1_001
+      firstFrame: -1
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: melee2
+      takeName: melee2
+      firstFrame: -1
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: meleeSpear
+      takeName: meleeSpear
+      firstFrame: -1
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      firstFrame: -1
+      lastFrame: 46
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: runWithGun_Spear_001
+      takeName: runWithGun_Spear_001
+      firstFrame: -1
+      lastFrame: 47
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: runWithMelee
+      takeName: runWithMelee
+      firstFrame: -1
+      lastFrame: 46
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: runWithMelee_001
+      takeName: runWithMelee_001
+      firstFrame: -1
+      lastFrame: 47
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: runWithPistol
+      takeName: runWithPistol
+      firstFrame: -1
+      lastFrame: 47
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: runWithGun_Spear
+      takeName: runWithGun_Spear
+      firstFrame: -1
+      lastFrame: 46
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: slap1
+      takeName: slap1
+      firstFrame: -1
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: slap2
+      takeName: slap2
+      firstFrame: 0
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: melee1
+      takeName: melee1
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stagger
+      takeName: Stagger
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stagger_001
+      takeName: Stagger_001
+      firstFrame: -1
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: Stagger
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Arm_Controller_L
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand1
+        weight: 1
+      - path: Armature/Arm_Controller_L/L_hand2
+        weight: 1
+      - path: Armature/ArmController_R
+        weight: 1
+      - path: Armature/ArmController_R/R_hand1
+        weight: 1
+      - path: Armature/ArmController_R/R_hand2
+        weight: 1
+      - path: Armature/Leg_Controller_L
+        weight: 1
+      - path: Armature/Leg_Controller_L/L_foot
+        weight: 1
+      - path: Armature/Leg_Controller_R
+        weight: 1
+      - path: Armature/Leg_Controller_R/R_foot
+        weight: 1
+      - path: Armature/stomach
+        weight: 1
+      - path: Armature/stomach/butt
+        weight: 1
+      - path: Armature/stomach/butt/tail1
+        weight: 1
+      - path: Armature/stomach/butt/tail1/tail2
+        weight: 1
+      - path: Armature/stomach/chest
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1
+        weight: 1
+      - path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
+        weight: 1
+      - path: Armature/stomach/chest/neck
+        weight: 1
+      - path: Armature/stomach/chest/neck/head
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
+        weight: 1
+      - path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1
+        weight: 1
+      - path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
+        weight: 1
+      - path: Armature/stomach/L_hip
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1
+        weight: 1
+      - path: Armature/stomach/L_hip/L_leg1/L_leg2
+        weight: 1
+      - path: Armature/stomach/R_hip
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1
+        weight: 1
+      - path: Armature/stomach/R_hip/R_leg1/R_leg2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

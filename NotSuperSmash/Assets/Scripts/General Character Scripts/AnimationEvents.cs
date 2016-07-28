@@ -27,6 +27,6 @@ public class AnimationEvents : MonoBehaviour {
 
 	public void Stagger() {
 		player.SetIsStaggered (true);
-		player.SetStaggerDuration (1.5f);
+		player.SetStaggerDuration (1.0f);
 	}
 }
