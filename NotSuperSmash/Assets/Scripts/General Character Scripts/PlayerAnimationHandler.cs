@@ -1,64 +1,77 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Experimental.Director;
 
 public class PlayerAnimationHandler : MonoBehaviour {
 
+	private PlayerMovement player;
 	private Animator anim;
-	private string combo1;
-	private string comboStop1;
-	private string combo2;
-	private string comboStop2;
-	private string combo3;
-	private string comboStop3;
 
-	private string running;
+	private string unarmedLightCombo;
+	private string unarmedHeavyCombo;
+	private string meleeLightCombo;
+	private string meleeHeavyCombo;
+	private string meleeSpearLightCombo;
+	private string meleeSpearHeavyCombo;
+
 	private string stagger;
 	private string knockback;
 	private string pickup;
 	private string grappleAttempt;
 	private string throwing;
 
+	private float velocityMagnitude;
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent<Animator> ();
+		anim = GetComponentInChildren<Animator> ();
+		player = GetComponent<PlayerMovement> ();
+
+		unarmedLightCombo = "unarmedLight";
+		unarmedHeavyCombo = "unarmedHeavy";
+
+		meleeLightCombo = "meleeLight";
+		meleeHeavyCombo = "meleeHeavy";
+
+		meleeSpearLightCombo = "meleeSpearLight";
+		meleeSpearHeavyCombo = "meleeSpearHeavy";
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		SetAnimationFloat ("velocityMagnitude", GetVelocityMagnitude ());
 	}
 
-	// Tarviiko gettereitä ollenkaan..?? \_o.o_/
-
-	public void SetCombo1(bool b) {
-		anim.SetBool (combo1, b);
+	public void SetLayerWeight(int layerIndex, float weightValue) {
+		anim.SetLayerWeight (layerIndex, weightValue);
 	}
 
-	public void SetCombo2(bool b) {
-		anim.SetBool (combo2, b);
+	public void SetIsMelee(bool b) {
+		anim.SetBool ("isMelee", b);
 	}
 
-	public void SetCombo3(bool b) {
-		anim.SetBool (combo3, b);
+	public void SetIsRanged(bool b) {
+		anim.SetBool ("isRanged", b);
 	}
 
-	public void SetComboStop1(bool b) {
-		anim.SetBool (comboStop1, b);
+	private float GetVelocityMagnitude() {
+		return player.GetMoveVector ().magnitude;
 	}
 
-	public void SetComboStop2(bool b) {
-		anim.SetBool (comboStop2, b);
+	public void SetAnimationBool(string animationBool, bool b) {
+		anim.SetBool (animationBool, b);
 	}
 
-	public void SetComboStop3(bool b) {
-		anim.SetBool (comboStop3, b);
+	public void SetAnimationFloat(string name, float value) {
+		anim.SetFloat (name, value);
 	}
 
-	public void SetRunning(bool b) {
-		anim.SetBool (running, b);
+	public void SetAnimationTrigger(string animationTrigger) {
+		anim.SetTrigger (animationTrigger);
 	}
 
+	// *** OTHER *** //
 	public void SetStagger(bool b) {
 		anim.SetBool (stagger, b);
 	}

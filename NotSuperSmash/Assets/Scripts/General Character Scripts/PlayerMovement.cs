@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerMovement : PlayerBase {
 
-	Rigidbody rigidBody;
+	private Rigidbody rigidBody;
+	private PlayerAnimationHandler animHandler;
 
 	UpdateUI updateUI;
 	public GameObject uiHolder;
@@ -31,6 +32,7 @@ public class PlayerMovement : PlayerBase {
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody> ();
+		animHandler = GetComponent<PlayerAnimationHandler> ();
 		maxHealth = 100;
 		currentHealth = 100;
 		attackDamage = 50;
@@ -82,6 +84,7 @@ public class PlayerMovement : PlayerBase {
 			transform.Translate (moveVector * runSpeed * Time.deltaTime, Space.World);
 			RotateCharacter ();
 		}
+
 		if (GetCanMove () && !GetCanInputActionsMove ()) {
 			moveVector += new Vector3 (oldJoystickInput.x, 0, oldJoystickInput.y);
 			oldJoystickInput.x = oldJoystickInput.x * 0.95f;
@@ -120,6 +123,7 @@ public class PlayerMovement : PlayerBase {
 	public void StartStagger(float staggerDuration) {
 		SetIsStaggered (true);
 		SetStaggerDuration (staggerDuration);
+		animHandler.SetAnimationTrigger ("stagger");
 	}
 
 	void HandleRespawn() {

@@ -5,6 +5,7 @@ public class PlayerItemHandling : MonoBehaviour {
 
 	private PlayerMovement player;
 	private PlayerAttackManager attackManager;
+	private PlayerAnimationHandler anim;
 	private Vector3 hiddenItem;
 
 	private bool weaponThrown;
@@ -40,6 +41,7 @@ public class PlayerItemHandling : MonoBehaviour {
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
 		attackManager = GetComponent<PlayerAttackManager> ();
+		anim = GetComponent<PlayerAnimationHandler> ();
 		hiddenItem = new Vector3 (0, -10, 0);
 		player.SetIsAbleToEquip (true);
 		weaponThrown = false;
@@ -65,7 +67,8 @@ public class PlayerItemHandling : MonoBehaviour {
 			weaponThrown = true;
 
 			EquipWeapon (unarmed);
-
+			anim.SetIsRanged (false);
+			anim.SetIsMelee (false);
 			StartCoroutine (AbleToEquipAgain ());
 		}
 		
@@ -107,6 +110,7 @@ public class PlayerItemHandling : MonoBehaviour {
 			attackManager.SetActiveWeapon (baseballBat);
 			player.SetIsBaseballBatEquipped (true);
 			currentThrowable = throwBaseballBat;
+			anim.SetIsMelee (true);
 			break;
 		case pistol:
 			pistolObj.SetActive (true);
@@ -114,6 +118,7 @@ public class PlayerItemHandling : MonoBehaviour {
 			player.SetIsPistolEquipped (true);
 			GetComponent<Bullet> ().SetCurrentClipSize ();
 			currentThrowable = throwPistol;
+			anim.SetIsRanged (true);
 			break;
 		case shotgun:
 			shotgunObj.SetActive (true);
@@ -121,12 +126,14 @@ public class PlayerItemHandling : MonoBehaviour {
 			player.SetIsShotgunEquipped (true);
 			GetComponent<Bullet> ().SetCurrentClipSize ();
 			currentThrowable = throwShotgun;
+			anim.SetIsRanged (true);
 			break;
 		case katana:
 			katanaObj.SetActive (true);
 			attackManager.SetActiveWeapon (katana);
 			player.SetIsKatanaEquipped (true);
 			currentThrowable = throwKatana;
+			anim.SetIsMelee (true);
 			break;
 		case sawedOff:
 			sawedOffObj.SetActive (true);
@@ -134,6 +141,7 @@ public class PlayerItemHandling : MonoBehaviour {
 			player.SetIsSawedOffEquipped (true);
 			GetComponent<Bullet> ().SetCurrentClipSize ();
 			currentThrowable = throwSawedOff;
+			anim.SetIsRanged (true);
 			break;
 		case spear:
 			spearObj.SetActive (true);

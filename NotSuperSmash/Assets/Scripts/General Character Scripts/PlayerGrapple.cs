@@ -69,7 +69,6 @@ public class PlayerGrapple : MonoBehaviour {
 			}
 
 			if (grappleAttemptDuration >= grappleAttemptMaxDuration) {
-				grappleBox.SetActive (false);
 				grappleAttemptDuration = 0;
 				ResetGrappleAttempt ();
 			}

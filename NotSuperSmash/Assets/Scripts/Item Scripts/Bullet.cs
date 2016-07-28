@@ -8,19 +8,18 @@ public class Bullet : MonoBehaviour {
 	public GameObject shotgunBulletShootingPoint;
 	public GameObject sawedOffBulletShootingPoint;
 
-	private float timer;
-
 	private PlayerMovement player;
 	private GameObject playerLocation;
 
+	private float timer;
 	private int currentClipSize;
 	private int pistolClipSize = 16;
 	private int shotgunClipSize = 4;
 	private int sawedOffClipSize = 2;
 
-	const string pistol = "pistolBullet";
-	const string shotgun = "shotgunBullet";
-	const string sawedOff = "sawedOffBullet";
+	const string Pistol = "pistolBullet";
+	const string Shotgun = "shotgunBullet";
+	const string SawedOff = "sawedOffBullet";
 
 	// Use this for initialization
 	void Start () {
@@ -47,39 +46,41 @@ public class Bullet : MonoBehaviour {
 			if (player.GetIsPistolEquipped ()) {
 				GameObject temp;
 				temp = Instantiate (bullet, pistolBulletShootingPoint.transform.position, transform.rotation) as GameObject;
-				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, pistol);
+				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, Pistol);
 			} else if (player.GetIsShotgunEquipped ()) {
+				MyPhysics.ApplyKnockback (player, Vector3.back, 15f);
 				GameObject temp;
 				temp = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation) as GameObject;
-				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
+				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, Shotgun);
 				GameObject temp1;
 				temp1 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 5, 0)) as GameObject;
-				temp1.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
+				temp1.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, Shotgun);
 				GameObject temp2;
 				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -5, 0)) as GameObject;
-				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, Shotgun);
 				GameObject temp3;
 				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -2.5f, 0)) as GameObject;
-				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, Shotgun);
 				GameObject temp4;
 				temp2 = Instantiate (bullet, shotgunBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 2.5f, 0)) as GameObject;
-				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, shotgun);
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, Shotgun);
 			} else if (player.GetIsSawedOffEquipped ()) {
+				MyPhysics.ApplyKnockback (player, Vector3.back, 15f);
 				GameObject temp;
 				temp = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation) as GameObject;
-				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				temp.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, SawedOff);
 				GameObject temp1;
 				temp1 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 10, 0)) as GameObject;
-				temp1.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				temp1.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, SawedOff);
 				GameObject temp2;
 				temp2 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -10, 0)) as GameObject;
-				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, SawedOff);
 				GameObject temp3;
 				temp2 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, -5, 0)) as GameObject;
-				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, SawedOff);
 				GameObject temp4;
 				temp2 = Instantiate (bullet, sawedOffBulletShootingPoint.transform.position, transform.rotation * Quaternion.Euler (0, 5, 0)) as GameObject;
-				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, sawedOff);
+				temp2.GetComponent<BulletMoving> ().SetShooterInfo (player, playerLocation, SawedOff);
 			}
 
 			currentClipSize--;

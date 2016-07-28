@@ -207,16 +207,8 @@ public class PlayerBase : MonoBehaviour {
 		return isGuarding;
 	}
 
-	public void SetIsGuarding(bool isGuarding) {
+	public void SetIsGuarding (bool isGuarding) {
 		this.isGuarding = isGuarding;
-	}
-
-	public bool GetIsGuardInputOn() {
-		return isGuardInputOn;
-	}
-
-	public bool GetIsGuardInputOff() {
-		return isGuardInputOff;
 	}
 
 	public void SetIsGuardInputOn(bool isGuardInputOn) {
