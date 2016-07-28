@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CameraFollow : MonoBehaviour {
+
+	public GameObject uiHolder;
+	private UpdateUI ui;
 	
 	private float highPoint;
 	private float lowPoint;
@@ -58,10 +61,20 @@ public class CameraFollow : MonoBehaviour {
 		leftPoint = 0;
 		rightPoint = 0;
 		yDistanceHelper = 1;
+
+		ui = uiHolder.GetComponent<UpdateUI> ();
 	}
 
 	public void SetActivePlayers(List<GameObject> activePlayers) {
-		this.activePlayers = activePlayers;
+		if (activePlayers.Count == 1) {
+			ui.ShowCongratulationText ();
+		} else {
+			this.activePlayers = activePlayers;
+		}
+	}
+
+	public List<GameObject> GetActivePlayers() {
+		return activePlayers;
 	}
 
 	void Update() {
@@ -121,8 +134,6 @@ public class CameraFollow : MonoBehaviour {
 		
 		yDistanceBetweenPlayers = highPoint - lowPoint;
 
-		print (yDistanceBetweenPlayers);
-
 		if (yDistanceBetweenPlayers > 20) {
 			if (yDistanceHelper < 100) {
 				yDistanceHelper = yDistanceHelper + 10f;
@@ -153,7 +164,6 @@ public class CameraFollow : MonoBehaviour {
 				startMediumLerp = false;
 				startMaximumLerp = false;
 				thresholdHelper = 0;
-				print ("close");
 			}
 
 			thresholdHelper += Time.deltaTime;
@@ -165,14 +175,12 @@ public class CameraFollow : MonoBehaviour {
 				startMediumLerp = false;
 				startMaximumLerp = true;
 				thresholdHelper = 0;
-				print ("long");
 			}
 			thresholdHelper += Time.deltaTime;
 			cameraPosition.y = Mathf.Lerp(previousYValueForLong, cameraYDistance * maxDistanceMultiplier, thresholdHelper);
 			previousYValue = cameraPosition.y;
 		} else if (cameraYDistance * maxDistanceMultiplier > maximumYDistance) {
 			cameraPosition.y = maximumYDistance;
-			print ("max");
 
 		} else {
 			if (!startMediumLerp) {
@@ -180,7 +188,6 @@ public class CameraFollow : MonoBehaviour {
 				startMediumLerp = true;
 				startMaximumLerp = false;
 				thresholdHelper = 0;
-				print ("medium");
 			}
 			thresholdHelper += Time.deltaTime;
 			cameraPosition.y = Mathf.Lerp (previousYValue, cameraYDistance * mediumDistanceMultiplier, thresholdHelper);

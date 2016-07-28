@@ -72,6 +72,8 @@ public class PlayerAttackReceived : MonoBehaviour {
 
 	void ReceiveDamage() {
 		//targetPlayer.decreaseHealth (attackingPlayer.GetComponent<PlayerMovement> ().GetAttackDamage ());
+		targetPlayer.decreaseHealth (100);
+
 	}
 
 	void DetermineAttackProperties() {
