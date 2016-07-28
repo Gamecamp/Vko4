@@ -5,11 +5,13 @@ public class PlayerHealthMonitor : MonoBehaviour {
 
 	PlayerMovement player;
 	float currentHealth;
+	float currentHealthPercentage;
 	int currentLives;
 
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
+		player.SetDeathHandled (false);
 	}
 	
 	// Update is called once per frame
@@ -24,15 +26,17 @@ public class PlayerHealthMonitor : MonoBehaviour {
 	}
 
 	void CheckAlive() {
-		if (currentHealth <= 0 && currentLives > 0) {
+		if (currentHealth <= 0 && currentLives > 0 && !player.GetDeathHandled()) {
 
 			currentLives = currentLives - 1;
 
 			player.SetCurrentLives (currentLives);
 			if (currentLives == 0) {
 				player.Kill ();
+				player.SetDeathHandled(true);
 			} else {
 				player.Respawn ();
+				player.SetDeathHandled(true);
 			}
 		}
 	}

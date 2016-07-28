@@ -23,6 +23,7 @@ public class PlayerBase : MonoBehaviour {
 	protected Vector3 respawnPoint = new Vector3(0,5,0);
 
 	protected bool isGrounded;
+	protected bool deathHandled;
 
 	protected bool isLightAttacking;
 	protected bool isHeavyAttacking;
@@ -119,6 +120,14 @@ public class PlayerBase : MonoBehaviour {
 
 	public void SetIsGrounded(bool isGrounded) {
 		this.isGrounded = isGrounded;
+	}
+
+	public bool GetDeathHandled() {
+		return deathHandled;
+	}
+
+	public void SetDeathHandled(bool deathHandled) {
+		this.deathHandled = deathHandled;
 	}
 
 	public bool GetIsAbleToEquip() {

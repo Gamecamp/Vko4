@@ -5,6 +5,9 @@ public class PlayerMovement : PlayerBase {
 
 	Rigidbody rigidBody;
 
+	UpdateUI updateUI;
+	public GameObject uiHolder;
+
 	private bool knockbackType;
 
 	private bool respawning;
@@ -14,8 +17,6 @@ public class PlayerMovement : PlayerBase {
 	private float respawnTimePassed = 0;
 	private float invulnerableTime = 3;
 	private float invulnerableTimePassed = 0;
-
-	float velocity;
 
 	Vector2 joystickInput;
 	Vector2 oldJoystickInput;
@@ -33,10 +34,11 @@ public class PlayerMovement : PlayerBase {
 		maxHealth = 100;
 		currentHealth = 100;
 		attackDamage = 50;
-		maxLives = 3;
+		maxLives = 5;
 		currentLives = maxLives;
 		SetRigidbody (rigidBody);
 		renderer = GetComponent<Renderer> ();
+		updateUI = uiHolder.GetComponent<UpdateUI> ();
 	}
 	
 	// Update is called once per frame
@@ -126,6 +128,7 @@ public class PlayerMovement : PlayerBase {
 			respawnTimePassed = respawnTimePassed + Time.deltaTime;
 
 			if (respawnTimePassed > respawnTime) {
+				deathHandled = false;
 				invulnerable = true;
 				StartCoroutine (Blink ());
 				respawning = false;
@@ -148,6 +151,7 @@ public class PlayerMovement : PlayerBase {
 	}
 
 	public void Respawn() {
+		updateUI.RemoveLife (gameObject.name);
 		respawning = true;
 	}
 
