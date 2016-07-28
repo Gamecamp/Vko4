@@ -121,8 +121,6 @@ public class CameraFollow : MonoBehaviour {
 		
 		yDistanceBetweenPlayers = highPoint - lowPoint;
 
-		print (yDistanceBetweenPlayers);
-
 		if (yDistanceBetweenPlayers > 20) {
 			if (yDistanceHelper < 100) {
 				yDistanceHelper = yDistanceHelper + 10f;
@@ -153,7 +151,6 @@ public class CameraFollow : MonoBehaviour {
 				startMediumLerp = false;
 				startMaximumLerp = false;
 				thresholdHelper = 0;
-				print ("close");
 			}
 
 			thresholdHelper += Time.deltaTime;
@@ -165,14 +162,12 @@ public class CameraFollow : MonoBehaviour {
 				startMediumLerp = false;
 				startMaximumLerp = true;
 				thresholdHelper = 0;
-				print ("long");
 			}
 			thresholdHelper += Time.deltaTime;
 			cameraPosition.y = Mathf.Lerp(previousYValueForLong, cameraYDistance * maxDistanceMultiplier, thresholdHelper);
 			previousYValue = cameraPosition.y;
 		} else if (cameraYDistance * maxDistanceMultiplier > maximumYDistance) {
 			cameraPosition.y = maximumYDistance;
-			print ("max");
 
 		} else {
 			if (!startMediumLerp) {
@@ -180,7 +175,6 @@ public class CameraFollow : MonoBehaviour {
 				startMediumLerp = true;
 				startMaximumLerp = false;
 				thresholdHelper = 0;
-				print ("medium");
 			}
 			thresholdHelper += Time.deltaTime;
 			cameraPosition.y = Mathf.Lerp (previousYValue, cameraYDistance * mediumDistanceMultiplier, thresholdHelper);
@@ -192,7 +186,8 @@ public class CameraFollow : MonoBehaviour {
 
 		cameraZDistance = (cameraPosition.y) / tanZ;
 
-		cameraPosition.z = cameraPosition.z - cameraZDistance + yMargin;
+		cameraPosition.z = cameraPosition.z - cameraZDistance;
+		cameraPosition.y = cameraPosition.y + yMargin;
 
 
 

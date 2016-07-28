@@ -79,9 +79,11 @@ public class PlayerBase : MonoBehaviour {
 	public void IsPlayerGrounded() {
 		RaycastHit hit;
 
-		if (Physics.Raycast (transform.position, Vector3.down, out hit, GetComponent<BoxCollider>().bounds.extents.y)) {
+		if (Physics.Raycast (transform.position, Vector3.down, out hit, GetComponent<Collider>().bounds.extents.y + 10)) {
+			print ("GROUNDED");
 			isGrounded = true;
 		} else {
+			print ("NOT FUCKING GROUNDED");
 			isGrounded = false;
 		}
 

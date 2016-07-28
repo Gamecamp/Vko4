@@ -32,7 +32,7 @@ public class PlayerStateHandling : MonoBehaviour {
 		player.SetIsJumpInput(InputManager.GetButtonDownInput (gameObject.name, "AButton"));
 		player.SetIsGuarding (InputManager.GetButtonInput (gameObject.name, "LBButton"));
 		player.SetIsAction1Input (InputManager.GetButtonDownInput (gameObject.name, "XButton"));
-		player.SetIsAction2Input (InputManager.GetButtonDownInput (gameObject.name, "BButton"));
+		player.SetIsSpecial1Input (InputManager.GetButtonDownInput (gameObject.name, "BButton"));
 		//player.SetIsSpecial1Input
 		player.SetIsThrowingInput (InputManager.GetButtonDownInput (gameObject.name, "RBButton"));
 		player.SetIsEquipInput (InputManager.GetButtonDownInput(gameObject.name, "YButton"));

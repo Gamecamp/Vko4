@@ -63,8 +63,12 @@ public class PlayerDashSpecial : MonoBehaviour {
 			if (facingDirection != Vector3.zero) {
 				transform.forward = facingDirection;
 			}
+
+			print (dashPassedDuration);
+
 			if (dashPassedDuration >= dashMaxDuration) {
 				ResetDash ();
+				print ("yolo");
 			}
 		}
 	}
