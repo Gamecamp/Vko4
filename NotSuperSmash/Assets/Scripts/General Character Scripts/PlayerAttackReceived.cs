@@ -25,6 +25,8 @@ public class PlayerAttackReceived : MonoBehaviour {
 	string sawedOffBullet = "sawedOffBullet";
 	string katanaLight = "katanaLight";
 	string katanaHeavy = "katanaHeavy";
+	string spearLight = "spearLight";
+	string spearHeavy = "spearHeavy";
 
 
 	// Use this for initialization
@@ -100,6 +102,12 @@ public class PlayerAttackReceived : MonoBehaviour {
 		} else if (attackType == katanaHeavy) {
 			knockbackAmount = 40;
 			staggerDuration = 1;
+		} else if (attackType == spearLight) {
+			knockbackAmount = 20;
+			staggerDuration = 1;
+		} else if (attackType == spearHeavy) {
+			knockbackAmount = 25;
+			staggerDuration = 2;
 		}
 	}
 

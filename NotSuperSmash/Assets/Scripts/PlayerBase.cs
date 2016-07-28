@@ -39,6 +39,7 @@ public class PlayerBase : MonoBehaviour {
 	protected bool isShotgunEquipped;
 	protected bool isKatanaEquipped;
 	protected bool isSawedOffEquipped;
+	protected bool isSpearEquipped;
 
 	protected bool isUsingSpecial1;
 
@@ -358,7 +359,15 @@ public class PlayerBase : MonoBehaviour {
 	public bool GetIsKatanaEquipped() {
 		return isKatanaEquipped;
 	}
-	
+
+	public void SetIsSpearEquipped(bool isSpearEquipped) {
+		this.isSpearEquipped = isSpearEquipped;
+	}
+
+	public bool GetIsSpearEquipped() {
+		return isSpearEquipped;
+	}
+
 	public float GetMaxHealth() {
 		return maxHealth;
 	}

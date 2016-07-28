@@ -19,6 +19,8 @@ public class AttackMechanics : MonoBehaviour {
 	string baseballBatHeavy = "baseballBatHeavy";
 	string katanaLight = "katanaLight";
 	string katanaHeavy = "katanaHeavy";
+	string spearLight = "spearLight";
+	string spearHeavy = "spearHeavy";
 
 	string attackType;
 
@@ -77,6 +79,14 @@ public class AttackMechanics : MonoBehaviour {
 				force = 6000;
 			} else if (gameObject.name == "BaseballBatHeavyHitbox" + parent.name) {
 				force = 8000;
+			} else if (gameObject.name == "KatanaLightHitbox" + parent.name) {
+				force = 6000;
+			} else if (gameObject.name == "KatanaHeavyHitbox" + parent.name) {
+				force = 8000;
+			} else if (gameObject.name == "SpearLightHitbox" + parent.name) {
+				force = 6000;
+			} else if (gameObject.name == "SpearHeavyHitbox" + parent.name) {
+				force = 8000;
 			}
 		
 			rb.AddForce ((col.gameObject.transform.position - attackerLocation.transform.position)*force);
@@ -97,6 +107,10 @@ public class AttackMechanics : MonoBehaviour {
 			attackType = katanaLight;
 		} else if (gameObject.name == "KatanaHeavyHitbox") {
 			attackType = katanaHeavy;
+		} else if (gameObject.name == "SpearLightHitbox") {
+			attackType = spearLight;
+		} else if (gameObject.name == "SpearHeavyHitbox") {
+			attackType = spearHeavy;
 		}
 	}
 }

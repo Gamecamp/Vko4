@@ -85,5 +85,5 @@ public class PlayerStateHandling : MonoBehaviour {
 		} else {
 			player.SetCanInputActionsMove (true);
 		}
-				}
+	}
 }
