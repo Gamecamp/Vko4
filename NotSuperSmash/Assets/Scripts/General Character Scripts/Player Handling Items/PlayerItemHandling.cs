@@ -19,12 +19,14 @@ public class PlayerItemHandling : MonoBehaviour {
 	public GameObject shotgunObj;
 	public GameObject katanaObj;
 	public GameObject sawedOffObj;
+	public GameObject spearObj;
 
 	public GameObject throwBaseballBat;
 	public GameObject throwPistol;
 	public GameObject throwShotgun;
 	public GameObject throwKatana;
 	public GameObject throwSawedOff;
+	public GameObject throwSpear;
 
 	const string unarmed = "unarmed";
 	const string baseballBat = "baseballBat";
@@ -32,6 +34,7 @@ public class PlayerItemHandling : MonoBehaviour {
 	const string shotgun = "shotgun";
 	const string katana = "katana";
 	const string sawedOff = "sawedOff";
+	const string spear = "spear";
 
 	// Use this for initialization
 	void Start () {
@@ -46,6 +49,7 @@ public class PlayerItemHandling : MonoBehaviour {
 		shotgunObj.SetActive (false);
 		katanaObj.SetActive (false);
 		sawedOffObj.SetActive (false);
+		spearObj.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -95,6 +99,7 @@ public class PlayerItemHandling : MonoBehaviour {
 			shotgunObj.SetActive (false);
 			katanaObj.SetActive (false);
 			sawedOffObj.SetActive (false);
+			spearObj.SetActive (false);
 			attackManager.SetActiveWeapon (unarmed);
 			break;
 		case baseballBat:
@@ -130,6 +135,12 @@ public class PlayerItemHandling : MonoBehaviour {
 			GetComponent<Bullet> ().SetCurrentClipSize ();
 			currentThrowable = throwSawedOff;
 			break;
+		case spear:
+			spearObj.SetActive (true);
+			attackManager.SetActiveWeapon (spear);
+			player.SetIsSpearEquipped (true);
+			currentThrowable = throwSpear;
+			break;
 		}
 	}
 
@@ -148,5 +159,6 @@ public class PlayerItemHandling : MonoBehaviour {
 		player.SetIsShotgunEquipped (false);
 		player.SetIsKatanaEquipped (false);
 		player.SetIsSawedOffEquipped (false);
+		player.SetIsSpearEquipped (false);
 	}
 }

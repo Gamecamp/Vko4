@@ -236,6 +236,7 @@ GameObject:
   - 114: {fileID: 11449810}
   - 114: {fileID: 11468104}
   - 114: {fileID: 11465268}
+  - 114: {fileID: 11446792}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -330,6 +331,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &162614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 425790}
+  - 65: {fileID: 6533928}
+  m_Layer: 0
+  m_Name: CollisionHurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &165076
 GameObject:
   m_ObjectHideFlags: 1
@@ -341,7 +358,7 @@ GameObject:
   - 65: {fileID: 6561914}
   - 114: {fileID: 11405492}
   m_Layer: 0
-  m_Name: KatanaBatHeavyHitbox
+  m_Name: KatanaHeavyHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,7 +536,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 460876}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!4 &418032
 Transform:
   m_ObjectHideFlags: 1
@@ -574,6 +591,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436756}
   m_RootOrder: 0
+--- !u!4 &425790
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3281229, y: 0.55228066, z: 1.1313196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 460876}
+  m_RootOrder: 7
 --- !u!4 &436756
 Transform:
   m_ObjectHideFlags: 1
@@ -676,7 +706,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.82, y: 6.11, z: 16.25}
+  m_LocalPosition: {x: 7.4, y: 16.98, z: 16.25}
   m_LocalScale: {x: 1, y: 1.7833574, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -687,6 +717,7 @@ Transform:
   - {fileID: 464234}
   - {fileID: 465412}
   - {fileID: 446712}
+  - {fileID: 425790}
   - {fileID: 410024}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1430,6 +1461,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6533928
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6538100
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1595,11 +1638,13 @@ MonoBehaviour:
   shotgunObj: {fileID: 119500}
   katanaObj: {fileID: 149058}
   sawedOffObj: {fileID: 194024}
+  spearObj: {fileID: 0}
   throwBaseballBat: {fileID: 135554, guid: 9e7cc112bda3468499b2133c444f68dc, type: 2}
   throwPistol: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
   throwShotgun: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
   throwKatana: {fileID: 191268, guid: 7bec2283ff2b2bc4eb33d2f63a54e18f, type: 2}
   throwSawedOff: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
+  throwSpear: {fileID: 0}
 --- !u!114 &11441066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1626,6 +1671,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 144464}
   attackerLocation: {fileID: 100346}
+--- !u!114 &11446792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb19fc0b915d0574abb94fac2fc69386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionHurtbox: {fileID: 162614}
 --- !u!114 &11449810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1643,7 +1700,9 @@ MonoBehaviour:
   baseballBatHeavyHitbox: {fileID: 131270}
   katanaLightHitbox: {fileID: 174614}
   katanaHeavyHitbox: {fileID: 165076}
-  rangedWeaponPseudoHitbox: {fileID: 127666}
+  spearLightHitbox: {fileID: 0}
+  spearHeavyHitbox: {fileID: 0}
+  rangedWeaponPseudoHitbox: {fileID: 0}
 --- !u!114 &11451368
 MonoBehaviour:
   m_ObjectHideFlags: 1

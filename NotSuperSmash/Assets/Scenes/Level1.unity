@@ -173,36 +173,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 460876, guid: 15f323701965f8547b3de44458e0a504, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11449810, guid: 15f323701965f8547b3de44458e0a504, type: 2}
       propertyPath: rangedWeaponPseudoHitbox
       value: 
       objectReference: {fileID: 1052737312}
-    - target: {fileID: 11435206, guid: 15f323701965f8547b3de44458e0a504, type: 2}
-      propertyPath: throwKatana
-      value: 
-      objectReference: {fileID: 191268, guid: 7bec2283ff2b2bc4eb33d2f63a54e18f, type: 2}
-    - target: {fileID: 11435206, guid: 15f323701965f8547b3de44458e0a504, type: 2}
-      propertyPath: throwShotgun
-      value: 
-      objectReference: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
-    - target: {fileID: 11435206, guid: 15f323701965f8547b3de44458e0a504, type: 2}
-      propertyPath: throwSawedOff
-      value: 
-      objectReference: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
-    - target: {fileID: 11435206, guid: 15f323701965f8547b3de44458e0a504, type: 2}
-      propertyPath: throwPistol
-      value: 
-      objectReference: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
-    - target: {fileID: 11435206, guid: 15f323701965f8547b3de44458e0a504, type: 2}
-      propertyPath: throwBaseballBat
-      value: 
-      objectReference: {fileID: 135554, guid: 9e7cc112bda3468499b2133c444f68dc, type: 2}
-    - target: {fileID: 410024, guid: 15f323701965f8547b3de44458e0a504, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15f323701965f8547b3de44458e0a504, type: 2}
   m_IsPrefabParent: 0
@@ -557,7 +533,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 487774, guid: af97ea93f32ccf245bd711319be1a873, type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11495446, guid: af97ea93f32ccf245bd711319be1a873, type: 2}
       propertyPath: rangedWeaponPseudoHitbox
@@ -3353,47 +3329,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1968194485}
   m_RootOrder: 2
---- !u!1 &875803869
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 875803870}
-  - 65: {fileID: 875803871}
-  m_Layer: 0
-  m_Name: CollisionHurtbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &875803870
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 875803869}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3281229, y: 0.55228066, z: 1.1313196}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1299252465}
-  m_RootOrder: 7
---- !u!65 &875803871
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 875803869}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &876775381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3865,7 +3800,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 414252, guid: 375e28eafb8703d4ca227dc641e90f4b, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 146694, guid: 375e28eafb8703d4ca227dc641e90f4b, type: 2}
       propertyPath: m_Name
@@ -4841,22 +4776,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 144464, guid: 15f323701965f8547b3de44458e0a504, type: 2}
   m_PrefabInternal: {fileID: 56707011}
---- !u!4 &1299252465 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 460876, guid: 15f323701965f8547b3de44458e0a504, type: 2}
-  m_PrefabInternal: {fileID: 56707011}
---- !u!114 &1299252466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1299252450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb19fc0b915d0574abb94fac2fc69386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionHurtbox: {fileID: 875803869}
 --- !u!1001 &1325922675
 Prefab:
   m_ObjectHideFlags: 0
@@ -4894,7 +4813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 421470, guid: e747c76b87ddf1c479a3bfba7594cf5a, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e747c76b87ddf1c479a3bfba7594cf5a, type: 2}
