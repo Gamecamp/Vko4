@@ -6,7 +6,7 @@ AvatarMask:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: HoldWeapon
-  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Mask: 00000000000000000000000000000000000000000100000001000000010000000100000000000000000000000000000000000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
@@ -49,21 +49,21 @@ AvatarMask:
   - m_Path: Armature/stomach/chest/L_shoulder/L_arm1/L_arm2
     m_Weight: 1
   - m_Path: Armature/stomach/chest/neck
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/neck/head
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/neck/head/L_headmidpiece
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/neck/head/L_headmidpiece/L_ear1/L_ear2
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/neck/head/R_headmidpiece
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/neck/head/R_headmidpiece/R_ear1/R_ear2
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/chest/R_shoulder
     m_Weight: 1
   - m_Path: Armature/stomach/chest/R_shoulder/R_arm1
@@ -71,16 +71,16 @@ AvatarMask:
   - m_Path: Armature/stomach/chest/R_shoulder/R_arm1/R_arm2
     m_Weight: 1
   - m_Path: Armature/stomach/L_hip
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/L_hip/L_leg1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/L_hip/L_leg1/L_leg2
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/R_hip
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/R_hip/R_leg1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/stomach/R_hip/R_leg1/R_leg2
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Cube
     m_Weight: 1

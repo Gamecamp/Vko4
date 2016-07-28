@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerHealthMonitor : MonoBehaviour {
+
+	public GameObject camera;
+	private CameraFollow camFollow;
 
 	PlayerMovement player;
 	float currentHealth;
@@ -12,6 +16,7 @@ public class PlayerHealthMonitor : MonoBehaviour {
 	void Start () {
 		player = GetComponent<PlayerMovement> ();
 		player.SetDeathHandled (false);
+		camFollow = camera.GetComponent<CameraFollow> ();
 	}
 	
 	// Update is called once per frame
@@ -33,10 +38,17 @@ public class PlayerHealthMonitor : MonoBehaviour {
 			player.SetCurrentLives (currentLives);
 			if (currentLives == 0) {
 				player.Kill ();
-				player.SetDeathHandled(true);
+				player.SetDeathHandled (true);
+				List<GameObject> activePlayers = camFollow.GetActivePlayers();
+				for (int i = 0; activePlayers.Count > i; i++) {
+					if (activePlayers [i].name == gameObject.name) {
+						activePlayers.RemoveAt (i);
+						camFollow.SetActivePlayers(activePlayers);
+					}
+				}
 			} else {
 				player.Respawn ();
-				player.SetDeathHandled(true);
+				player.SetDeathHandled (true);
 			}
 		}
 	}

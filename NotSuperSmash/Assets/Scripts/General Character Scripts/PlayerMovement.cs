@@ -160,6 +160,7 @@ public class PlayerMovement : PlayerBase {
 	}
 
 	public void Kill() {
+		updateUI.RemoveLife (gameObject.name);
 		SetIsStaggered (true);
 		SetStaggerDuration (1000f);
 	}

@@ -23,16 +23,17 @@ public class PlayerCollisionDamage : MonoBehaviour {
 			ApplyCollisionDamage ();
 			StopKnockback ();
 
-			print ("Collision damage = " + collisionDamage);
 		}
 	}
 
 	void CountCollisionDamage() {
-		if (player.GetVelocity () > maximumCollisionDamage) {
-			collisionDamage = maximumCollisionDamage;
-		} else {
-			collisionDamage = player.GetVelocity ();
-		}
+//		if (player.GetVelocity () > maximumCollisionDamage) {
+//			collisionDamage = maximumCollisionDamage;
+//		} else {
+//			collisionDamage = player.GetVelocity ();
+//		}
+
+		collisionDamage = 100;
 	}
 
 	void ApplyCollisionDamage() {

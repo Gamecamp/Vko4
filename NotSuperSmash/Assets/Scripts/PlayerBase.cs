@@ -390,7 +390,7 @@ public class PlayerBase : MonoBehaviour {
 		this.currentLives = currentLives;
 	}
 
-	public void decreaseHealth(float damage) {
+	public void DecreaseHealth(float damage) {
 		if (currentHealth - damage <= 0) {
 			currentHealth = 0;
 		} else {

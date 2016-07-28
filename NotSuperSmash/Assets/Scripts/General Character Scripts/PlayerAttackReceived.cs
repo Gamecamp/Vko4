@@ -71,41 +71,53 @@ public class PlayerAttackReceived : MonoBehaviour {
 	}
 
 	void ReceiveDamage() {
-		//targetPlayer.decreaseHealth (attackingPlayer.GetComponent<PlayerMovement> ().GetAttackDamage ());
+		//targetPlayer.DecreaseHealth (attackingPlayer.GetComponent<PlayerMovement> ().GetAttackDamage ());
+		targetPlayer.DecreaseHealth (damageAmount);
 	}
 
 	void DetermineAttackProperties() {
 		if (attackType == unarmedAttack) {
+			damageAmount = 20;
 			knockbackAmount = 20;
 			staggerDuration = 1;
 		} else if (attackType == unarmedHeavyAttack) {
+			damageAmount = 20;
 			knockbackAmount = 30;
 			staggerDuration = 1;
 		} else if (attackType == baseballBatLight) {
+			damageAmount = 25;
 			knockbackAmount = 40;
 			staggerDuration = 1;
 		} else if (attackType == baseballBatHeavy) {
+			damageAmount = 25;
 			knockbackAmount = 50;
 			staggerDuration = 1;
 		} else if (attackType == pistolBullet) {
+			damageAmount = 50;
 			knockbackAmount = 15;
 			staggerDuration = 0.2f;
 		} else if (attackType == shotgunBullet) {
+			damageAmount = 30;
 			knockbackAmount = 25;
 			staggerDuration = 1.5f;
 		} else if (attackType == sawedOffBullet) {
+			damageAmount = 30;
 			knockbackAmount = 35;
 			staggerDuration = 2f;
 		} else if (attackType == katanaLight) {
+			damageAmount = 40;
 			knockbackAmount = 20;
 			staggerDuration = 1;
 		} else if (attackType == katanaHeavy) {
+			damageAmount = 40;
 			knockbackAmount = 40;
 			staggerDuration = 1;
 		} else if (attackType == spearLight) {
+			damageAmount = 35;
 			knockbackAmount = 20;
 			staggerDuration = 1;
 		} else if (attackType == spearHeavy) {
+			damageAmount = 35;
 			knockbackAmount = 25;
 			staggerDuration = 2;
 		}

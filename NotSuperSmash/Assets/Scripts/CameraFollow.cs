@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CameraFollow : MonoBehaviour {
+
+	public GameObject uiHolder;
+	private UpdateUI ui;
 	
 	private float highPoint;
 	private float lowPoint;
@@ -58,10 +61,20 @@ public class CameraFollow : MonoBehaviour {
 		leftPoint = 0;
 		rightPoint = 0;
 		yDistanceHelper = 1;
+
+		ui = uiHolder.GetComponent<UpdateUI> ();
 	}
 
 	public void SetActivePlayers(List<GameObject> activePlayers) {
-		this.activePlayers = activePlayers;
+		if (activePlayers.Count == 1) {
+			ui.ShowCongratulationText ();
+		} else {
+			this.activePlayers = activePlayers;
+		}
+	}
+
+	public List<GameObject> GetActivePlayers() {
+		return activePlayers;
 	}
 
 	void Update() {

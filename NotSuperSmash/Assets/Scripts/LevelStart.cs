@@ -14,6 +14,8 @@ public class LevelStart : MonoBehaviour {
 	public GameObject player3HealthBar;
 	public GameObject player4HealthBar;
 
+	public GameObject congratulationText;
+
 	public GameObject camera;
 
 	private CameraFollow cameraFollow;
@@ -31,6 +33,7 @@ public class LevelStart : MonoBehaviour {
 		player3Active = PlayerPrefs.GetInt ("Player3");
 		player4Active = PlayerPrefs.GetInt ("Player4");
 
+		congratulationText.SetActive (false);
 		cameraFollow = camera.GetComponent<CameraFollow> ();
 
 		if (player1Active == 0) {

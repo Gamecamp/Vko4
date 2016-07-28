@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Director;
 public class PlayerAnimationHandler : MonoBehaviour {
 
 	private PlayerMovement player;
-	private Animator anim;
+	public Animator anim;
 
 	private string unarmedLightCombo;
 	private string unarmedHeavyCombo;
@@ -24,7 +24,7 @@ public class PlayerAnimationHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponentInChildren<Animator> ();
+		//anim = GetComponentInChildren<Animator> ();
 		player = GetComponent<PlayerMovement> ();
 
 		unarmedLightCombo = "unarmedLight";
@@ -63,8 +63,8 @@ public class PlayerAnimationHandler : MonoBehaviour {
 		anim.SetBool (animationBool, b);
 	}
 
-	public void SetAnimationFloat(string name, float value) {
-		anim.SetFloat (name, value);
+	public void SetAnimationFloat(string name, float f) {
+		anim.SetFloat (name, f);
 	}
 
 	public void SetAnimationTrigger(string animationTrigger) {

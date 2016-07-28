@@ -278,7 +278,7 @@ GameObject:
   - 65: {fileID: 6561818}
   - 114: {fileID: 11412134}
   m_Layer: 0
-  m_Name: UnarmedHitboxPlayer2
+  m_Name: UnarmedHitbox
   m_TagString: GrapplingHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,6 +307,7 @@ GameObject:
   - 114: {fileID: 11446058}
   - 114: {fileID: 11438104}
   - 114: {fileID: 11458192}
+  - 114: {fileID: 11425416}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -363,6 +364,22 @@ GameObject:
   - 23: {fileID: 2347080}
   m_Layer: 0
   m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &171726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 457972}
+  - 65: {fileID: 6546700}
+  m_Layer: 0
+  m_Name: CollisionHurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,7 +515,7 @@ GameObject:
   - 65: {fileID: 6504574}
   - 114: {fileID: 11481590}
   m_Layer: 0
-  m_Name: UnarmedHeavyHitboxPlayer2
+  m_Name: UnarmedHeavyHitbox
   m_TagString: GrapplingHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -828,6 +845,19 @@ Transform:
   - {fileID: 481504}
   m_Father: {fileID: 430512}
   m_RootOrder: 3
+--- !u!4 &457972
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.64}
+  m_LocalScale: {x: 0.7075634, y: 0.5185285, z: 0.3902277}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 487774}
+  m_RootOrder: 7
 --- !u!4 &461980
 Transform:
   m_ObjectHideFlags: 1
@@ -935,7 +965,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 487774}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!4 &485500
 Transform:
   m_ObjectHideFlags: 1
@@ -975,7 +1005,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 487774}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!4 &487774
 Transform:
   m_ObjectHideFlags: 1
@@ -994,6 +1024,7 @@ Transform:
   - {fileID: 495794}
   - {fileID: 427468}
   - {fileID: 486464}
+  - {fileID: 457972}
   - {fileID: 486558}
   - {fileID: 484848}
   m_Father: {fileID: 0}
@@ -1789,6 +1820,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6546700
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6550922
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2024,6 +2067,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66264aa67f8484946bb15f712e2d4216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11425416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb19fc0b915d0574abb94fac2fc69386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionHurtbox: {fileID: 171726}
 --- !u!114 &11427838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2088,6 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a195e99807214d949907b45f7ff1761d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!114 &11458192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2137,8 +2193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bef7dc933be9b4dac4e8c8cdd58d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 15
-  runSpeed: 1.5
+  jumpPower: 30
+  runSpeed: 4
+  uiHolder: {fileID: 0}
 --- !u!114 &11481590
 MonoBehaviour:
   m_ObjectHideFlags: 1

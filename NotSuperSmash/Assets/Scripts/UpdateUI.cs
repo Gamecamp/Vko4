@@ -29,6 +29,9 @@ public class UpdateUI : MonoBehaviour {
 	private PlayerMovement player3HP;
 	private PlayerMovement player4HP;
 
+
+	public GameObject congratulationText;
+
 	private float originalSize = 200;
 
 	// Use this for initialization
@@ -98,5 +101,9 @@ public class UpdateUI : MonoBehaviour {
 			player4Lives [(int)player4HP.GetCurrentLives()].SetActive (false);
 			break;
 		}
+	}
+
+	public void ShowCongratulationText() {
+		congratulationText.SetActive (true);
 	}
 }
