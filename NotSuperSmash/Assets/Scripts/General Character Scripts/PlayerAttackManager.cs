@@ -96,23 +96,17 @@ public class PlayerAttackManager : MonoBehaviour {
 			animHandler.SetAnimationTrigger (attackType);
 		}
 	}
-
-	public void ActivateHitbox() {
-		hitboxUsedInAttack.SetActive (true);
+	public void ActivateComboing() {
 		canCombo = true;
 	}
 
-	/*
-		if (activeWeapon == pistol) {
-			GetComponent<Bullet> ().Shoot (0.5f);
-		} else if (activeWeapon == shotgun) {
-			GetComponent<Bullet> ().Shoot (1.5f);
-		} else if (activeWeapon == sawedOff) {
-			GetComponent<Bullet> ().Shoot (1.5f);
-		} else {
-			hitboxUsedInAttack.SetActive (true);
-		}
-	*/
+	public void DeactivateComboing() {
+		canCombo = false;
+	}
+
+	public void ActivateHitbox() {
+		hitboxUsedInAttack.SetActive (true);
+	}
 
 	public void DeactivateHitbox() {
 		hitboxUsedInAttack.SetActive (false);
@@ -155,24 +149,6 @@ public class PlayerAttackManager : MonoBehaviour {
 				attackType = "meleeHeavy";
 			}
 			break;
-		case Pistol:
-			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			attackType = "ranged";
-			rateOfFire = 0.5f;
-			//maxChain = 8;
-			break;
-		case Shotgun:
-			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			attackType = "ranged";
-			rateOfFire = 1.5f;
-			//maxChain = 5;
-			break;
-		case SawedOff:
-			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
-			attackType = "ranged";
-			rateOfFire = 1.5f;
-			//maxChain = 5;
-			break;
 		case Spear:
 			if (player.GetIsLightAttacking()) {
 				hitboxUsedInAttack = spearLightHitbox;
@@ -182,6 +158,22 @@ public class PlayerAttackManager : MonoBehaviour {
 				attackType = "meleeHeavy";
 			}
 			break;
+		case Pistol:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			attackType = "ranged";
+			rateOfFire = 0.5f;
+			break;
+		case Shotgun:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			attackType = "ranged";
+			rateOfFire = 1.5f;
+			break;
+		case SawedOff:
+			hitboxUsedInAttack = rangedWeaponPseudoHitbox;
+			attackType = "ranged";
+			rateOfFire = 1.5f;
+			break;
+		
 		}
 	}
 
