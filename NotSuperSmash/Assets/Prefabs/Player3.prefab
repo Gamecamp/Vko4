@@ -108,7 +108,7 @@ GameObject:
   - 65: {fileID: 6506890}
   - 114: {fileID: 11485170}
   m_Layer: 0
-  m_Name: UnarmedHeavyHitboxPlayer3
+  m_Name: UnarmedHeavyHitbox
   m_TagString: GrapplingHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ GameObject:
   - 65: {fileID: 6533092}
   - 114: {fileID: 11458298}
   m_Layer: 0
-  m_Name: UnarmedHitboxPlayer3
+  m_Name: UnarmedHitbox
   m_TagString: GrapplingHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,8 +760,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 6.11, z: 16.25}
-  m_LocalScale: {x: 1, y: 1.7833574, z: 1}
+  m_LocalPosition: {x: 7.28, y: 10.96, z: 16.25}
+  m_LocalScale: {x: 1, y: 1.96, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 483218}
@@ -1531,11 +1531,13 @@ MonoBehaviour:
   shotgunObj: {fileID: 196202}
   katanaObj: {fileID: 152260}
   sawedOffObj: {fileID: 152524}
+  spearObj: {fileID: 0}
   throwBaseballBat: {fileID: 135554, guid: 9e7cc112bda3468499b2133c444f68dc, type: 2}
   throwPistol: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
   throwShotgun: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
   throwKatana: {fileID: 191268, guid: 7bec2283ff2b2bc4eb33d2f63a54e18f, type: 2}
   throwSawedOff: {fileID: 142254, guid: 8576fa9820c43824fa977446cd960435, type: 2}
+  throwSpear: {fileID: 0}
 --- !u!114 &11408074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1623,6 +1625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a195e99807214d949907b45f7ff1761d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!114 &11445674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1651,6 +1654,8 @@ MonoBehaviour:
   baseballBatHeavyHitbox: {fileID: 123616}
   katanaLightHitbox: {fileID: 129608}
   katanaHeavyHitbox: {fileID: 166536}
+  spearLightHitbox: {fileID: 0}
+  spearHeavyHitbox: {fileID: 0}
   rangedWeaponPseudoHitbox: {fileID: 0}
 --- !u!114 &11450620
 MonoBehaviour:
@@ -1676,8 +1681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bef7dc933be9b4dac4e8c8cdd58d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 15
-  runSpeed: 1.5
+  jumpPower: 30
+  runSpeed: 4
+  uiHolder: {fileID: 0}
 --- !u!114 &11458298
 MonoBehaviour:
   m_ObjectHideFlags: 1
