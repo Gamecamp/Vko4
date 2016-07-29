@@ -78,44 +78,44 @@ public class PlayerAttackReceived : MonoBehaviour {
 	void DetermineAttackProperties() {
 		if (attackType == unarmedAttack) {
 			damageAmount = 20;
-			knockbackAmount = 20;
-			staggerDuration = 1;
+			knockbackAmount = 50;
+			staggerDuration = 0.5f;
 		} else if (attackType == unarmedHeavyAttack) {
 			damageAmount = 20;
 			knockbackAmount = 30;
 			staggerDuration = 1;
 		} else if (attackType == baseballBatLight) {
 			damageAmount = 25;
-			knockbackAmount = 40;
-			staggerDuration = 1;
+			knockbackAmount = 100;
+			staggerDuration = 0.5f;
 		} else if (attackType == baseballBatHeavy) {
 			damageAmount = 25;
 			knockbackAmount = 50;
 			staggerDuration = 1;
 		} else if (attackType == pistolBullet) {
-			damageAmount = 50;
-			knockbackAmount = 15;
-			staggerDuration = 0.2f;
+			damageAmount = 40;
+			knockbackAmount = 50;
+			staggerDuration = 0.1f;
 		} else if (attackType == shotgunBullet) {
 			damageAmount = 30;
-			knockbackAmount = 25;
-			staggerDuration = 1.5f;
+			knockbackAmount = 50;
+			staggerDuration = 0.5f;
 		} else if (attackType == sawedOffBullet) {
 			damageAmount = 30;
-			knockbackAmount = 35;
-			staggerDuration = 2f;
+			knockbackAmount = 70;
+			staggerDuration = 0.5f;
 		} else if (attackType == katanaLight) {
-			damageAmount = 40;
-			knockbackAmount = 20;
-			staggerDuration = 1;
+			damageAmount = 50;
+			knockbackAmount = 50;
+			staggerDuration = 0.1f;
 		} else if (attackType == katanaHeavy) {
 			damageAmount = 40;
 			knockbackAmount = 40;
 			staggerDuration = 1;
 		} else if (attackType == spearLight) {
 			damageAmount = 35;
-			knockbackAmount = 20;
-			staggerDuration = 1;
+			knockbackAmount = 50;
+			staggerDuration = 0.1f;
 		} else if (attackType == spearHeavy) {
 			damageAmount = 35;
 			knockbackAmount = 25;

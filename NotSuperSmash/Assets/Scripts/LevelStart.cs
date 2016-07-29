@@ -28,6 +28,12 @@ public class LevelStart : MonoBehaviour {
 	private int player4Active;
 
 	void Awake() {
+
+		PlayerPrefs.SetInt ("Player1", 1);
+		PlayerPrefs.SetInt ("Player2", 1);
+		PlayerPrefs.SetInt ("Player3", 1);
+		PlayerPrefs.SetInt ("Player4", 0);
+
 		player1Active = PlayerPrefs.GetInt ("Player1");
 		player2Active = PlayerPrefs.GetInt ("Player2");
 		player3Active = PlayerPrefs.GetInt ("Player3");

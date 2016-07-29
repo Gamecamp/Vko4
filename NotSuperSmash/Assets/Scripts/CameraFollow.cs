@@ -147,6 +147,12 @@ public class CameraFollow : MonoBehaviour {
 			
 		highPoint = highPoint + yDistanceHelper;
 
+		if (lowPoint > 20) {
+			minimumYDistance = 50;
+		} else {
+			minimumYDistance = 25;
+		}
+
 		distanceBetweenGuys = new Vector3 (rightPoint, highPoint, upPoint) - new Vector3 (leftPoint, lowPoint, downPoint);
 	}
 
@@ -158,7 +164,7 @@ public class CameraFollow : MonoBehaviour {
 
 
 
-		if (cameraYDistance * mediumDistanceMultiplier < minimumYDistance) {
+		if (cameraYDistance * mediumDistanceMultiplier < minimumYDistance && lowPoint != 0) {
 			if (!startMinimumLerp) {
 				startMinimumLerp = true;
 				startMediumLerp = false;

@@ -138,6 +138,7 @@ public class PlayerMovement : PlayerBase {
 				respawning = false;
 				respawnTimePassed = 0;
 				ResetStatus ();
+				transform.Rotate (0, 0, 0);
 			}
 		}
 
@@ -157,12 +158,15 @@ public class PlayerMovement : PlayerBase {
 	public void Respawn() {
 		updateUI.RemoveLife (gameObject.name);
 		respawning = true;
+		SetStaggerDuration (3f);
+		transform.Rotate (90, 0, 0);
 	}
 
 	public void Kill() {
 		updateUI.RemoveLife (gameObject.name);
 		SetIsStaggered (true);
 		SetStaggerDuration (1000f);
+		transform.Rotate (90, 0, 0);
 	}
 
 	IEnumerator Blink() {

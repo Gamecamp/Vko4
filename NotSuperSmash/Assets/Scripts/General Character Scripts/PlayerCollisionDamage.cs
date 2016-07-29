@@ -27,13 +27,11 @@ public class PlayerCollisionDamage : MonoBehaviour {
 	}
 
 	void CountCollisionDamage() {
-//		if (player.GetVelocity () > maximumCollisionDamage) {
-//			collisionDamage = maximumCollisionDamage;
-//		} else {
-//			collisionDamage = player.GetVelocity ();
-//		}
-
-		collisionDamage = 100;
+		if (player.GetVelocity () > maximumCollisionDamage) {
+			collisionDamage = maximumCollisionDamage;
+		} else {
+			collisionDamage = player.GetVelocity ();
+		}
 	}
 
 	void ApplyCollisionDamage() {

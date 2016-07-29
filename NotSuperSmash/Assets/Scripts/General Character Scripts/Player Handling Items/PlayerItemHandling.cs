@@ -148,6 +148,7 @@ public class PlayerItemHandling : MonoBehaviour {
 			attackManager.SetActiveWeapon (spear);
 			player.SetIsSpearEquipped (true);
 			currentThrowable = throwSpear;
+			anim.SetIsMelee (true);
 			break;
 		}
 	}

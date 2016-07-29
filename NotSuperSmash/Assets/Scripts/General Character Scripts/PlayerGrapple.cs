@@ -104,7 +104,7 @@ public class PlayerGrapple : MonoBehaviour {
 				throwingVector = new Vector3 (joystickInput.x, 0, joystickInput.y);
 
 				if (Mathf.Abs (throwingVector.x) > 0.5f || Mathf.Abs (throwingVector.z) > 0.5f) {
-					MyPhysics.ApplyKnockback (targetPlayer, throwingVector, 50);
+					MyPhysics.ApplyKnockback (targetPlayer, throwingVector, 70);
 					ResetGrapple ();
 				}
 			}
