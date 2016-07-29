@@ -98,7 +98,7 @@ public class StartMenu : MonoBehaviour {
 	void StartGame() {
 		SaveActivePlayers ();
 		playerSelectionAnimator.SetBool ("slideIn", false);
-		SceneManager.LoadScene ("Level1");
+		SceneManager.LoadScene ("FINAL LEVEL");
 	}
 
 	void SaveActivePlayers() {

@@ -26,9 +26,9 @@ public class CameraFollow : MonoBehaviour {
 
 	private float higherDistanceBetweenPlayers;
 
-	private float minimumYDistance = 20;
+	private float minimumYDistance = 25;
 	private float maximumYDistance = 90;
-	private float yMargin = 10;
+	private float yMargin = 15;
 	private float threshold = 80;
 	private float yDistanceHelper;
 

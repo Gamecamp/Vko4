@@ -281,7 +281,7 @@ GameObject:
   - 65: {fileID: 6556196}
   - 114: {fileID: 11451242}
   m_Layer: 0
-  m_Name: UnarmedHitboxPlayer1
+  m_Name: UnarmedHitbox
   m_TagString: GrapplingHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3122,8 +3122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCooldown: 2
-  dashSpeed: 40
-  dashMaxDuration: 0.2
+  dashSpeed: 100
+  dashMaxDuration: 0.4
 --- !u!114 &11427662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3243,6 +3243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a195e99807214d949907b45f7ff1761d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!114 &11451540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3303,8 +3304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bef7dc933be9b4dac4e8c8cdd58d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 15
-  runSpeed: 1.5
+  jumpPower: 30
+  runSpeed: 5
   uiHolder: {fileID: 0}
 --- !u!114 &11484196
 MonoBehaviour:

@@ -1,10 +1,20 @@
 fileFormatVersion: 2
 guid: db29aca9fcbc36d47b085ee9d22a78e3
-timeCreated: 1469635453
+timeCreated: 1469776628
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player1: {instanceID: 0}
+  - player2: {instanceID: 0}
+  - player3: {instanceID: 0}
+  - player4: {instanceID: 0}
+  - player1HealthBar: {instanceID: 0}
+  - player2HealthBar: {instanceID: 0}
+  - player3HealthBar: {instanceID: 0}
+  - player4HealthBar: {instanceID: 0}
+  - congratulationText: {instanceID: 0}
+  - camera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

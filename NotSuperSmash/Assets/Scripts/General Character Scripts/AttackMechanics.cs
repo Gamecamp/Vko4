@@ -71,22 +71,16 @@ public class AttackMechanics : MonoBehaviour {
 			Rigidbody rb = col.gameObject.GetComponent<Rigidbody> ();
 
 			float force = 0;
-			if (gameObject.name == "UnarmedHitbox" + parent.name) {
+			if (gameObject.name == "UnarmedHitbox") {
 				force = 1000;
-			} else if (gameObject.name == "UnarmedHeavyHitbox" + parent.name) {
-				force = 1300;
-			} else if (gameObject.name == "BaseballBatLightHitbox" + parent.name) {
-				force = 6000;
-			} else if (gameObject.name == "BaseballBatHeavyHitbox" + parent.name) {
-				force = 8000;
-			} else if (gameObject.name == "KatanaLightHitbox" + parent.name) {
-				force = 6000;
-			} else if (gameObject.name == "KatanaHeavyHitbox" + parent.name) {
-				force = 8000;
-			} else if (gameObject.name == "SpearLightHitbox" + parent.name) {
-				force = 6000;
-			} else if (gameObject.name == "SpearHeavyHitbox" + parent.name) {
-				force = 8000;
+			} else if (gameObject.name == "BaseballBatLightHitbox") {
+				force = 2000;
+			} else if (gameObject.name == "KatanaLightHitbox") {
+				force = 1500;
+			} else if (gameObject.name == "SpearLightHitbox") {
+				force = 1200;
+			} else if (gameObject.name == "Bullet") {
+				force = 500;
 			}
 		
 			rb.AddForce ((col.gameObject.transform.position - attackerLocation.transform.position)*force);
