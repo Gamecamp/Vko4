@@ -13,6 +13,14 @@ public class AnimationEvents : MonoBehaviour {
 		_bullet = GetComponent<Bullet> ();
 	}
 
+	public void ComboActivate() {
+		attackManager.ActivateComboing ();
+	}
+
+	public void ComboDeactivate() {
+		attackManager.DeactivateComboing ();
+	}
+		
 	public void Activate() {
 		attackManager.ActivateHitbox ();
 	}
